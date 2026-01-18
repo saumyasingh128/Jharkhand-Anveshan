@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cities – Jharkhand Tourism</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+serif: ['Playfair Display'],
+poppins: ['Poppins'],
+lato: ['Lato']
+},
+colors: {
+brand: '#38bdf8',
+dark: '#0c4a6e'
+}
+}
+}
+}
+</script>
+
+<style>
+.fade-in {
+opacity: 0;
+transform: translateY(20px);
+animation: fade 0.6s ease forwards;
+}
+@keyframes fade {
+to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body class="bg-gray-900 text-white font-poppins">
+
+<!-- HERO -->
+<section class="relative h-screen bg-cover bg-center" style="background-image:url('images/steelplant.jpg')">
+<div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black"></div>
+
+<nav class="relative z-20 flex justify-center pt-6">
+<div class="flex items-center justify-between w-full max-w-6xl bg-black/40 backdrop-blur border border-white/10 rounded-full px-6 py-3">
+<div class="flex items-center gap-3">
+<img src="images/icon.jpg" class="w-10 h-10 rounded-full">
+<span class="text-brand font-semibold">Jharkhand Anveshan</span>
+</div>
+<div class="hidden md:flex gap-8 text-sm">
+<a href="#home" class="hover:text-brand">Home</a>
+<a href="#cities" class="hover:text-brand">Cities</a>
+<a href="#lifestyle" class="hover:text-brand">Lifestyle</a>
+</div>
+</div>
+</nav>
+
+<div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+<h1 class="font-serif text-6xl md:text-8xl text-brand mb-3">Urban Pulse</h1>
+<p class="tracking-widest uppercase text-brand/80">Cities of Jharkhand</p>
+<a href="#cities" class="mt-10 bg-dark px-8 py-3 rounded-lg hover:bg-sky-800 transition">
+Discover Cities
+</a>
+</div>
+</section>
+
+<!-- CITIES -->
+<section id="cities" class="py-24 px-4">
+<h2 class="text-center font-serif text-4xl mb-14">Major Hubs</h2>
+
+<div id="cities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"></div>
+
+<div class="text-center mt-14">
+<button id="view-all" class="bg-brand text-black px-8 py-3 rounded-lg hover:bg-sky-400 transition">
+View All Cities
+</button>
+</div>
+</section>
+
+<!-- LIFESTYLE -->
+<section id="lifestyle" class="py-24 px-4 bg-gray-950">
+<h2 class="text-center font-serif text-4xl text-brand mb-4">City Lifestyle</h2>
+<p class="text-center text-gray-400 mb-14">Culture, industry & modern life</p>
+
+<div id="activities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"></div>
+
+<div class="text-center mt-10">
+<button id="more-activities" class="text-brand underline">View More Activities</button>
+</div>
+</section>
+
+<script>
+const cities = [
+{ title:"Ranchi", desc:"Capital city with waterfalls & education hubs", img:"images/ranchi.png", link:"Ranchi.html"},
+{ title:"Jamshedpur", desc:"India’s first planned industrial city", img:"images/j2.png", link:"jmshdpr.html"},
+{ title:"Dhanbad", desc:"Coal Capital of India", img:"images/d1.png", link:"Dhanbad.html"},
+{ title:"Bokaro", desc:"Steel city with greenery", img:"images/b2.png", link:"Bokaro.html"},
+{ title:"Deoghar", desc:"Sacred city of Baba Baidyanath", img:"images/d2.png", link:"BabaBaidyanath.html"},
+{ title:"Hazaribagh", desc:"Hills & National Park", img:"images/h2.png", link:"Hazibarg.html"},
+{ title:"Giridih", desc:"Land of Hills & mica mines", img:"images/g2.png", link:"Giridih.html"}
+];
+
+const activities = [
+{title:"Shopping", img:"images/shopping.jpg"},
+{title:"Industrial Tours", img:"https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122"},
+{title:"Museums", img:"images/mueseum.jpg"},
+{title:"Fine Dining", img:"images/dining.jpg"},
+{title:"City Parks", img:"images/park.webp"},
+{title:"Religious Sites", img:"images/krishna.jpg"}
+];
+
+const cityGrid = document.getElementById("cities-grid");
+const actGrid = document.getElementById("activities-grid");
+
+let cityCount = 3;
+let actCount = 3;
+
+function renderCities(limit){
+cityGrid.innerHTML = "";
+cities.slice(0,limit).forEach((c,i)=>{
+cityGrid.innerHTML += `
+<a href="${c.link}" class="fade-in" style="animation-delay:${i*0.1}s">
+<div class="h-96 rounded-xl overflow-hidden relative group shadow-xl">
+<img src="${c.img}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition">
+<div class="absolute inset-0 bg-black/60"></div>
+<div class="absolute bottom-0 p-6">
+<h3 class="font-serif text-2xl mb-1">${c.title}</h3>
+<p class="text-sm text-gray-300">${c.desc}</p>
+</div>
+</div>
+</a>`;
+});
+}
+
+function renderActivities(limit){
+actGrid.innerHTML = "";
+activities.slice(0,limit).forEach((a,i)=>{
+actGrid.innerHTML += `
+<div class="fade-in h-72 rounded-xl overflow-hidden relative group shadow-lg" style="animation-delay:${i*0.1}s">
+<img src="${a.img}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition">
+<div class="absolute inset-0 bg-black/60 flex items-center justify-center">
+<h3 class="font-serif text-2xl">${a.title}</h3>
+</div>
+</div>`;
+});
+}
+
+renderCities(cityCount);
+renderActivities(actCount);
+
+document.getElementById("view-all").onclick = ()=>{
+cityCount = cities.length;
+renderCities(cityCount);
+document.getElementById("view-all").remove();
+};
+
+document.getElementById("more-activities").onclick = ()=>{
+actCount = activities.length;
+renderActivities(actCount);
+document.getElementById("more-activities").remove();
+};
+</script>
+
+</body>
+</html>

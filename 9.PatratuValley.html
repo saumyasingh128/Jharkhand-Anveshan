@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patratu Valley - The Ultimate Scenic Drive Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'road-grey': '#1f2937',     // Dark Asphalt color
+                        'valley-green': '#059669',  // Lush green hills
+                        'dam-blue': '#0ea5e9',      // Bright blue water
+                        'curve-yellow': '#eab308',  // Road marking yellow
+                        'sunset-orange': '#f97316', // Sunset color
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.5s ease-in-out',
+                        'slide-up': 'slideUp 1s ease-out',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 5px #eab308' },
+                            '50%': { boxShadow: '0 0 20px #eab308, 0 0 30px #fbbf24' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .road-pattern {
+            background-image: linear-gradient(90deg, transparent 95%, #eab308 95%),
+                              linear-gradient(0deg, transparent 95%, #eab308 95%);
+            background-size: 30px 30px;
+            background-position: center center;
+        }
+        
+        .curve-line {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .curve-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(234, 179, 8, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .gradient-border {
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(to right, #eab308, #0ea5e9, #059669) border-box;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-50 bg-road-grey/95 backdrop-blur-md shadow-lg border-b border-gray-700 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <span><img src="images/icon.jpg" alt="" class="w-10 h-10 rounded-full"></span>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-heading font-black text-orange-500 tracking-tighter ">Jharkhand Anveshan</span>
+                        <span class="hidden md:block text-[10px] text-gray-400 font-bold uppercase tracking-[0.3em]">The Valley Drive</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="text-gray-300 hover:text-curve-yellow font-bold text-sm uppercase tracking-wide transition duration-300 group">
+                        <span class="relative">
+                            The Drive
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-curve-yellow group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#dam" class="text-gray-300 hover:text-curve-yellow font-bold text-sm uppercase tracking-wide transition duration-300 group">
+                        <span class="relative">
+                            The Dam
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-dam-blue group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#activities" class="text-gray-300 hover:text-curve-yellow font-bold text-sm uppercase tracking-wide transition duration-300 group">
+                        <span class="relative">
+                            Activities
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-valley-green group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#info" class="text-gray-300 hover:text-curve-yellow font-bold text-sm uppercase tracking-wide transition duration-300 group">
+                        <span class="relative">
+                            Info
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-sunset-orange group-hover:w-full transition-all duration-300"></span>
+                        </span>
+                    </a>
+                    <a href="#video-tour" class="bg-curve-yellow text-road-grey px-6 py-2 rounded-full hover:bg-white transition-all duration-300 shadow-lg text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95">
+                        Start Engine
+                    </a>
+                </div>
+
+                <button onclick="toggleMenu()" class="md:hidden text-white hover:text-curve-yellow transition">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-road-grey border-t border-gray-700 absolute w-full left-0 top-20 shadow-xl animate-slide-up">
+            <a href="#hero" class="block px-6 py-4 text-white font-bold hover:bg-gray-800 hover:text-curve-yellow transition"><i class="fas fa-road mr-3"></i>The Drive</a>
+            <a href="#dam" class="block px-6 py-4 text-white font-bold hover:bg-gray-800 hover:text-dam-blue transition"><i class="fas fa-water mr-3"></i>The Dam</a>
+            <a href="#activities" class="block px-6 py-4 text-white font-bold hover:bg-gray-800 hover:text-valley-green transition"><i class="fas fa-ship mr-3"></i>Activities</a>
+            <a href="#info" class="block px-6 py-4 text-white font-bold hover:bg-gray-800 hover:text-sunset-orange transition"><i class="fas fa-info-circle mr-3"></i>Info</a>
+            <a href="#video-tour" class="block px-6 py-4 bg-gray-800 text-curve-yellow font-bold"><i class="fas fa-play-circle mr-3"></i>Watch Video</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative h-[90vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0 parallax">
+            <img src="images/patratu.jpg" alt="Patratu Valley Winding Road Aerial View" class="w-full h-full object-cover">
+        </div>
+
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-road-grey/70 via-road-grey/40 to-road-grey/80"></div>
+
+        <div class="relative z-10 container mx-auto px-4 text-center animate-fade-in">
+            <div class="inline-block border-2 border-curve-yellow px-6 py-2 mb-6 backdrop-blur-sm bg-black/10 animate-pulse-glow">
+                <span class="text-curve-yellow font-heading font-bold uppercase tracking-[0.2em] text-sm">
+                    <i class="fas fa-map-marker-alt mr-2"></i>Only 30KM From Ranchi
+                </span>
+            </div>
+            <h1 class="text-5xl md:text-8xl font-heading font-black text-white mb-6 leading-tight drop-shadow-2xl">
+                THE PERFECT <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-curve-yellow to-yellow-200">ZIG-ZAG</span>
+            </h1>
+            <p class="text-xl text-gray-200 mb-10 font-medium max-w-2xl mx-auto drop-shadow-md animate-slide-up">
+                Experience the thrill of the S-curves and the serenity of the infinite blue reservoir. The most instagrammable road in Jharkhand.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 animate-slide-up">
+                <a href="#dam" class="bg-dam-blue text-white px-8 py-4 font-bold rounded-lg hover:bg-blue-600 transition duration-300 uppercase tracking-wide shadow-lg transform hover:-translate-y-1 active:translate-y-0">
+                    <i class="fas fa-water mr-2"></i>Explore the Dam
+                </a>
+                <a href="#info" class="gradient-border text-gray-800 bg-white/90 px-8 py-4 font-bold rounded-lg hover:bg-white transition duration-300 uppercase tracking-wide shadow-lg transform hover:-translate-y-1 active:translate-y-0">
+                    <i class="fas fa-info-circle mr-2"></i>Visitor Info
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#dam" class="text-white text-3xl">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="bg-road-grey text-white py-12 relative z-20 -mt-2">
+        <div class="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-24 text-center">
+            <div class="group cursor-pointer">
+                <div class="relative w-20 h-20 mx-auto mb-4 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-curve-yellow/20 transition duration-300">
+                    <i class="fas fa-road-curve text-3xl text-curve-yellow"></i>
+                </div>
+                <span class="block text-4xl font-heading font-bold text-curve-yellow">32</span>
+                <span class="text-sm uppercase tracking-widest text-gray-400">Sharp S-Curves</span>
+            </div>
+            <div class="group cursor-pointer">
+                <div class="relative w-20 h-20 mx-auto mb-4 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-dam-blue/20 transition duration-300">
+                    <i class="fas fa-water text-3xl text-dam-blue"></i>
+                </div>
+                <span class="block text-4xl font-heading font-bold text-dam-blue">2400</span>
+                <span class="text-sm uppercase tracking-widest text-gray-400">Acres of Water</span>
+            </div>
+            <div class="group cursor-pointer">
+                <div class="relative w-20 h-20 mx-auto mb-4 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-sunset-orange/20 transition duration-300">
+                    <i class="fas fa-sun text-3xl text-sunset-orange"></i>
+                </div>
+                <span class="block text-4xl font-heading font-bold text-sunset-orange">5:30PM</span>
+                <span class="text-sm uppercase tracking-widest text-gray-400">Best Sunset View</span>
+            </div>
+            <div class="group cursor-pointer">
+                <div class="relative w-20 h-20 mx-auto mb-4 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-valley-green/20 transition duration-300">
+                    <i class="fas fa-tree text-3xl text-valley-green"></i>
+                </div>
+                <span class="block text-4xl font-heading font-bold text-valley-green">1974</span>
+                <span class="text-sm uppercase tracking-widest text-gray-400">Dam Established</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="dam" class="py-24 px-4 max-w-7xl mx-auto bg-gray-50">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-heading font-black text-road-grey mb-4 uppercase">Valley <span class="text-dam-blue">&</span> Water</h2>
+            <div class="h-1 w-24 bg-curve-yellow mx-auto"></div>
+            <p class="mt-4 text-gray-600 max-w-3xl mx-auto text-lg">
+                Patratu Valley is a unique destination where you descend from lush green hills directly into a massive blue reservoir. The dam, built on the Nalkari River, supplies water to the Patratu Thermal Power Station and creates a breathtaking landscape.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="relative group overflow-hidden rounded-2xl shadow-2xl h-[300px] md:h-[550px] cursor-pointer">
+                <img src="images/patratudam.jpg" alt="Patratu Dam Water" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-dam-blue/90 to-transparent"></div>
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="text-3xl font-heading font-bold">Patratu Dam</h3>
+                    <p class="text-sm text-blue-100 mt-2 max-w-md">A massive reservoir supplying water to the thermal power station and creating a stunning aquatic playground for visitors.</p>
+                    <div class="mt-4 flex items-center">
+                        <i class="fas fa-ruler-combined mr-2"></i>
+                        <span class="text-xs">Height: 45.7 meters | Length: 365 meters</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-rows-2 gap-6 h-auto md:h-[550px]">
+                <div id="boating" class="relative group overflow-hidden rounded-2xl shadow-2xl h-64 md:h-full cursor-pointer">
+                    <img src="images/patratuspeedboating.jpg" alt="Speed Boating" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-l from-road-grey/80 to-transparent"></div>
+                    <div class="absolute bottom-6 right-6 text-right text-white">
+                        <h3 class="text-2xl font-heading font-bold">Speed Boating</h3>
+                        <p class="text-xs text-gray-300">Enjoy high-speed island tours and water adventures.</p>
+                        <div class="mt-2 text-xs">
+                            <span class="bg-dam-blue px-2 py-1 rounded">₹500 per person</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-2xl shadow-2xl h-64 md:h-full cursor-pointer">
+                    <img src="images/patratu.jpg" alt="Road view from car" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-r from-valley-green/90 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-heading font-bold">The Scenic Drive</h3>
+                        <p class="text-xs text-gray-200">Smooth tarmac with 32 hairpin bends through lush greenery.</p>
+                        <div class="mt-2 text-xs flex items-center">
+                            <i class="fas fa-clock mr-1"></i>
+                            <span>Drive time: 45 minutes from valley top to dam</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-black text-road-grey mb-4 uppercase">Activities <span class="text-curve-yellow">&</span> Experiences</h2>
+                <div class="h-1 w-24 bg-curve-yellow mx-auto"></div>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+                    Beyond the scenic drive, Patratu offers various activities for visitors of all ages.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 border border-gray-200 hover:border-curve-yellow/30">
+                    <div class="w-16 h-16 rounded-full bg-curve-yellow/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-camera text-3xl text-curve-yellow"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Photography Points</h3>
+                    <p class="text-gray-600 mb-4">Designated spots for capturing the perfect shot of winding roads against the blue reservoir.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-curve-yellow mr-2"></i>Sunset Point</li>
+                        <li><i class="fas fa-check text-curve-yellow mr-2"></i>Eagle's View Platform</li>
+                        <li><i class="fas fa-check text-curve-yellow mr-2"></i>Dam Top View</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 border border-gray-200 hover:border-dam-blue/30">
+                    <div class="w-16 h-16 rounded-full bg-dam-blue/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-ship text-3xl text-dam-blue"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Water Activities</h3>
+                    <p class="text-gray-600 mb-4">Enjoy various water-based adventures on the reservoir.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-dam-blue mr-2"></i>Speed Boating (₹500/person)</li>
+                        <li><i class="fas fa-check text-dam-blue mr-2"></i>Pedal Boating (₹300/30 mins)</li>
+                        <li><i class="fas fa-check text-dam-blue mr-2"></i>Island Exploration Tour</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition duration-300 border border-gray-200 hover:border-valley-green/30">
+                    <div class="w-16 h-16 rounded-full bg-valley-green/10 flex items-center justify-center mb-6">
+                        <i class="fas fa-utensils text-3xl text-valley-green"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Food & Facilities</h3>
+                    <p class="text-gray-600 mb-4">Local cuisine and amenities for a comfortable visit.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li><i class="fas fa-check text-valley-green mr-2"></i>Local Food Stalls</li>
+                        <li><i class="fas fa-check text-valley-green mr-2"></i>Patratu Resort Restaurant</li>
+                        <li><i class="fas fa-check text-valley-green mr-2"></i>Clean Restrooms</li>
+                        <li><i class="fas fa-check text-valley-green mr-2"></i>Ample Parking Space</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info" class="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-black text-road-grey mb-4 uppercase">Visitor <span class="text-sunset-orange">Information</span></h2>
+                <div class="h-1 w-24 bg-curve-yellow mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-heading font-bold mb-6 text-road-grey flex items-center">
+                        <i class="fas fa-clock text-sunset-orange mr-3"></i> Best Time to Visit
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-valley-green mb-2">Monsoon (July - September)</h4>
+                            <p class="text-gray-600">Lush green landscapes, flowing waterfalls, and misty roads create magical views.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-dam-blue mb-2">Winter (October - February)</h4>
+                            <p class="text-gray-600">Clear skies, pleasant weather, and perfect conditions for photography and boating.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-curve-yellow mb-2">Avoid Summer (March - June)</h4>
+                            <p class="text-gray-600">Hot and humid weather, water levels may be lower, less comfortable for outdoor activities.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-xl">
+                    <h3 class="text-2xl font-heading font-bold mb-6 text-road-grey flex items-center">
+                        <i class="fas fa-car text-curve-yellow mr-3"></i> How to Reach
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-lg text-road-grey mb-2">From Ranchi</h4>
+                            <p class="text-gray-600">30 km via NH43 (approx 1 hour drive). Well-marked road with signs.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-road-grey mb-2">Public Transport</h4>
+                            <p class="text-gray-600">Regular buses from Ranchi Bus Stand to Patratu. Taxis available at ₹800-1000 for round trip.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-road-grey mb-2">Entry Timings & Fees</h4>
+                            <p class="text-gray-600">Open daily 6:00 AM to 6:00 PM. Entry fee: ₹20 per person, ₹50 for vehicles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-gradient-to-r from-curve-yellow/10 to-dam-blue/10 rounded-2xl p-8 border border-curve-yellow/20">
+                <h3 class="text-2xl font-heading font-bold mb-4 text-road-grey">Travel Tips</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-start">
+                        <i class="fas fa-gas-pump text-curve-yellow text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold">Fuel Up</h4>
+                            <p class="text-sm text-gray-600">Last petrol pump is in Ranchi. Ensure sufficient fuel.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-camera text-dam-blue text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold">Camera Ready</h4>
+                            <p class="text-sm text-gray-600">Carry your camera for stunning panoramic shots.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-utensils text-valley-green text-xl mt-1 mr-3"></i>
+                        <div>
+                            <h4 class="font-bold">Carry Snacks</h4>
+                            <p class="text-sm text-gray-600">Limited food options available at the dam site.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-tour" class="py-24 bg-road-grey relative overflow-hidden text-white mt-12">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: repeating-linear-gradient(45deg, #000 0, #000 10px, transparent 10px, transparent 20px);"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/3 text-left">
+                    <span class="text-curve-yellow font-bold tracking-widest uppercase text-xs bg-white/10 px-2 py-1 backdrop-blur-sm">Virtual Tour</span>
+                    <h2 class="text-4xl font-heading font-black mt-4 mb-6 leading-tight">DRIVE THROUGH <br> THE CLOUDS</h2>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        The view from the top of the valley is mesmerizing. Watch the drone footage to see the famous "S" shape of the road winding through the hills and meeting the blue reservoir.
+                    </p>
+                    <div class="flex items-center gap-2 text-sm font-bold text-dam-blue">
+                        <i class="fas fa-clock"></i>
+                        <span>Best time to visit: Monsoon & Winter (October - February)</span>
+                    </div>
+                    <div class="mt-6 p-4 bg-gray-900/50 rounded-lg border-l-4 border-curve-yellow">
+                        <h4 class="font-bold mb-2">Did You Know?</h4>
+                        <p class="text-sm text-gray-300">Patratu Dam was constructed in 1974 primarily to supply water to the Patratu Thermal Power Station, but has since become a major tourist attraction in Jharkhand.</p>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-2/3">
+                    <div class="relative bg-black rounded-lg shadow-2xl overflow-hidden aspect-video z-10 border-4 border-curve-yellow">
+                        <iframe 
+                            class="w-full h-full" 
+                            src="https://www.youtube.com/embed/Lxb4lwTqjBQ
+" 
+                            title="Patratu Valley Video" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                        <div class="absolute bottom-4 right-4 bg-black/70 text-xs px-2 py-1 rounded">
+                            <i class="fas fa-play-circle mr-1"></i> Click to play
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-500 py-16 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div>
+                <h3 class="text-3xl font-heading text-white font-black tracking-tighter uppercase mb-4">PATRATU</h3>
+                <p class="text-sm mb-4">Maintained by Jharkhand Tourism Development Corporation.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-curve-yellow transition"><i class="fab fa-instagram text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-dam-blue transition"><i class="fab fa-facebook text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-valley-green transition"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-sunset-orange transition"><i class="fab fa-youtube text-lg"></i></a>
+                </div>
+            </div>
+            
+            <div class="flex flex-col space-y-2">
+                <span class="text-white font-bold uppercase mb-2 tracking-widest text-xs">Explore</span>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>The Resort</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Island Park</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Children's Park</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Viewpoints</a>
+            </div>
+
+            <div class="flex flex-col space-y-2">
+                <span class="text-white font-bold uppercase mb-2 tracking-widest text-xs">Connect</span>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Directions</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Hotels Nearby</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Contact Tourism Office</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i>Emergency Numbers</a>
+            </div>
+            
+            <div class="flex flex-col space-y-2">
+                <span class="text-white font-bold uppercase mb-2 tracking-widest text-xs">Quick Links</span>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-download text-xs mr-2"></i>Brochure (PDF)</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-calendar text-xs mr-2"></i>Event Calendar</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-newspaper text-xs mr-2"></i>Latest Updates</a>
+                <a href="#" class="hover:text-dam-blue transition flex items-center"><i class="fas fa-question-circle text-xs mr-2"></i>FAQ</a>
+            </div>
+        </div>
+        <div class="text-center mt-12 text-xs text-gray-600 pt-8 border-t border-gray-800 max-w-7xl mx-auto px-4">
+            &copy; 2024 Patratu Valley Tourism, Jharkhand. All rights reserved. | Photos courtesy of Jharkhand Tourism & Unsplash
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if(!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-2xl');
+                nav.classList.remove('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-2xl');
+                nav.classList.add('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>

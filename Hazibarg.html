@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazaribagh - City of Thousand Gardens</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .slide-in-right {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .zoom-in {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .zoom-in.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, #15803d, #a3e635, #d97706);
+            border-radius: 2px;
+            margin: 2rem auto;
+            width: 120px;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .food-card {
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s;
+        }
+        
+        .food-card:hover .food-overlay {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #16a34a;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-green-50 text-gray-800">
+    <nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm shadow-lg transition-all duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-tree text-2xl text-emerald-700"></i>
+                <h1 class="text-2xl font-bold text-gray-800">Hazaribagh<span class="text-emerald-700">.</span></h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-medium hover:text-emerald-700 transition">Home</a>
+                <a href="#about" class="nav-link font-medium hover:text-emerald-700 transition">About</a>
+                <a href="#food" class="nav-link font-medium hover:text-emerald-700 transition">Food</a>
+                <a href="#culture" class="nav-link font-medium hover:text-emerald-700 transition">Culture</a>
+                <a href="#video" class="nav-link font-medium hover:text-emerald-700 transition">Video</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg px-4 py-6">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link font-medium py-2">Home</a>
+                <a href="#about" class="nav-link font-medium py-2">About</a>
+                <a href="#food" class="nav-link font-medium py-2">Food</a>
+                <a href="#culture" class="nav-link font-medium py-2">Culture</a>
+                <a href="#video" class="nav-link font-medium py-2">Video</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative overflow-hidden min-h-screen flex items-center">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r"></div>
+            <img src="images/h2.png"
+                 alt="Hazaribagh Nature" class="w-full h-full object-fit">
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-4 text-white">
+            <div class="max-w-4xl fade-in mt-16 md:mt-0">
+                <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight">Explore <span class="text-green-300">Hazaribagh</span></h1>
+                <p class="text-xl md:text-3xl mb-10 text-gray-100 font-light max-w-2xl">The "City of a Thousand Gardens" - Where Heritage Meets Nature</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#about" class="inline-block bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 border-2 border-green-400/30 text-center">
+                        Discover Nature <i class="fas fa-arrow-down ml-2"></i>
+                    </a>
+                    <a href="#video" class="inline-block bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 border border-white/50 text-center">
+                        <i class="fas fa-play mr-2"></i> Watch Video
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 z-10">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="fill-current text-green-50 w-full h-16 md:h-24">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35,6.36,117.35-6.8,54-19,106-58,158-87,52-29,104-58,158-87,54-29,106-58,158-87,13-7,27-14,41-20,14-6,28-12,43-18L1200,0V120H0Z" opacity=".5"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About <span class="text-emerald-700">Hazaribagh</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Deriving its name from "Hazar" (Thousand) and "Bagh" (Gardens), this scenic city is located on the Chota Nagpur Plateau. It is famous for its wildlife sanctuary, scenic hills, and pleasant weather year-round.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="zoom-in">
+                    <div class="rounded-xl overflow-hidden shadow-2xl border-4 border-green-50">
+                        <img src="images/canary.webp"
+                             alt="Canary Hill View" class="w-full h-64 md:h-96 object-cover">
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">A Health Resort & Edu-Hub</h3>
+                    <div class="space-y-4 text-gray-700">
+                        <p>Hazaribagh is often called a health resort due to its pristine air and dense forests. The iconic <strong>Hazaribagh Lake</strong> is the heart of the city, surrounded by colonial-era bungalows and vibrant student life.</p>
+                        <p>It is home to the famous <strong>Hazaribagh Wildlife Sanctuary</strong>, which hosts sambars, nilgais, and sloth bears. For the adventurous, a trek up to <strong>Canary Hill</strong> offers a panoramic view of the entire city.</p>
+                        <p>The city is also a major educational hub of Jharkhand, housing the prestigious <strong>Vinoba Bhave University</strong> and the historic St. Columba's College.</p>
+                    </div>
+                    
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                            <div class="flex items-center">
+                                <i class="fas fa-mountain text-emerald-600 text-xl mr-3"></i>
+                                <div>
+                                    <p class="font-bold text-emerald-800">Canary Hill</p>
+                                    <p class="text-sm text-emerald-600">Scenic Viewpoint</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-amber-50 p-4 rounded-lg border border-amber-100">
+                            <div class="flex items-center">
+                                <i class="fas fa-paw text-amber-600 text-xl mr-3"></i>
+                                <div>
+                                    <p class="font-bold text-amber-800">National Park</p>
+                                    <p class="text-sm text-amber-600">Wildlife Sanctuary</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="food" class="py-16 md:py-24 bg-green-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Taste of <span class="text-amber-700">Hazaribagh</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">From crispy lakeside snacks to traditional sweets, Hazaribagh offers a simple yet delicious culinary experience.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card-hover fade-in">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                        <div class="h-48 food-card" style="background-image: url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/70 to-transparent p-4 flex items-end transition-all duration-300">
+                                <h3 class="text-2xl font-bold text-white">Singara (Samosa)</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700">The Samosas (locally called Singara) near Hazaribagh Lake are legendary. Served with spicy chutney, they are the favorite evening snack for students and locals alike.</p>
+                            <div class="mt-4 flex items-center text-amber-500">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="ml-2 text-sm font-medium text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                        <div class="h-48 food-card" style="background-image: url('images/balusahi.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/70 to-transparent p-4 flex items-end transition-all duration-300">
+                                <h3 class="text-2xl font-bold text-white">Balushahi</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700">A famous sweet of the region. Hazaribagh's Balushahi is known for its flaky texture and perfect sweetness, often made with pure desi ghee.</p>
+                            <div class="mt-4 flex items-center text-amber-500">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                <span class="ml-2 text-sm font-medium text-gray-600">4.5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                        <div class="h-48 food-card" style="background-image: url('images/duska.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/70 to-transparent p-4 flex items-end transition-all duration-300">
+                                <h3 class="text-2xl font-bold text-white">Duska-Barra</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700">A staple breakfast. The Duska here is often paired with 'Barra' (vada) and a spicy potato-chickpea curry, available at street corners in the morning.</p>
+                            <div class="mt-4 flex items-center text-amber-500">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="ml-2 text-sm font-medium text-gray-600">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                        <div class="h-48 food-card" style="background-image: url('images/malpua.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/70 to-transparent p-4 flex items-end transition-all duration-300">
+                                <h3 class="text-2xl font-bold text-white">Malpua</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-700">During festivals like Holi, Hazaribagh households prepare rich, syrup-soaked Malpuas. Some local sweet shops serve this delicacy year-round.</p>
+                            <div class="mt-4 flex items-center text-amber-500">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                <span class="ml-2 text-sm font-medium text-gray-600">4.0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="culture" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Culture & <span class="text-green-700">Heritage</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Hazaribagh is a unique blend of tribal art, colonial history, and vibrant religious festivals.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 zoom-in">
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 shadow-lg h-full border border-green-100">
+                        <h3 class="text-2xl font-bold mb-6 text-emerald-900">Life in Hazaribagh</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-om text-orange-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800 mb-1">International Ram Navami</h4>
+                                    <p class="text-gray-700">Hazaribagh is world-famous for its Ram Navami processions. Hundreds of 'Akharas' display traditional martial arts with swords and sticks, attracting lakhs of devotees.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-paint-brush text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800 mb-1">Sohrai & Khovar Art</h4>
+                                    <p class="text-gray-700">The walls of mud houses in Hazaribagh villages are often painted with GI-tagged Sohrai and Khovar art, a centuries-old matriarchal tradition depicting nature and wildlife.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800 mb-1">The Student Vibe</h4>
+                                    <p class="text-gray-700">With VBU and St. Columba's, the city has a youthful energy. The cafes near Jhanda Chowk and the Lake area are always buzzing with students debating politics and exams.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-leaf text-amber-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800 mb-1">Morning Walk Culture</h4>
+                                    <p class="text-gray-700">The culture of morning walks at Hazaribagh Lake is almost a ritual. The fresh air and serene water attract people of all ages before the city wakes up.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <div class="bg-gradient-to-b from-emerald-800 to-green-900 rounded-2xl p-8 text-white shadow-lg h-full">
+                        <h3 class="text-2xl font-bold mb-6">Quick Facts</h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-map-marker-alt text-green-300 mr-3"></i>
+                                    <p class="font-bold">Location</p>
+                                </div>
+                                <p class="text-green-100">North Chotanagpur Division</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-cloud-sun text-green-300 mr-3"></i>
+                                    <p class="font-bold">Climate</p>
+                                </div>
+                                <p class="text-green-100">Mild summers, Cold winters</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-landmark text-green-300 mr-3"></i>
+                                    <p class="font-bold">Famous For</p>
+                                </div>
+                                <p class="text-green-100">Coal, Forests, Ram Navami</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-language text-green-300 mr-3"></i>
+                                    <p class="font-bold">Languages</p>
+                                </div>
+                                <p class="text-green-100">Hindi, Khortha, Sadri</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-water text-green-300 mr-3"></i>
+                                    <p class="font-bold">Major Lake</p>
+                                </div>
+                                <p class="text-green-100">Hazaribagh Jheel (Lake)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10 pt-6 border-t border-green-700">
+                            <h4 class="font-bold mb-4">Best Time to Visit</h4>
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar-alt text-amber-300 text-xl mr-3"></i>
+                                <p class="text-green-100">October to March (Winter)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="py-16 md:py-24 bg-green-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Experience <span class="text-red-600">Hazaribagh</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto">Take a visual journey through the winding roads, lush forests, and the serene lakes of Hazaribagh.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto fade-in">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-2xl p-2">
+                    <div class="relative pb-[56.25%] h-0 rounded-xl overflow-hidden">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/h9swUGvRxi4" 
+                            title="Hazaribagh Cinematic Video"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Cinematic Hazaribagh</h3>
+                        <p class="text-gray-700 mb-4">Witness the aerial views of the dense Hazaribagh forests, the architectural beauty of Canary Hill, and the vibrant life around the city's lakes.</p>
+                        
+                        <div class="flex flex-wrap items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-gray-500 mr-2"></i>
+                                <span class="text-gray-600">Travel Vlog</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-tree text-green-600 mr-2"></i>
+                                <span class="text-gray-600">Nature & City</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600 mb-4">Want to see more of Hazaribagh?</p>
+                    <a href="https://www.youtube.com/watch?v=h9swUGvRxi4 " target="_blank" class="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105">
+                        <i class="fab fa-youtube mr-3"></i>
+                        Watch More on YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fas fa-tree text-3xl text-emerald-400"></i>
+                        <h2 class="text-2xl font-bold">Hazaribagh<span class="text-emerald-400">.</span></h2>
+                    </div>
+                    <p class="text-gray-400 mb-6">The city of forests, hills, and education. A perfect getaway for nature lovers and seekers of peace in Jharkhand.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 hover:bg-emerald-600 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-emerald-400 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-pink-600 w-10 h-10 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-emerald-400 transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-emerald-400 transition-colors">About Hazaribagh</a></li>
+                        <li><a href="#food" class="text-gray-400 hover:text-emerald-400 transition-colors">Local Delicacies</a></li>
+                        <li><a href="#culture" class="text-gray-400 hover:text-emerald-400 transition-colors">Culture & Art</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Contact Info</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-emerald-400 mr-3 mt-1"></i>
+                            <span class="text-gray-400">Hazaribagh, Jharkhand,<br>India - 825301</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-emerald-400 mr-3"></i>
+                            <span class="text-gray-400">+91 6546 123 456</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-emerald-400 mr-3"></i>
+                            <span class="text-gray-400">tourism@hazaribagh.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-10 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 Hazaribagh Tourism. All rights reserved. | Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for nature.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-emerald-700 hover:bg-emerald-800 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add floating animation to some elements after page load
+        window.addEventListener('load', () => {
+            const elementsToFloat = document.querySelectorAll('.floating');
+            elementsToFloat.forEach(el => {
+                const randomDelay = Math.random() * 2;
+                el.style.animationDelay = `${randomDelay}s`;
+            });
+            
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isInView = rect.top <= window.innerHeight && rect.bottom >= 0;
+                if (isInView) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

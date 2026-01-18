@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lodh Falls | Buria Pahad - Jharkhand's Highest Waterfall</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles and animations */
+        @keyframes cascadingWater {
+            0% { transform: translateY(-100px) scaleY(0.3); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(100vh) scaleY(1.5); opacity: 0; }
+        }
+        
+        @keyframes heightGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        
+        @keyframes mountainFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-0.5deg); }
+            75% { transform: translateY(5px) rotate(0.5deg); }
+        }
+        
+        @keyframes mistForm {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
+        }
+        
+        .animate-cascading-water {
+            animation: cascadingWater 5s linear infinite;
+        }
+        
+        .animate-height-glow {
+            animation: heightGlow 3s ease-in-out infinite;
+        }
+        
+        .animate-mountain-float {
+            animation: mountainFloat 8s ease-in-out infinite;
+        }
+        
+        .animate-mist-form {
+            animation: mistForm 10s linear infinite;
+        }
+        
+        .text-gradient-height {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-majestic {
+            background: linear-gradient(145deg, #ffffff, #eff6ff);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-majestic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+            transition: left 0.7s;
+        }
+        
+        .card-majestic:hover::before {
+            left: 100%;
+        }
+        
+        .card-majestic:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .height-icon {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .height-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .waterfall-height {
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
+        
+        .mountain-pattern {
+            background-image: 
+                radial-gradient(circle at 30% 20%, rgba(30, 64, 175, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 70% 80%, rgba(30, 64, 175, 0.05) 0%, transparent 25%);
+            background-size: 120px 120px;
+        }
+        
+        .custom-scrollbar-height::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .custom-scrollbar-height::-webkit-scrollbar-track {
+            background: #eff6ff;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar-height::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #3b82f6, #1e40af);
+            border-radius: 10px;
+        }
+        
+        .fade-in-height {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in-height.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .height-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .height-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .height-glow:hover::after {
+            opacity: 1;
+        }
+        
+        .mountain-arch {
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+        }
+        
+        .height-wave {
+            position: relative;
+        }
+        
+        .height-wave::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            animation: heightRipple 3s ease-out infinite;
+        }
+        
+        @keyframes heightRipple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        
+        .floating-peak {
+            filter: drop-shadow(0 0 10px rgba(30, 64, 175, 0.5));
+        }
+        
+        .cloud-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 50%, rgba(255, 255, 255, 0.3) 100%);
+            pointer-events: none;
+        }
+        
+        .height-line {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.7), transparent);
+            filter: blur(1px);
+            animation: heightIndicator 15s linear infinite;
+        }
+        
+        @keyframes heightIndicator {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        .height-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #dc2626, #ea580c);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
+            z-index: 10;
+        }
+        
+        .height-badge::after {
+            content: 'Tallest';
+            position: absolute;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 10px;
+            color: #dc2626;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-blue-50 to-indigo-50 text-gray-800 overflow-x-hidden custom-scrollbar-height">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-gradient-to-r from-blue-900/95 to-indigo-900/95 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 group cursor-pointer">
+                <div class="relative">
+                    <i class="fas fa-water text-blue-300 text-3xl group-hover:text-blue-200 transition-colors duration-300"></i>
+                    <div class="absolute -top-1 -right-1 w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-white tracking-tight">Lodh Falls</h1>
+                    <p class="text-xs text-blue-300 tracking-wide">Buria Pahad</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-white hover:text-blue-300 font-medium transition-all duration-300 relative group py-2">
+                    <span class="relative z-10">About</span>
+                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 group-hover:w-full transition-all duration-300"></div>
+                </a>
+                <a href="#beauty" class="nav-link text-white hover:text-blue-300 font-medium transition-all duration-300 relative group py-2">
+                    <span class="relative z-10">Beauty</span>
+                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 group-hover:w-full transition-all duration-300"></div>
+                </a>
+                <a href="#height" class="nav-link text-white hover:text-blue-300 font-medium transition-all duration-300 relative group py-2">
+                    <span class="relative z-10">The Height</span>
+                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 group-hover:w-full transition-all duration-300"></div>
+                </a>
+                <a href="#safety" class="nav-link text-white hover:text-blue-300 font-medium transition-all duration-300 relative group py-2">
+                    <span class="relative z-10">Safety</span>
+                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 group-hover:w-full transition-all duration-300"></div>
+                </a>
+                <a href="#video" class="nav-link text-white hover:text-blue-300 font-medium transition-all duration-300 relative group py-2">
+                    <span class="relative z-10">Video</span>
+                    <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 group-hover:w-full transition-all duration-300"></div>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-blue-900/95 backdrop-blur-md overflow-hidden max-h-0 transition-all duration-500">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="#about" class="text-white hover:text-blue-300 font-medium py-3 border-b border-blue-800 transition-colors duration-300">About</a>
+                <a href="#beauty" class="text-white hover:text-blue-300 font-medium py-3 border-b border-blue-800 transition-colors duration-300">Beauty</a>
+                <a href="#height" class="text-white hover:text-blue-300 font-medium py-3 border-b border-blue-800 transition-colors duration-300">The Height</a>
+                <a href="#safety" class="text-white hover:text-blue-300 font-medium py-3 border-b border-blue-800 transition-colors duration-300">Safety</a>
+                <a href="#video" class="text-white hover:text-blue-300 font-medium py-3 transition-colors duration-300">Video</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="h-screen relative flex items-center justify-center overflow-hidden mountain-pattern">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-900/60 to-indigo-900/50 z-10"></div>
+            <img src="images/lodh.jpeg" 
+                 alt="Lodh Falls" 
+                 class="w-full h-full object-cover">
+            
+            <!-- Cloud overlay -->
+            <div class="cloud-overlay"></div>
+            
+            <!-- Height indicator lines -->
+            <div class="height-line" style="left: 30%; animation-delay: 0s;"></div>
+            <div class="height-line" style="left: 50%; animation-delay: 3s;"></div>
+            <div class="height-line" style="left: 70%; animation-delay: 6s;"></div>
+            
+            <!-- Animated cascading water streams -->
+            <div class="absolute top-10 left-1/4 w-3 h-32 bg-blue-300/60 animate-cascading-water"></div>
+            <div class="absolute top-20 right-1/3 w-4 h-40 bg-blue-400/60 animate-cascading-water" style="animation-delay: 0.8s;"></div>
+            <div class="absolute top-30 left-1/2 w-5 h-48 bg-blue-200/60 animate-cascading-water" style="animation-delay: 1.6s;"></div>
+            
+            <!-- Rising mist forms -->
+            <div class="absolute bottom-10 left-1/3 w-12 h-12 bg-white/30 rounded-full animate-mist-form"></div>
+            <div class="absolute bottom-20 right-1/4 w-10 h-10 bg-white/40 rounded-full animate-mist-form" style="animation-delay: 3s;"></div>
+            <div class="absolute bottom-30 left-2/3 w-14 h-14 bg-white/20 rounded-full animate-mist-form" style="animation-delay: 6s;"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-20 text-center text-white px-4" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                <span class="text-gradient-height">LODH FALLS</span>
+            </h1>
+            <p class="text-2xl md:text-3xl mb-4 font-light text-blue-100">Buria Pahad - Jharkhand's Highest</p>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light">
+                Towering at 143 meters, the tallest waterfall in Jharkhand
+            </p>
+            <a href="#about" class="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-10 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-lg animate-height-glow">
+                Explore the Height <i class="fas fa-mountain ml-3"></i>
+            </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="flex flex-col items-center animate-bounce">
+                <span class="text-blue-200 text-sm mb-2 tracking-wide">DISCOVER THE HEIGHT</span>
+                <i class="fas fa-chevron-down text-blue-300 text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-width-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-blue-900 relative fade-in-height">
+                    About Lodh Falls (Buria Pahad)
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-blue-500 to-indigo-600 mt-6 rounded-full"></div>
+                </h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8 fade-in-height">
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            Lodh Falls, also known as Buria Pahad Falls, is the highest waterfall in Jharkhand and one of the tallest in India. Located in the Latehar district, this magnificent waterfall cascades from a staggering height of 143 meters (469 feet).
+                        </p>
+                        
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            The waterfall is formed by the Burha River as it plunges down the steep cliffs of the Netarhat plateau. The name "Buria Pahad" comes from the local tribal language, with "Buria" meaning "old" and "Pahad" meaning "mountain," referring to the ancient geological formations.
+                        </p>
+                        
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            What makes Lodh Falls particularly unique is its multi-tiered structure, with water cascading in multiple stages down the rocky face. The falls are surrounded by dense Sal forests and are part of a rich biodiversity hotspot.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6 mt-10">
+                            <div class="relative">
+                                <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                    <div class="flex items-center mb-3">
+                                        <i class="fas fa-ruler-vertical text-blue-600 text-xl mr-3"></i>
+                                        <h4 class="font-bold text-blue-900">Height</h4>
+                                    </div>
+                                    <p class="text-2xl font-bold text-blue-700">143 meters</p>
+                                    <p class="text-sm text-gray-600 mt-1">(469 feet) - Highest in Jharkhand</p>
+                                </div>
+                                <div class="height-badge">#1</div>
+                            </div>
+                            
+                            <div class="bg-blue-50 p-6 rounded-2xl border-l-4 border-blue-500 transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                <div class="flex items-center mb-3">
+                                    <i class="fas fa-water text-blue-600 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-blue-900">River Source</h4>
+                                </div>
+                                <p class="text-lg font-bold text-blue-700">Burha River</p>
+                                <p class="text-sm text-gray-600 mt-1">Netarhat Plateau origin</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative fade-in-height">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl transform -rotate-1 transition-transform duration-700 hover:rotate-0 waterfall-height">
+                            <img src="images/lodh.jpeg" 
+                                 alt="Lodh Falls view" 
+                                 class="w-full h-[500px] object-cover">
+                        </div>
+                        
+                        <!-- Decorative height element -->
+                        <div class="absolute -top-6 -right-6 w-28 h-28 bg-blue-400 rounded-full opacity-20 animate-mountain-float"></div>
+                        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-indigo-400 rounded-full opacity-20 animate-mountain-float" style="animation-delay: 2s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Raw Beauty Cards Section -->
+    <section id="beauty" class="py-24 bg-gradient-to-b from-blue-50 to-indigo-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-6 text-blue-900 fade-in-height">The Raw Beauty of Lodh Falls</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto fade-in-height">Four aspects that showcase the majesty of Jharkhand's tallest waterfall</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+                <!-- Card 1 -->
+                <div class="card-majestic rounded-2xl overflow-hidden fade-in-height height-glow">
+                    <div class="h-64 overflow-hidden">
+                        <img src="images/lodh1.jpeg" 
+                             alt="Towering Cascade" 
+                             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-7">
+                        <div class="flex items-center mb-5">
+                            <div class="height-icon w-14 h-14 mr-5">
+                                <i class="fas fa-mountain text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-blue-900">Towering Height</h3>
+                        </div>
+                        <p class="text-gray-700">At 143 meters, it's the highest waterfall in Jharkhand, creating an awe-inspiring vertical drop.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card-majestic rounded-2xl overflow-hidden fade-in-height height-glow" data-delay="100">
+                    <div class="h-64 overflow-hidden">
+                        <img src="images/lodh.jpeg" 
+                             alt="Multi-tiered Falls" 
+                             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-7">
+                        <div class="flex items-center mb-5">
+                            <div class="height-icon w-14 h-14 mr-5">
+                                <i class="fas fa-layer-group text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-blue-900">Multi-tiered</h3>
+                        </div>
+                        <p class="text-gray-700">The waterfall cascades in multiple stages, creating a spectacular layered effect down the cliff.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card-majestic rounded-2xl overflow-hidden fade-in-height height-glow" data-delay="200">
+                    <div class="h-64 overflow-hidden">
+                        <img src="images/lropck.jpeg" 
+                             alt="Rock Formations" 
+                             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-7">
+                        <div class="flex items-center mb-5">
+                            <div class="height-icon w-14 h-14 mr-5">
+                                <i class="fas fa-gem text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-blue-900">Ancient Rocks</h3>
+                        </div>
+                        <p class="text-gray-700">Surrounded by ancient granite and basalt formations dating back millions of years.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card-majestic rounded-2xl overflow-hidden fade-in-height height-glow" data-delay="300">
+                    <div class="h-64 overflow-hidden">
+                        <img src="images/ldiversity.jpeg" 
+                             alt="Biodiversity" 
+                             class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                    </div>
+                    <div class="p-7">
+                        <div class="flex items-center mb-5">
+                            <div class="height-icon w-14 h-14 mr-5">
+                                <i class="fas fa-tree text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-blue-900">Rich Biodiversity</h3>
+                        </div>
+                        <p class="text-gray-700">Surrounded by dense Sal forests that are home to diverse flora and fauna species.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Photo Gallery -->
+            <div class="fade-in-height">
+                <h3 class="text-3xl font-bold text-center mb-12 text-blue-900">Height in Perspective</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-105">
+                        <div class="mountain-arch h-64 overflow-hidden group">
+                            <img src="images/lgallery1.jpeg" 
+                                 alt="Full height view" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                                <p class="text-white text-lg font-medium">The full 143-meter drop</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-105">
+                        <div class="h-64 overflow-hidden group">
+                            <img src="images/lodh1.jpeg" 
+                                 alt="Middle tier" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                                <p class="text-white text-lg font-medium">Middle tier of the falls</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-2xl overflow-hidden shadow-xl transform transition-all duration-500 hover:scale-105">
+                        <div class="h-64 overflow-hidden group">
+                            <img src="images/lbase.jpeg" 
+                                 alt="Base pool" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                                <p class="text-white text-lg font-medium">Pool at the base</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Height Section -->
+    <section id="height" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-6 text-blue-900 fade-in-height">The Magnitude of Height</h2>
+                <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto fade-in-height">Understanding what makes 143 meters so extraordinary</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="fade-in-height">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-10 rounded-3xl shadow-xl border border-blue-100">
+                            <h3 class="text-2xl font-bold text-blue-900 mb-6">Height Perspective</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-5 flex-shrink-0">
+                                        <i class="fas fa-building text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-blue-800 text-lg mb-2">Taller than Statue of Liberty</h4>
+                                        <p class="text-gray-700">At 143 meters, Lodh Falls is taller than the Statue of Liberty (93 meters) and comparable to a 40-story building.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-5 flex-shrink-0">
+                                        <i class="fas fa-trophy text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-blue-800 text-lg mb-2">Highest in Jharkhand</h4>
+                                        <p class="text-gray-700">Lodh Falls holds the record as the tallest waterfall in Jharkhand, surpassing all other waterfalls in the state.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-5 flex-shrink-0">
+                                        <i class="fas fa-water text-blue-600 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-blue-800 text-lg mb-2">Multi-stage Descent</h4>
+                                        <p class="text-gray-700">The water doesn't fall in a single drop but cascades in multiple stages down the rocky face.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="fade-in-height">
+                        <div class="relative">
+                            <div class="rounded-3xl overflow-hidden shadow-2xl height-wave">
+                                <img src="images/lodh1.jpeg" 
+                                     alt="Height perspective" 
+                                     class="w-full h-[500px] object-cover">
+                            </div>
+                            
+                            <!-- Height comparison visualization -->
+                            <div class="absolute -bottom-6 -right-6 w-40 h-40 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-3xl animate-mountain-float"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Height Comparison Chart -->
+                <div class="mt-20 fade-in-height">
+                    <h3 class="text-3xl font-bold text-center mb-10 text-blue-900">Height Comparison</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center p-6 bg-blue-50 rounded-2xl">
+                            <div class="text-4xl font-bold text-blue-700 mb-2">143m</div>
+                            <h4 class="font-bold text-blue-900 mb-3">Lodh Falls</h4>
+                            <div class="h-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"></div>
+                            <p class="text-sm text-gray-600 mt-3">Tallest in Jharkhand</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-blue-50 rounded-2xl">
+                            <div class="text-4xl font-bold text-blue-700 mb-2">93m</div>
+                            <h4 class="font-bold text-blue-900 mb-3">Statue of Liberty</h4>
+                            <div class="h-3 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full"></div>
+                            <p class="text-sm text-gray-600 mt-3">New York, USA</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-blue-50 rounded-2xl">
+                            <div class="text-4xl font-bold text-blue-700 mb-2">40</div>
+                            <h4 class="font-bold text-blue-900 mb-3">Story Building</h4>
+                            <div class="h-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"></div>
+                            <p class="text-sm text-gray-600 mt-3">Equivalent height</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Warning Card -->
+    <section id="safety" class="py-24 bg-gradient-to-r from-red-50 to-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto fade-in-height" data-aos="zoom-in" data-aos-duration="800">
+                <div class="bg-white border-l-8 border-red-600 rounded-3xl shadow-2xl p-10 transform transition-all duration-500 hover:scale-[1.02]">
+                    <div class="flex flex-col lg:flex-row items-center">
+                        <div class="mb-10 lg:mb-0 lg:mr-12">
+                            <div class="relative">
+                                <div class="w-32 h-32 rounded-full bg-red-100 flex items-center justify-center mx-auto height-wave">
+                                    <i class="fas fa-exclamation-triangle text-red-600 text-5xl"></i>
+                                </div>
+                                <div class="absolute -top-2 -right-2 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-ban text-white text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center lg:text-left">
+                            <h3 class="text-3xl md:text-4xl font-bold text-red-700 mb-6">Extreme Height Danger Warning</h3>
+                            <p class="text-xl text-gray-800 mb-6 leading-relaxed">
+                                <span class="font-bold text-red-600">Swimming is strictly prohibited at Lodh Falls.</span> The extreme height creates powerful impact forces, and the pool at the base has dangerous undercurrents.
+                            </p>
+                            <p class="text-lg text-gray-700 mb-8">
+                                The 143-meter drop creates tremendous force at the base. Rocks are extremely slippery, and the mist makes surfaces treacherous. Several fatal accidents have occurred. Viewing platforms are provided for safe observation - always stay within marked areas and never attempt to climb the rocks or enter the water.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                                <div class="bg-red-50 p-5 rounded-xl border border-red-200">
+                                    <i class="fas fa-weight-hanging text-red-500 text-2xl mb-3"></i>
+                                    <h4 class="font-bold text-red-700">Extreme Force</h4>
+                                    <p class="text-sm text-gray-700 mt-2">143-meter drop creates powerful impact</p>
+                                </div>
+                                
+                                <div class="bg-red-50 p-5 rounded-xl border border-red-200">
+                                    <i class="fas fa-cloud-rain text-red-500 text-2xl mb-3"></i>
+                                    <h4 class="font-bold text-red-700">Constant Mist</h4>
+                                    <p class="text-sm text-gray-700 mt-2">Surfaces are always wet and slippery</p>
+                                </div>
+                                
+                                <div class="bg-red-50 p-5 rounded-xl border border-red-200">
+                                    <i class="fas fa-exclamation-circle text-red-500 text-2xl mb-3"></i>
+                                    <h4 class="font-bold text-red-700">Fatal History</h4>
+                                    <p class="text-sm text-gray-700 mt-2">Multiple accidents have occurred</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-24 bg-gradient-to-b from-blue-900 to-indigo-900 text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-6 fade-in-height">Experience Lodh Falls</h2>
+            <p class="text-xl text-center text-blue-200 mb-16 max-w-3xl mx-auto fade-in-height">Witness the majesty of Jharkhand's tallest waterfall</p>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:shadow-3xl fade-in-height">
+                    <!-- Video placeholder with play button -->
+                    <div id="video-placeholder" class="relative h-80 bg-gradient-to-r from-blue-800 to-indigo-900 flex items-center justify-center cursor-pointer group">
+                        <div class="text-center p-8">
+                            <div class="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 group-hover:scale-110 group-hover:bg-white/30">
+                                <i class="fas fa-play text-white text-3xl"></i>
+                            </div>
+                            <p class="text-white text-xl font-medium">Watch the Lodh Falls Experience</p>
+                            <p class="text-blue-200 mt-2">Click to play the height documentary</p>
+                        </div>
+                    </div>
+                    
+                    <!-- YouTube video -->
+                    <div id="youtube-video" class="hidden relative h-80">
+                        <iframe id="video-iframe" class="absolute top-0 left-0 w-full h-full" 
+                                src="" 
+                                title="Lodh Falls Documentary" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:bg-white/20 fade-in-height">
+                        <i class="fas fa-map-signs text-blue-300 text-3xl mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">How to Reach</h4>
+                        <p class="text-blue-200">Located in Latehar district, accessible via forest roads</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:bg-white/20 fade-in-height">
+                        <i class="fas fa-binoculars text-blue-300 text-3xl mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Best Viewpoints</h4>
+                        <p class="text-blue-200">Multiple viewing platforms along the trail</p>
+                    </div>
+                    <div class="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:bg-white/20 fade-in-height">
+                        <i class="fas fa-calendar-alt text-blue-300 text-3xl mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Best Time to Visit</h4>
+                        <p class="text-blue-200">July to October for maximum flow</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-950 to-indigo-950 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div>
+                    <div class="flex items-center mb-8">
+                        <i class="fas fa-water text-blue-300 text-3xl mr-4"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold">Lodh Falls</h3>
+                            <p class="text-sm text-blue-300">Buria Pahad</p>
+                        </div>
+                    </div>
+                    <p class="text-blue-300 leading-relaxed">Jharkhand's tallest waterfall, where the Burha River creates a majestic 143-meter cascade in the heart of the Netarhat plateau.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-8 text-blue-300">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#about" class="text-blue-200 hover:text-white transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-3"></i> About the Falls</a></li>
+                        <li><a href="#beauty" class="text-blue-200 hover:text-white transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-3"></i> Natural Beauty</a></li>
+                        <li><a href="#height" class="text-blue-200 hover:text-white transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-3"></i> The Height</a></li>
+                        <li><a href="#safety" class="text-blue-200 hover:text-white transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-xs mr-3"></i> Safety Information</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-8 text-blue-300">Visitor Info</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-pin text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-blue-200">Latehar District, Jharkhand</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-road text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-blue-200">Near Netarhat plateau</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-ruler-vertical text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-blue-200">143 meters - Tallest in Jharkhand</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-8 text-blue-300">Connect</h4>
+                    <div class="flex space-x-6 mb-8">
+                        <a href="#" class="w-12 h-12 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-xl transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-xl transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-xl transition-all duration-300 transform hover:scale-110">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <p class="text-blue-300 text-sm">Subscribe for updates on majestic natural wonders</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 mt-12 pt-10 text-center text-blue-400">
+                <p>&copy; 2023 Lodh Falls Tourism. All rights reserved. | Designed with <i class="fas fa-heart text-red-400 mx-1"></i> for height enthusiasts</p>
+                <p class="text-sm mt-4">Images courtesy of Unsplash. Respect the height and power of nature.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl transition-all duration-500 transform translate-y-20 opacity-0 hover:from-blue-600 hover:to-indigo-700 hover:scale-110 z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: false,
+            offset: 100,
+            easing: 'ease-in-out'
+        });
+        
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuBtn.addEventListener('click', function() {
+                if (mobileMenu.classList.contains('max-h-0')) {
+                    mobileMenu.classList.remove('max-h-0');
+                    mobileMenu.classList.add('max-h-96', 'py-4');
+                    menuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    mobileMenu.classList.add('max-h-0');
+                    mobileMenu.classList.remove('max-h-96', 'py-4');
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('max-h-0')) {
+                        mobileMenu.classList.add('max-h-0');
+                        mobileMenu.classList.remove('max-h-96', 'py-4');
+                        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Navbar background on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('shadow-xl', 'bg-blue-900');
+                    navbar.classList.remove('bg-gradient-to-r', 'from-blue-900/95', 'to-indigo-900/95');
+                } else {
+                    navbar.classList.remove('shadow-xl', 'bg-blue-900');
+                    navbar.classList.add('bg-gradient-to-r', 'from-blue-900/95', 'to-indigo-900/95');
+                }
+            });
+            
+            // Back to top button
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+                    backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+                    backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Video placeholder click handler
+            const videoPlaceholder = document.getElementById('video-placeholder');
+            const youtubeVideo = document.getElementById('youtube-video');
+            const videoIframe = document.getElementById('video-iframe');
+            
+            if (videoPlaceholder) {
+                videoPlaceholder.addEventListener('click', function() {
+                    // Load a YouTube video about waterfalls
+                    videoIframe.src = "https://www.youtube.com/embed/UMbySm0lvRE";
+                    videoPlaceholder.classList.add('hidden');
+                    youtubeVideo.classList.remove('hidden');
+                });
+            }
+            
+            // Fade in elements on scroll
+            const fadeElements = document.querySelectorAll('.fade-in-height');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                        
+                        // Check for delay attribute
+                        const delay = element.getAttribute('data-delay');
+                        if (delay) {
+                            element.style.transitionDelay = `${delay}ms`;
+                        }
+                    }
+                });
+            };
+            
+            // Initial check
+            fadeInOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', fadeInOnScroll);
+            
+            // Create cascading water streams dynamically
+            function createCascadingStreams() {
+                const heroSection = document.querySelector('.hero');
+                if (!heroSection) return;
+                
+                for (let i = 0; i < 10; i++) {
+                    const stream = document.createElement('div');
+                    stream.className = 'absolute bg-blue-300/60 animate-cascading-water';
+                    
+                    // Random position
+                    const left = Math.random() * 100;
+                    
+                    // Random width and height
+                    const width = 2 + Math.random() * 5;
+                    const height = 80 + Math.random() * 120;
+                    
+                    // Random animation duration
+                    const duration = 4 + Math.random() * 6;
+                    
+                    stream.style.left = `${left}%`;
+                    stream.style.width = `${width}px`;
+                    stream.style.height = `${height}px`;
+                    stream.style.animationDuration = `${duration}s`;
+                    stream.style.animationDelay = `${Math.random() * 3}s`;
+                    
+                    heroSection.querySelector('.absolute.inset-0').appendChild(stream);
+                }
+            }
+            
+            // Create cascading streams after page loads
+            setTimeout(createCascadingStreams, 1000);
+            
+            // Create mist forms
+            function createMistForms() {
+                const heroSection = document.querySelector('.hero');
+                if (!heroSection) return;
+                
+                for (let i = 0; i < 8; i++) {
+                    const mist = document.createElement('div');
+                    mist.className = 'absolute bg-white/30 rounded-full animate-mist-form';
+                    
+                    // Random position at bottom
+                    const left = Math.random() * 100;
+                    
+                    // Random size
+                    const size = 8 + Math.random() * 16;
+                    
+                    // Random animation duration and delay
+                    const duration = 8 + Math.random() * 12;
+                    const delay = Math.random() * 8;
+                    
+                    mist.style.left = `${left}%`;
+                    mist.style.bottom = '10%';
+                    mist.style.width = `${size}px`;
+                    mist.style.height = `${size}px`;
+                    mist.style.animationDuration = `${duration}s`;
+                    mist.style.animationDelay = `${delay}s`;
+                    
+                    heroSection.querySelector('.absolute.inset-0').appendChild(mist);
+                }
+            }
+            
+            // Create mist forms after page loads
+            setTimeout(createMistForms, 1500);
+            
+            // Add height glow effect to cards on hover
+            const heightCards = document.querySelectorAll('.card-majestic');
+            heightCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('animate-height-glow');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('animate-height-glow');
+                });
+            });
+            
+            // Create height indicator lines
+            function createHeightIndicators() {
+                const heroSection = document.querySelector('.hero');
+                if (!heroSection) return;
+                
+                for (let i = 0; i < 5; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'height-line';
+                    
+                    // Random position
+                    const left = 20 + Math.random() * 60;
+                    
+                    // Random animation delay
+                    const delay = Math.random() * 15;
+                    
+                    line.style.left = `${left}%`;
+                    line.style.animationDelay = `${delay}s`;
+                    
+                    heroSection.querySelector('.absolute.inset-0').appendChild(line);
+                }
+            }
+            
+            // Create height indicators after page loads
+            setTimeout(createHeightIndicators, 2000);
+            
+            // Mountain float animation for decorative elements
+            const floatElements = document.querySelectorAll('.animate-mountain-float');
+            floatElements.forEach(el => {
+                // Randomize animation duration
+                const duration = 6 + Math.random() * 6;
+                el.style.animationDuration = `${duration}s`;
+            });
+            
+            // Highlight the height badge
+            const heightBadge = document.querySelector('.height-badge');
+            if (heightBadge) {
+                setInterval(() => {
+                    heightBadge.classList.toggle('animate-height-glow');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

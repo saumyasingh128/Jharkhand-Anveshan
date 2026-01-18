@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dalma Hills - The Roof of Jamshedpur | Wildlife Sanctuary & Shiva Temple</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dalma-green': '#0f4229',     // Deep Forest Green (darker)
+                        'forest-light': '#2d6a4f',    // Medium Forest Green
+                        'elephant-grey': '#3a4a5c',   // Elephant Grey with blue undertone
+                        'temple-saffron': '#d97706',  // Softer Saffron
+                        'temple-gold': '#f59e0b',     // Golden accent
+                        'mist-white': '#f8fafc',      // Clean white with blue tint
+                        'dawn-sky': '#e0f2fe',       // Light blue for sky effect
+                        'earth-brown': '#92400e',     // Earthy brown for trails
+                    },
+                    fontFamily: {
+                        sans: ['Lora', 'serif'],       
+                        heading: ['Chakra Petch', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1.2s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                    backgroundImage: {
+                        'texture': "url('https://www.transparenttextures.com/patterns/light-wool.png')",
+                        'leather': "url('https://www.transparenttextures.com/patterns/dark-leather.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .section-divider {
+            height: 80px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 50px));
+        }
+        .slant-border {
+            clip-path: polygon(0 0, 100% 50px, 100% 100%, 0 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #f59e0b, #d97706, #92400e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .wildlife-icon {
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        }
+    </style>
+</head>
+<body class="bg-mist-white text-gray-800 font-sans flex flex-col min-h-screen">
+
+    <!-- Enhanced Navigation -->
+    <nav class="fixed w-full z-50 bg-dalma-green/95 backdrop-blur-md shadow-2xl border-b-2 border-temple-saffron">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="bg-temple-saffron/20 rounded-full">
+                        <span class="text-3xl animate-float" ><img src="images/icon.jpg" alt="" class="w-10 h-10 rounded-full object-cover"></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-heading font-bold text-white tracking-widest uppercase">Jharkhand Anveshan</span>
+                        <span class="hidden md:block text-[10px] text-temple-gold font-bold uppercase tracking-[0.2em]">Wildlife • Devotion • Adventure</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="text-gray-200 hover:text-temple-gold font-bold text-sm uppercase tracking-wide transition hover:border-b-2 hover:border-temple-gold pb-1">Home</a>
+                    <a href="#sanctuary" class="text-gray-200 hover:text-temple-gold font-bold text-sm uppercase tracking-wide transition hover:border-b-2 hover:border-temple-gold pb-1">Wildlife</a>
+                    <a href="#temple" class="text-gray-200 hover:text-temple-gold font-bold text-sm uppercase tracking-wide transition hover:border-b-2 hover:border-temple-gold pb-1">Temple</a>
+                    <a href="#activities" class="text-gray-200 hover:text-temple-gold font-bold text-sm uppercase tracking-wide transition hover:border-b-2 hover:border-temple-gold pb-1">Activities</a>
+                    <a href="#visit" class="text-gray-200 hover:text-temple-gold font-bold text-sm uppercase tracking-wide transition hover:border-b-2 hover:border-temple-gold pb-1">Visit</a>
+                    <a href="#video-tour" class="bg-gradient-to-r from-temple-saffron to-temple-gold text-white px-6 py-2 rounded-lg hover:from-white hover:to-gray-200 hover:text-temple-saffron transition shadow-lg text-xs font-bold uppercase tracking-widest transform hover:-translate-y-1">
+                        Jungle Safari
+                    </a>
+                </div>
+
+                <button onclick="toggleMenu()" class="md:hidden text-white bg-temple-saffron/20 p-2 rounded-lg">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-dalma-green/98 backdrop-blur-md border-t border-temple-saffron absolute w-full left-0 top-20 shadow-2xl animate-fade-in">
+            <a href="#hero" class="block px-6 py-4 text-white font-bold hover:bg-forest-light border-b border-gray-700">Home</a>
+            <a href="#sanctuary" class="block px-6 py-4 text-white font-bold hover:bg-forest-light border-b border-gray-700">Wildlife</a>
+            <a href="#temple" class="block px-6 py-4 text-white font-bold hover:bg-forest-light border-b border-gray-700">Temple</a>
+            <a href="#activities" class="block px-6 py-4 text-white font-bold hover:bg-forest-light border-b border-gray-700">Activities</a>
+            <a href="#visit" class="block px-6 py-4 text-white font-bold hover:bg-forest-light border-b border-gray-700">Visit</a>
+            <a href="#video-tour" class="block px-6 py-4 text-temple-gold font-bold bg-black/30">Watch Safari Video</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Enhanced Visuals -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="images/dalmaelephants.webp" alt="Dense Green Forest Hills" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-br from-dalma-green/70 via-dalma-green/30 to-elephant-grey/80"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="absolute top-1/4 left-10 animate-float hidden lg:block">
+            <span class="text-4xl">🌿</span>
+        </div>
+        <div class="absolute top-1/3 right-16 animate-float" style="animation-delay: 2s;">
+            <span class="text-3xl">🦚</span>
+        </div>
+        <div class="absolute bottom-1/4 left-1/4 animate-float" style="animation-delay: 4s;">
+            <span class="text-5xl">🌄</span>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4 text-center animate-fade-in-up">
+            <div class="inline-block border-2 border-temple-gold px-6 py-2 mb-6 backdrop-blur-sm bg-black/40 rounded-lg">
+                <span class="text-temple-gold font-heading font-bold uppercase tracking-[0.3em] text-sm">
+                    <i class="fas fa-mountain mr-2"></i> 3,000 Ft Above Sea Level
+                </span>
+            </div>
+            <h1 class="text-5xl md:text-8xl font-heading font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+                ABODE OF <br> <span class="gradient-text">ELEPHANTS & GODS</span>
+            </h1>
+            <p class="text-xl text-gray-200 mb-10 font-light max-w-2xl mx-auto drop-shadow-lg bg-black/30 p-4 rounded-lg">
+                Where the wild roams free and ancient chants echo through the misty peaks. Dalma Hills - a unique confluence of wilderness and spirituality.
+            </p>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="#sanctuary" class="bg-gradient-to-r from-temple-saffron to-temple-gold text-white px-8 py-4 font-bold rounded-lg hover:from-white hover:to-gray-200 hover:text-temple-saffron transition duration-300 uppercase tracking-wide shadow-2xl transform hover:-translate-y-1 border-2 border-transparent hover:border-temple-saffron flex items-center gap-2">
+                    <i class="fas fa-hiking"></i> Start Ascent
+                </a>
+                <a href="#visit" class="bg-transparent text-white px-8 py-4 font-bold rounded-lg hover:bg-white/20 transition duration-300 uppercase tracking-wide shadow-xl border-2 border-white/50 hover:border-white flex items-center gap-2">
+                    <i class="fas fa-calendar-alt"></i> Plan Visit
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#sanctuary" class="text-white text-2xl"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Stats Section with Enhanced Design -->
+    <section class="bg-gradient-to-r from-dalma-green to-forest-light text-white py-16 relative z-20 border-y-2 border-temple-saffron">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading font-bold mb-4">Dalma Hills <span class="text-temple-gold">At a Glance</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">Key facts about this unique ecological and spiritual destination</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 card-hover">
+                    <span class="block text-5xl font-heading font-bold text-temple-gold mb-2">1975</span>
+                    <span class="text-sm uppercase tracking-widest text-gray-300">Sanctuary Established</span>
+                    <div class="h-1 w-12 bg-temple-gold mx-auto mt-4"></div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 card-hover">
+                    <span class="block text-5xl font-heading font-bold text-white mb-2">193</span>
+                    <span class="text-sm uppercase tracking-widest text-gray-300">Square Kilometers</span>
+                    <p class="text-xs text-gray-400 mt-2">Protected Forest Area</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 card-hover">
+                    <span class="block text-5xl font-heading font-bold text-temple-gold mb-2">280+</span>
+                    <span class="text-sm uppercase tracking-widest text-gray-300">Elephant Population</span>
+                    <p class="text-xs text-gray-400 mt-2">Key Protected Species</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 card-hover">
+                    <span class="block text-5xl font-heading font-bold text-white mb-2">3,000</span>
+                    <span class="text-sm uppercase tracking-widest text-gray-300">Feet Above Sea Level</span>
+                    <p class="text-xs text-gray-400 mt-2">Highest Peak Elevation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wildlife Sanctuary Section -->
+    <section id="sanctuary" class="py-24 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16 animate-fade-in-up">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-dalma-green mb-4 uppercase">Wild & <span class="text-temple-saffron">Protected</span></h2>
+            <div class="h-1 w-24 bg-elephant-grey mx-auto mb-6"></div>
+            <p class="mt-4 text-gray-600 max-w-3xl mx-auto text-lg">
+                Dalma Wildlife Sanctuary, established in 1975, is home to rich biodiversity including elephants, leopards, barking deer, and numerous bird species. The sanctuary serves as an important elephant migration corridor.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <div class="relative group overflow-hidden rounded-2xl shadow-2xl h-[300px] md:h-[500px] cursor-pointer border-l-8 border-forest-light card-hover">
+                <img src="images/dalmaelephants.webp" alt="Wild Elephant in Forest" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-elephant-grey/90 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 text-white">
+                    <h3 class="text-3xl font-heading font-bold">The Gentle Giants</h3>
+                    <p class="text-sm text-gray-300 mt-2 max-w-md">Dalma is a major corridor for Indian Elephants. Spot them near watering holes during early mornings and late evenings.</p>
+                    <div class="flex gap-2 mt-4">
+                        <span class="bg-temple-saffron text-white text-xs px-3 py-1 rounded-full">Endangered</span>
+                        <span class="bg-forest-light text-white text-xs px-3 py-1 rounded-full">Protected</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-rows-2 gap-8 h-auto md:h-[500px]">
+                
+                <div class="relative group overflow-hidden rounded-2xl shadow-2xl h-64 md:h-full cursor-pointer border-r-8 border-temple-saffron card-hover">
+                    <img src="images/dalmawildlife.jpg" alt="Leopard in forest" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-l from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-6 right-6 text-right text-white">
+                        <h3 class="text-2xl font-heading font-bold text-temple-gold">Other Wildlife</h3>
+                        <p class="text-xs text-gray-300 mt-1">Leopards, deer, wild boars, and over 150 bird species</p>
+                        <div class="flex justify-end gap-2 mt-3">
+                            <span class="text-2xl wildlife-icon">🐆</span>
+                            <span class="text-2xl wildlife-icon">🦌</span>
+                            <span class="text-2xl wildlife-icon">🐗</span>
+                            <span class="text-2xl wildlife-icon">🦜</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-2xl shadow-2xl h-64 md:h-full cursor-pointer border-r-8 border-earth-brown card-hover">
+                    <img src="images/trekingdalma.jpg" alt="Forest trekking path" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <h3 class="text-2xl font-heading font-bold">Trekking Trails</h3>
+                        <p class="text-xs text-gray-300 mt-1">Multiple trails for adventure enthusiasts</p>
+                        <div class="flex items-center gap-2 mt-3">
+                            <i class="fas fa-route text-temple-gold"></i>
+                            <span class="text-sm">Difficulty: Easy to Moderate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wildlife Info Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            <div class="bg-gradient-to-br from-dawn-sky to-white p-6 rounded-2xl shadow-lg border border-gray-200 card-hover">
+                <div class="text-4xl text-forest-light mb-4">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-dalma-green mb-3">Flora</h3>
+                <p class="text-gray-600">The sanctuary boasts Sal, Mahua, Bamboo, and numerous medicinal plants in its mixed deciduous forests.</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-temple-gold/10 to-white p-6 rounded-2xl shadow-lg border border-gray-200 card-hover">
+                <div class="text-4xl text-temple-saffron mb-4">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-dalma-green mb-3">Fauna</h3>
+                <p class="text-gray-600">Home to elephants, leopards, barking deer, sloth bears, porcupines, and a rich variety of reptiles and birds.</p>
+            </div>
+            
+            <div class="bg-gradient-to-br from-forest-light/10 to-white p-6 rounded-2xl shadow-lg border border-gray-200 card-hover">
+                <div class="text-4xl text-earth-brown mb-4">
+                    <i class="fas fa-binoculars"></i>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-dalma-green mb-3">Birdwatching</h3>
+                <p class="text-gray-600">Over 150 species including peafowl, red jungle fowl, crested serpent eagle, and various migratory birds.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temple Section -->
+    <section id="temple" class="py-24 px-4 bg-gradient-to-b from-dawn-sky/30 to-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-temple-saffron/10 rounded-full -translate-y-32 translate-x-32"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-forest-light/10 rounded-full -translate-x-40 translate-y-40"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-fade-in-up">
+                    <span class="text-temple-saffron font-bold tracking-widest uppercase text-xs bg-white px-3 py-1 rounded-full border border-temple-saffron">Spiritual Journey</span>
+                    <h2 class="text-4xl font-heading font-bold mt-6 mb-6 leading-tight text-dalma-green">Ancient <span class="text-temple-saffron">Shiva Temple</span> at the Peak</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        At the highest point of Dalma Hills stands an ancient Shiva temple, believed to be centuries old. Pilgrims and trekkers alike make the journey to seek blessings and experience the profound peace at this elevation.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="bg-temple-saffron/20 p-2 rounded-lg mt-1">
+                                <i class="fas fa-om text-temple-saffron"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Spiritual Significance</h4>
+                                <p class="text-gray-600 text-sm">The temple is especially crowded during Maha Shivratri and Shravan month.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="bg-temple-saffron/20 p-2 rounded-lg mt-1">
+                                <i class="fas fa-hiking text-forest-light"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Trek to the Temple</h4>
+                                <p class="text-gray-600 text-sm">A 3km trek from the base leads to the temple, offering stunning views along the way.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#visit" class="inline-flex items-center gap-2 bg-dalma-green text-white px-6 py-3 rounded-lg mt-8 font-bold hover:bg-forest-light transition duration-300 shadow-lg">
+                        <i class="fas fa-calendar-check"></i> Plan Temple Visit
+                    </a>
+                </div>
+                
+                <div class="relative">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="images/dalmatemple.jpg" alt="Temple at Hilltop" class="w-full h-[400px] object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-200 max-w-xs">
+                        <h4 class="font-heading font-bold text-gray-800 mb-2">Temple Timings</h4>
+                        <p class="text-gray-600 text-sm">Open from 6:00 AM to 6:00 PM daily</p>
+                        <p class="text-gray-600 text-sm mt-1">Special Aarti at sunrise and sunset</p>
+                        <div class="h-1 w-12 bg-temple-saffron mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="py-24 px-4 bg-elephant-grey text-white relative overflow-hidden">
+        <div class="section-divider bg-elephant-grey absolute top-0 left-0 w-full"></div>
+        <div class="max-w-7xl mx-auto relative z-10 mt-16">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4">Experiences & <span class="text-temple-gold">Activities</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">From wildlife safaris to spiritual journeys, Dalma Hills offers diverse experiences</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 card-hover">
+                    <div class="text-5xl text-temple-gold mb-6">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Jungle Safari</h3>
+                    <p class="text-gray-300 mb-6">Guided safari tours through the sanctuary to spot elephants and other wildlife in their natural habitat.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Morning & evening slots</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Forest department guides</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Photography opportunities</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 card-hover">
+                    <div class="text-5xl text-temple-gold mb-6">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Trekking</h3>
+                    <p class="text-gray-300 mb-6">Multiple trails ranging from easy walks to challenging hikes with panoramic views of Jamshedpur.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Temple trek (3km)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Viewpoint trails</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Night trekking (with permits)</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 card-hover">
+                    <div class="text-5xl text-temple-gold mb-6">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">Photography</h3>
+                    <p class="text-gray-300 mb-6">Capture stunning landscapes, wildlife, and the beautiful city views from the hilltops.</p>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Golden hour photography</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Wildlife photography hides</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-temple-gold"></i> Night sky & city lights</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Tour Section -->
+    <section id="video-tour" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <div class="w-full lg:w-2/3 order-2 lg:order-1">
+                    <div class="relative bg-black rounded-2xl shadow-2xl overflow-hidden aspect-video border-4 border-temple-saffron">
+                        <div class="absolute inset-0 flex items-center justify-center z-10">
+                            <div class="text-center">
+                                <div class="bg-temple-saffron/80 text-white text-xl font-bold px-6 py-3 rounded-lg mb-4">
+                                    Virtual Safari Experience
+                                </div>
+                                <p class="text-white max-w-md mx-auto">Click play to experience the journey through Dalma Hills</p>
+                            </div>
+                        </div>
+                        <iframe 
+                            class="w-full h-full relative z-20" 
+                            src="https://www.youtube.com/embed/3ghltn5dxbY?si=Cz-srkhTA6sDomy2" 
+                            title="Dalma Hills Virtual Safari" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-1/3 order-1 lg:order-2">
+                    <span class="text-temple-saffron font-bold tracking-widest uppercase text-xs bg-temple-saffron/10 px-3 py-1 rounded-full">Virtual Experience</span>
+                    <h2 class="text-4xl font-heading font-bold mt-6 mb-6 leading-tight text-dalma-green">INTO THE <br> <span class="text-temple-saffron">WILD</span></h2>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        Experience a virtual drive through the winding forest roads, misty trails, and wildlife sightings that await you at Dalma Hills.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 p-4 bg-dawn-sky/30 rounded-xl">
+                            <div class="bg-temple-saffron text-white p-3 rounded-lg">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Best Time to Visit</h4>
+                                <p class="text-gray-600 text-sm">October to February for pleasant weather</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 p-4 bg-dawn-sky/30 rounded-xl">
+                            <div class="bg-forest-light text-white p-3 rounded-lg">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Ideal Timing</h4>
+                                <p class="text-gray-600 text-sm">Early morning (6-9 AM) for wildlife sightings</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#visit" class="inline-flex items-center gap-3 bg-gradient-to-r from-temple-saffron to-temple-gold text-white px-6 py-4 rounded-lg mt-8 font-bold hover:from-temple-gold hover:to-temple-saffron transition duration-300 shadow-lg w-full justify-center">
+                        <i class="fas fa-ticket-alt"></i> Book Safari Tickets
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visit Information Section -->
+    <section id="visit" class="py-24 px-4 bg-gradient-to-b from-white to-dawn-sky/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-dalma-green mb-4">Plan Your <span class="text-temple-saffron">Visit</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Everything you need to know before visiting Dalma Hills Wildlife Sanctuary</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-heading font-bold text-dalma-green mb-6">Essential Information</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-map-marker-alt text-temple-saffron"></i> Location & Access</h4>
+                            <p class="text-gray-600">Dalma Hills is located about 15km from Jamshedpur city center. Accessible by road with clear signboards.</p>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="bg-dawn-sky text-gray-800 text-xs px-3 py-1 rounded-full">15km from Jamshedpur</span>
+                                <span class="bg-dawn-sky text-gray-800 text-xs px-3 py-1 rounded-full">Well-connected by road</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-ticket-alt text-forest-light"></i> Entry Fees & Timings</h4>
+                            <div class="grid grid-cols-2 gap-4 mt-3">
+                                <div>
+                                    <p class="font-bold text-gray-700">Indian Visitors</p>
+                                    <p class="text-gray-600">₹50 per person</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-700">Foreign Visitors</p>
+                                    <p class="text-gray-600">₹500 per person</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 mt-4"><span class="font-bold">Timings:</span> 6:00 AM to 5:00 PM (Last entry at 4:00 PM)</p>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                            <h4 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-concierge-bell text-earth-brown"></i> Facilities Available</h4>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <span class="bg-dawn-sky text-gray-800 text-xs px-3 py-1 rounded-full">Parking Area</span>
+                                <span class="bg-dawn-sky text-gray-800 text-xs px-3 py-1 rounded-full">Restrooms</span>
+                                <span class="bg-dawn-sky text-gray-800 text-xs px-3 py-1 rounded-full">Drinking Water</span>
+                                <span class="bg-dawn-sky text-gray-800 text-xs px-3 py-1 rounded-full">Souvenir Shop</span>
+                                <span class="bg-dawn-sky text-gray-800 text-xs px-3 py-1 rounded-full">First Aid</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-heading font-bold text-dalma-green mb-6">Tips for Visitors</h3>
+                    
+                    <div class="bg-gradient-to-br from-dalma-green to-forest-light text-white p-8 rounded-2xl shadow-xl">
+                        <h4 class="text-xl font-heading font-bold mb-6">Do's & Don'ts in the Sanctuary</h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-bold mb-3 flex items-center gap-2"><i class="fas fa-check-circle text-temple-gold"></i> Do's</h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-temple-gold"></i> <span>Follow guide instructions</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-temple-gold"></i> <span>Maintain silence in forest</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-temple-gold"></i> <span>Carry water and snacks</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-temple-gold"></i> <span>Wear comfortable shoes</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-temple-gold"></i> <span>Keep environment clean</span></li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h5 class="font-bold mb-3 flex items-center gap-2"><i class="fas fa-times-circle text-red-300"></i> Don'ts</h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li class="flex items-start gap-2"><i class="fas fa-times mt-1 text-red-300"></i> <span>Don't feed the animals</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times mt-1 text-red-300"></i> <span>No plastic littering</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times mt-1 text-red-300"></i> <span>Don't wander off trails</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times mt-1 text-red-300"></i> <span>No loud music/noise</span></li>
+                                    <li class="flex items-start gap-2"><i class="fas fa-times mt-1 text-red-300"></i> <span>Don't disturb wildlife</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-white/30">
+                            <p class="text-sm"><i class="fas fa-phone-alt mr-2"></i> <span class="font-bold">Contact Forest Office:</span> +91 XXX XXX XXXX</p>
+                            <p class="text-sm mt-2"><i class="fas fa-envelope mr-2"></i> dalma.sanctuary@jharkhand.gov.in</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dalma-green text-gray-300 py-16 border-t-4 border-temple-saffron mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <h3 class="text-3xl font-heading text-white font-bold tracking-widest uppercase mb-4">DALMA HILLS</h3>
+                    <p class="text-sm mb-6">A unique confluence of wildlife sanctuary and spiritual destination, maintained by the Forest Department of Jharkhand.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="bg-white/10 p-2 rounded-full hover:bg-temple-saffron transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="bg-white/10 p-2 rounded-full hover:bg-temple-saffron transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="bg-white/10 p-2 rounded-full hover:bg-temple-saffron transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="bg-white/10 p-2 rounded-full hover:bg-temple-saffron transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="text-white font-bold uppercase mb-4 tracking-widest text-sm block">Explore</span>
+                    <div class="space-y-3 mt-4">
+                        <a href="#" class="block hover:text-temple-gold transition">Pindrabera Forest Rest House</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Makulakocha Entry Point</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Deer Park & Interpretation Center</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Elephant Corridor Viewpoints</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Night Stay Facilities</a>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="text-white font-bold uppercase mb-4 tracking-widest text-sm block">Plan Visit</span>
+                    <div class="space-y-3 mt-4">
+                        <a href="#" class="block hover:text-temple-gold transition">Directions from Jamshedpur</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Entry Fees & Timings</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Safari Booking Online</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Best Time to Visit</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Accommodation Options</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <span class="text-white font-bold uppercase mb-4 tracking-widest text-sm block">Conservation</span>
+                    <div class="space-y-3 mt-4">
+                        <a href="#" class="block hover:text-temple-gold transition">Elephant Conservation Program</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Volunteer Opportunities</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Report Wildlife Issues</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Donate to Sanctuary</a>
+                        <a href="#" class="block hover:text-temple-gold transition">Educational Programs</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-sm">
+                <p>&copy; 2024 Dalma Wildlife Sanctuary, Jharkhand Forest Department. All rights reserved.</p>
+                <p class="mt-2 text-gray-500">This website is for informational purposes. For official information, contact the Jharkhand Forest Department.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-temple-saffron text-white p-3 rounded-full shadow-2xl hover:bg-temple-gold transition duration-300 z-40 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

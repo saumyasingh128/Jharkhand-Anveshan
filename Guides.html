@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Guides - Booking Directory</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Playfair+Display:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        italic: ['"Lora"', 'serif'],
+                        sans: ['"Roboto"', 'sans-serif'],
+                    },
+                    colors: {
+                        amber: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            800: '#92400e',
+                            900: '#78350f',
+                            950: '#451a03', 
+                        },
+                        stone: {
+                            800: '#292524',
+                            900: '#1c1917',
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .text-glow { text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        /* Smooth fade for grid items */
+        .fade-in { animation: fadeIn 0.6s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased bg-stone-50 text-stone-800">
+
+    <nav class="absolute top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center text-white transition-all duration-300">
+        
+        <div class="flex items-center gap-3">
+            <div class="rounded-full flex items-center justify-center shrink-0 ">
+                <img src="images/icon.jpg" alt="" class="h-10 w-10 rounded-full">
+            </div>
+            <div class="leading-tight text-sm md:text-base font-bold text-white drop-shadow-md">
+                <span class="block text-orange-500">Jharkhand</span>
+                <span class="block">Anveshan</span>
+            </div>
+        </div>
+
+        <ul class="hidden lg:flex items-center gap-8 text-lg font-medium tracking-wide">
+            <li><a href="#" class="text-white hover:text-amber-300 transition">Home</a></li>
+            <li><a href="#partners-section" class="text-white hover:text-amber-300 transition">Find Portals</a></li>
+            <li><a href="#" class="text-white hover:text-amber-300 transition">Travel Tips</a></li>
+        </ul>
+
+        <button class="lg:hidden text-white text-2xl">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <section class="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
+        
+        <div class="absolute inset-0 z-0">
+            <img src="images/guide.jpg" 
+                 alt="Jharkhand Temple" 
+                 class="w-full h-full object-cover object-center brightness-[0.6]">
+        </div>
+
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-stone-900/40 to-black/60 z-10"></div>
+
+        <div class="relative z-20 container mx-auto px-6 text-center">
+            
+            <h1 class="text-4xl md:text-6xl lg:text-8xl text-white font-serif mb-6 text-glow tracking-wide">
+                Find Your Path
+            </h1>
+
+            <p class="text-stone-200 font-italic italic text-xl md:text-2xl mb-12 max-w-3xl mx-auto drop-shadow-md">
+                We connect you with the best guide booking platforms. From government-approved experts to community-rated locals.
+            </p>
+
+            <button onclick="document.getElementById('partners-section').scrollIntoView({behavior: 'smooth'})" 
+                    class="group bg-amber-700 hover:bg-amber-600 text-white text-xl font-serif px-10 py-4 rounded-full shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 hover:-translate-y-1 flex items-center gap-3 mx-auto">
+                <span>Book Guides</span>
+                <i class="fa-solid fa-arrow-down group-hover:animate-bounce"></i>
+            </button>
+
+        </div>
+    </section>
+
+    <section id="partners-section" class="py-20 px-6 md:px-12 bg-stone-50">
+        <div class="container mx-auto">
+            
+            <div class="text-center mb-16">
+                <span class="text-amber-700 font-bold uppercase tracking-widest text-sm mb-2 block">Trusted Sources</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-stone-900 mb-4">Where to Book Guides</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">Select a platform below to browse verified guides, read reviews, and book your experience.</p>
+            </div>
+
+            <div id="platform-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 bg-stone-900 text-amber-50 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <h2 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">Why Use Verified Platforms?</h2>
+                <p class="text-stone-300 text-lg mb-8 leading-relaxed">Booking through recognized portals ensures safety, standardized pricing, and accountability. Avoid touters and explore Jharkhand with peace of mind.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-stone-800 p-6 rounded-xl border border-stone-700">
+                        <i class="fa-solid fa-shield-halved text-amber-500 text-3xl mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Safety First</h4>
+                        <p class="text-stone-400 text-sm">Registered platforms perform background checks on listed guides.</p>
+                    </div>
+                    <div class="bg-stone-800 p-6 rounded-xl border border-stone-700">
+                        <i class="fa-solid fa-tags text-amber-500 text-3xl mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Transparent Pricing</h4>
+                        <p class="text-stone-400 text-sm">No hidden fees. See the hourly or daily rates upfront.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 flex justify-center">
+                 <div class="relative w-full max-w-md aspect-square rounded-full border border-amber-900/50 flex items-center justify-center p-8 bg-gradient-to-tr from-stone-800 to-stone-900 shadow-2xl">
+                     <div class="text-center">
+                         <i class="fa-solid fa-users-viewfinder text-6xl text-amber-600 mb-4"></i>
+                         <p class="text-2xl font-serif italic">"A good guide is a bridge between you and the soul of the place."</p>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone-950 text-stone-500 py-12 px-6 border-t border-stone-800">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-amber-800 rounded-full flex items-center justify-center text-white text-xs">
+                    <i class="fa-solid fa-map"></i>
+                </div>
+                <span class="text-stone-300 font-serif text-lg">Jharkhand Guide Hub</span>
+            </div>
+            <div class="text-sm">
+                &copy; 2024. Aggregator Portal. We do not employ guides directly.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data for external platforms
+        const platforms = [
+            {
+                name: "Jharkhand Tourism",
+                type: "Official Government Portal",
+                desc: "The official directory of government-approved tourist guides in Jharkhand. Most reliable for heritage sites.",
+                url: "https://tourism.jharkhand.gov.in",
+                icon: "fa-landmark",
+                color: "bg-green-700",
+                textColor: "text-green-700",
+                btnColor: "hover:bg-green-700"
+            },
+            {
+                name: "TripAdvisor",
+                type: "Community Reviews",
+                desc: "Read traveler reviews and book top-rated tours and guides for Ranchi, Deoghar, and Jamshedpur.",
+                url: "https://www.tripadvisor.in",
+                icon: "fa-binoculars",
+                color: "bg-[#34E0A1]", 
+                textColor: "text-teal-600",
+                btnColor: "hover:bg-teal-600"
+            },
+            {
+                name: "Viator",
+                type: "Tours & Activities",
+                desc: "Find curated experiences and day-trips with vetted local experts. Instant booking available.",
+                url: "https://www.viator.com",
+                icon: "fa-suitcase-rolling",
+                color: "bg-orange-500",
+                textColor: "text-orange-600",
+                btnColor: "hover:bg-orange-600"
+            },
+            {
+                name: "MakeMyTrip",
+                type: "Experiences",
+                desc: "Explore activity packages including trekking guides and city tours across Jharkhand.",
+                url: "https://www.makemytrip.com/activities/",
+                icon: "fa-person-hiking",
+                color: "bg-red-600",
+                textColor: "text-red-600",
+                btnColor: "hover:bg-red-600"
+            },
+            {
+                name: "Incredible India",
+                type: "National Portal",
+                desc: "The Ministry of Tourism's official guide search. Find certified regional level guides.",
+                url: "https://www.incredibleindia.org/",
+                icon: "fa-om",
+                color: "bg-amber-600",
+                textColor: "text-amber-600",
+                btnColor: "hover:bg-amber-600"
+            },
+            {
+                name: "ToursByLocals",
+                type: "Private Guides",
+                desc: "Connect directly with independent local guides for customizable private tours.",
+                url: "https://www.toursbylocals.com/",
+                icon: "fa-handshake",
+                color: "bg-purple-600",
+                textColor: "text-purple-600",
+                btnColor: "hover:bg-purple-600"
+            }
+        ];
+
+        const grid = document.getElementById('platform-grid');
+
+        platforms.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = "bg-white p-8 rounded-2xl shadow-sm border border-stone-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-start fade-in";
+            card.style.animationDelay = `${index * 100}ms`;
+
+            card.innerHTML = `
+                <div class="w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-md">
+                    <i class="fa-solid ${item.icon}"></i>
+                </div>
+                
+                <span class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">${item.type}</span>
+                <h3 class="text-2xl font-serif font-bold text-stone-900 mb-3">${item.name}</h3>
+                
+                <p class="text-stone-600 mb-8 leading-relaxed flex-grow">
+                    ${item.desc}
+                </p>
+                
+                <a href="${item.url}" target="_blank" class="w-full group bg-stone-100 ${item.btnColor} hover:text-white text-stone-900 font-bold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-between">
+                    <span>Visit Website</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square group-hover:rotate-45 transition-transform"></i>
+                </a>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>

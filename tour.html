@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Tours - Compare & Book</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Playfair+Display:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Roboto"', 'sans-serif'],
+                    },
+                    colors: {
+                        jharkhand: {
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        },
+                        nature: {
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .text-glow { text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #eab308, #16a34a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased bg-gradient-to-br from-gray-50 to-green-50 min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass-card">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-jharkhand-500 to-nature-600 flex items-center justify-center">
+                        <i class="fa-solid fa-mountain-sun text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Jharkhand Tours</h1>
+                        <p class="text-xs text-gray-600">Compare & Book Directly</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-6">
+                    <button onclick="filterPlatforms('all')" class="text-nature-700 font-medium">All Platforms</button>
+                    <button onclick="filterPlatforms('budget')" class="text-gray-600 hover:text-nature-700">Budget</button>
+                    <button onclick="filterPlatforms('luxury')" class="text-gray-600 hover:text-nature-700">Luxury</button>
+                    <button onclick="filterPlatforms('adventure')" class="text-gray-600 hover:text-nature-700">Adventure</button>
+                    <a href="#compare" class="bg-nature-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-nature-700">
+                        Compare All
+                    </a>
+                </div>
+                
+                <button id="menu-btn" class="md:hidden text-gray-700">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-50 hidden flex-col p-6">
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-jharkhand-500 to-nature-600 flex items-center justify-center">
+                    <i class="fa-solid fa-mountain-sun text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-gray-900">Jharkhand Tours</h1>
+                    <p class="text-xs text-gray-600">Compare & Book Directly</p>
+                </div>
+            </div>
+            <button id="close-menu" class="text-gray-700">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+        
+        <div class="space-y-4">
+            <button onclick="filterPlatforms('all')" class="block w-full text-left p-3 text-nature-700 font-medium border-b border-gray-100">All Platforms</button>
+            <button onclick="filterPlatforms('budget')" class="block w-full text-left p-3 text-gray-600 hover:text-nature-700 border-b border-gray-100">Budget Tours</button>
+            <button onclick="filterPlatforms('luxury')" class="block w-full text-left p-3 text-gray-600 hover:text-nature-700 border-b border-gray-100">Luxury Tours</button>
+            <button onclick="filterPlatforms('adventure')" class="block w-full text-left p-3 text-gray-600 hover:text-nature-700 border-b border-gray-100">Adventure Tours</button>
+            <a href="#compare" class="block w-full text-center p-3 bg-nature-600 text-white rounded-lg font-medium hover:bg-nature-700 mt-4">
+                Compare All Platforms
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative py-12 md:py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-serif text-gray-900 mb-4">
+                    Book Your <span class="gradient-text">Jharkhand Adventure</span>
+                </h1>
+                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                    Compare tours, prices, and reviews across India's top travel platforms. Book directly with your preferred provider.
+                </p>
+                
+                <!-- Quick Stats -->
+                <div class="flex flex-wrap justify-center gap-6 mb-10">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-nature-600">9+</div>
+                        <div class="text-gray-600 text-sm">Booking Platforms</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-jharkhand-600">₹999+</div>
+                        <div class="text-gray-600 text-sm">Starting Price</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600">4.2+</div>
+                        <div class="text-gray-600 text-sm">Avg. Rating</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-purple-600">Instant</div>
+                        <div class="text-gray-600 text-sm">Confirmation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tour Platforms Grid -->
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif text-gray-900 mb-3">
+                    Choose Your <span class="text-nature-600">Booking Platform</span>
+                </h2>
+                <p class="text-gray-600">Click on any platform to visit their website and book directly</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button onclick="filterPlatforms('all')" class="filter-btn active px-5 py-2 rounded-full text-sm font-medium bg-nature-600 text-white shadow-sm">All Platforms</button>
+                <button onclick="filterPlatforms('budget')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:border-nature-400">Budget Friendly</button>
+                <button onclick="filterPlatforms('luxury')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:border-nature-400">Luxury Tours</button>
+                <button onclick="filterPlatforms('adventure')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:border-nature-400">Adventure Focus</button>
+                <button onclick="filterPlatforms('group')" class="filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:border-nature-400">Group Tours</button>
+            </div>
+            
+            <!-- Platforms Grid -->
+            <div id="platforms-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <!-- Platforms will be loaded here -->
+            </div>
+            
+            <!-- Quick Comparison Banner -->
+            <div class="bg-gradient-to-r from-nature-600 to-jharkhand-600 rounded-2xl p-8 mb-16">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-white">
+                        <h3 class="text-2xl font-bold mb-2">Not Sure Which to Choose?</h3>
+                        <p class="text-white/90">Compare all platforms side-by-side below</p>
+                    </div>
+                    <a href="#compare" class="bg-white text-nature-700 px-8 py-3 rounded-full font-bold hover:bg-gray-50 shadow-lg whitespace-nowrap">
+                        Compare All Platforms
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section id="compare" class="py-12 bg-white border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-serif text-gray-900 mb-3">
+                    Platform <span class="text-nature-600">Comparison</span>
+                </h2>
+                <p class="text-gray-600">Compare features, prices, and ratings at a glance</p>
+            </div>
+            
+            <div class="overflow-x-auto rounded-xl shadow-lg border border-gray-200">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="py-4 px-6 text-left font-bold text-gray-900">Platform</th>
+                            <th class="py-4 px-6 text-left font-bold text-gray-900">Price Range</th>
+                            <th class="py-4 px-6 text-left font-bold text-gray-900">Rating</th>
+                            <th class="py-4 px-6 text-left font-bold text-gray-900">Best For</th>
+                            <th class="py-4 px-6 text-left font-bold text-gray-900">Booking</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparison-table">
+                        <!-- Comparison data will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-8 text-center text-gray-500 text-sm">
+                <p>All prices are for 3-day standard Jharkhand tour packages. Click "Visit Website" to check current offers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-gray-900 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-jharkhand-500 to-nature-600 flex items-center justify-center">
+                        <i class="fa-solid fa-mountain-sun text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Jharkhand Tours</h3>
+                        <p class="text-gray-400 text-sm">Direct Booking Portal</p>
+                    </div>
+                </div>
+                
+                <div class="text-center text-gray-400 text-sm">
+                    <p>This is an informational portal. All bookings are processed directly on partner platforms.</p>
+                    <p class="mt-1">© 2024 Jharkhand Tours Comparison</p>
+                </div>
+                
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Platform Details Modal -->
+    <div id="platform-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900" id="modal-title">Platform Details</h3>
+                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                        <i class="fa-solid fa-xmark text-2xl"></i>
+                    </button>
+                </div>
+                <div id="modal-content">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.remove('hidden'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+
+        // Tour Platforms Data
+        const tourPlatforms = [
+            {
+                id: 'makemytrip',
+                name: 'MakeMyTrip',
+                category: ['budget', 'luxury', 'group'],
+                rating: 4.5,
+                reviews: '12K+',
+                priceRange: '₹1,999 - ₹25,999',
+                startingPrice: '₹1,999',
+                bestFor: 'All-round tours, flights+bundles',
+                features: ['Free Cancellation', 'Instant Confirmation', '24/7 Support'],
+                description: 'India\'s leading travel platform with extensive Jharkhand tour options.',
+                url: 'https://www.makemytrip.com',
+                logoColor: 'bg-red-500',
+                icon: 'fa-plane',
+                popularTours: ['Netarhat Sunrise', 'Waterfall Circuit', 'Cultural Jharkhand']
+            },
+            {
+                id: 'easemytrip',
+                name: 'EaseMyTrip',
+                category: ['budget', 'group'],
+                rating: 4.3,
+                reviews: '8K+',
+                priceRange: '₹1,499 - ₹22,999',
+                startingPrice: '₹1,499',
+                bestFor: 'Budget travelers, no-fee booking',
+                features: ['No Booking Fees', 'Best Price Guarantee', 'Easy EMI'],
+                description: 'Affordable tours with transparent pricing and great deals.',
+                url: 'https://www.easemytrip.com',
+                logoColor: 'bg-blue-600',
+                icon: 'fa-suitcase-rolling',
+                popularTours: ['Deoghar Pilgrimage', 'Ranchi City Tour', 'Wildlife Safari']
+            },
+            {
+                id: 'yatra',
+                name: 'Yatra',
+                category: ['luxury', 'group'],
+                rating: 4.4,
+                reviews: '15K+',
+                priceRange: '₹2,499 - ₹28,999',
+                startingPrice: '₹2,499',
+                bestFor: 'Luxury travel, guided tours',
+                features: ['Luxury Options', 'Customizable Tours', 'Airport Transfers'],
+                description: 'Premium travel experiences with focus on comfort and convenience.',
+                url: 'https://www.yatra.com',
+                logoColor: 'bg-purple-600',
+                icon: 'fa-umbrella-beach',
+                popularTours: ['Luxury Jharkhand', 'Spiritual Journey', 'Family Packages']
+            },
+            {
+                id: 'goibibo',
+                name: 'Goibibo',
+                category: ['budget'],
+                rating: 4.2,
+                reviews: '10K+',
+                priceRange: '₹999 - ₹19,999',
+                startingPrice: '₹999',
+                bestFor: 'Last-minute deals, mobile offers',
+                features: ['Last Minute Deals', 'Group Discounts', 'Mobile-Only Offers'],
+                description: 'Great for spontaneous travelers and adventure seekers.',
+                url: 'https://www.goibibo.com',
+                logoColor: 'bg-orange-500',
+                icon: 'fa-mountain',
+                popularTours: ['Adventure Sports', 'Trekking Tours', 'Budget Travel']
+            },
+            {
+                id: 'thrillophilia',
+                name: 'Thrillophilia',
+                category: ['adventure'],
+                rating: 4.7,
+                reviews: '5K+',
+                priceRange: '₹2,999 - ₹35,999',
+                startingPrice: '₹2,999',
+                bestFor: 'Adventure tours, trekking',
+                features: ['Adventure Experts', 'Safety Certified', 'Small Groups'],
+                description: 'Specialized in adventure and experiential tours.',
+                url: 'https://www.thrillophilia.com',
+                logoColor: 'bg-green-600',
+                icon: 'fa-person-hiking',
+                popularTours: ['Trekking Expeditions', 'Water Sports', 'Camping Tours']
+            },
+            {
+                id: 'ixigo',
+                name: 'ixigo',
+                category: ['budget'],
+                rating: 4.1,
+                reviews: '7K+',
+                priceRange: '₹1,199 - ₹21,999',
+                startingPrice: '₹1,199',
+                bestFor: 'Smart deals, price alerts',
+                features: ['Price Alerts', 'Deal Notifications', 'Travel Assistant'],
+                description: 'Smart travel platform with AI-powered recommendations.',
+                url: 'https://www.ixigo.com',
+                logoColor: 'bg-pink-500',
+                icon: 'fa-bolt',
+                popularTours: ['Smart Packages', 'Weekend Getaways', 'Couple Specials']
+            },
+            {
+                id: 'sotc',
+                name: 'SOTC',
+                category: ['luxury', 'group'],
+                rating: 4.6,
+                reviews: '25K+',
+                priceRange: '₹3,999 - ₹45,999',
+                startingPrice: '₹3,999',
+                bestFor: 'Group tours, all-inclusive',
+                features: ['Guided Tours', 'All Inclusive', 'Travel Insurance'],
+                description: 'Trusted travel company with experienced tour guides.',
+                url: 'https://www.sotc.in',
+                logoColor: 'bg-indigo-600',
+                icon: 'fa-bus',
+                popularTours: ['Guided Tours', 'Senior Citizen Special', 'All-Inclusive']
+            },
+            {
+                id: 'kesari',
+                name: 'Kesari Tours',
+                category: ['luxury', 'group'],
+                rating: 4.8,
+                reviews: '30K+',
+                priceRange: '₹4,999 - ₹49,999',
+                startingPrice: '₹4,999',
+                bestFor: 'Premium group tours, comfort',
+                features: ['Luxury Coaches', 'Vegetarian Meals', 'Tour Manager'],
+                description: 'Premium group tours with focus on comfort and safety.',
+                url: 'https://www.kesari.in',
+                logoColor: 'bg-yellow-600',
+                icon: 'fa-crown',
+                popularTours: ['Deluxe Packages', 'Pilgrimage Special', 'Luxury Coach']
+            },
+            {
+                id: 'traveltriangle',
+                name: 'TravelTriangle',
+                category: ['luxury'],
+                rating: 4.4,
+                reviews: '18K+',
+                priceRange: 'Custom Quotes',
+                startingPrice: 'Custom',
+                bestFor: 'Customized tours, honeymoon',
+                features: ['Customizable', 'Multiple Quotes', 'Dedicated Agent'],
+                description: 'Get customized tour packages from verified travel agents.',
+                url: 'https://www.traveltriangle.com',
+                logoColor: 'bg-teal-500',
+                icon: 'fa-triangle-exclamation',
+                popularTours: ['Customized Tours', 'Honeymoon Packages', 'Family Custom']
+            }
+        ];
+
+        // Render Platforms Grid
+        const platformsGrid = document.getElementById('platforms-grid');
+        
+        function renderPlatforms(filter = 'all') {
+            platformsGrid.innerHTML = '';
+            
+            const filtered = filter === 'all' 
+                ? tourPlatforms 
+                : tourPlatforms.filter(platform => platform.category.includes(filter));
+            
+            filtered.forEach(platform => {
+                const card = document.createElement('a');
+                card.href = platform.url;
+                card.target = '_blank';
+                card.className = 'fade-in glass-card rounded-2xl p-6 hover-lift cursor-pointer block';
+                
+                card.innerHTML = `
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl ${platform.logoColor} flex items-center justify-center text-white">
+                                <i class="fa-solid ${platform.icon} text-lg"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">${platform.name}</h3>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <div class="flex">
+                                        ${getStarRating(platform.rating)}
+                                    </div>
+                                    <span class="text-sm text-gray-600">${platform.reviews}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm mb-4">${platform.description}</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div>
+                            <div class="text-xs text-gray-500 mb-1">Starting Price</div>
+                            <div class="text-lg font-bold text-nature-700">${platform.startingPrice}</div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-gray-500 mb-1">Best For</div>
+                            <div class="text-sm font-medium text-gray-800">${platform.bestFor}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        ${platform.features.slice(0, 3).map(feature => 
+                            `<span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">${feature}</span>`
+                        ).join('')}
+                    </div>
+                    
+                    <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
+                        <span class="text-sm text-gray-500">Click to visit website</span>
+                        <div class="text-nature-600">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+                    </div>
+                `;
+                
+                platformsGrid.appendChild(card);
+            });
+        }
+
+        function getStarRating(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    stars += '<i class="fa-solid fa-star text-yellow-400 text-sm"></i>';
+                } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+                    stars += '<i class="fa-solid fa-star-half-stroke text-yellow-400 text-sm"></i>';
+                } else {
+                    stars += '<i class="fa-regular fa-star text-gray-300 text-sm"></i>';
+                }
+            }
+            return stars;
+        }
+
+        // Filter Platforms
+        function filterPlatforms(category) {
+            renderPlatforms(category);
+            
+            // Update filter buttons
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => {
+                const btnText = btn.textContent.toLowerCase();
+                if ((category === 'all' && btnText === 'all platforms') ||
+                    (category !== 'all' && btnText.includes(category))) {
+                    btn.className = "filter-btn active px-5 py-2 rounded-full text-sm font-medium bg-nature-600 text-white shadow-sm";
+                } else {
+                    btn.className = "filter-btn px-5 py-2 rounded-full text-sm font-medium bg-white text-gray-700 border border-gray-300 hover:border-nature-400";
+                }
+            });
+            
+            // Close mobile menu if open
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Render Comparison Table
+        const comparisonTable = document.getElementById('comparison-table');
+        
+        function renderComparisonTable() {
+            comparisonTable.innerHTML = '';
+            
+            tourPlatforms.forEach((platform, index) => {
+                const row = document.createElement('tr');
+                row.className = index % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+                
+                row.innerHTML = `
+                    <td class="py-4 px-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg ${platform.logoColor} flex items-center justify-center text-white">
+                                <i class="fa-solid ${platform.icon}"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-gray-900">${platform.name}</div>
+                                <div class="text-xs text-gray-500 mt-1">${platform.reviews} reviews</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 px-6">
+                        <div class="font-bold text-nature-700">${platform.startingPrice}</div>
+                        <div class="text-xs text-gray-500">${platform.priceRange}</div>
+                    </td>
+                    <td class="py-4 px-6">
+                        <div class="flex items-center gap-2">
+                            ${getStarRating(platform.rating)}
+                            <span class="font-medium text-gray-700">${platform.rating}/5</span>
+                        </div>
+                    </td>
+                    <td class="py-4 px-6">
+                        <span class="text-gray-800">${platform.bestFor}</span>
+                    </td>
+                    <td class="py-4 px-6">
+                        <a href="${platform.url}" target="_blank" 
+                           class="inline-flex items-center gap-2 bg-nature-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-nature-700 transition">
+                            Visit Website
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </td>
+                `;
+                
+                comparisonTable.appendChild(row);
+            });
+        }
+
+        // Platform Details Modal
+        function showPlatformDetails(platformId) {
+            const platform = tourPlatforms.find(p => p.id === platformId);
+            if (!platform) return;
+            
+            const modal = document.getElementById('platform-modal');
+            const title = document.getElementById('modal-title');
+            const content = document.getElementById('modal-content');
+            
+            title.textContent = `${platform.name} - Details`;
+            
+            content.innerHTML = `
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl">
+                        <div class="w-16 h-16 rounded-xl ${platform.logoColor} flex items-center justify-center text-white">
+                            <i class="fa-solid ${platform.icon} text-2xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900">${platform.name}</h4>
+                            <div class="flex items-center gap-2 mt-1">
+                                ${getStarRating(platform.rating)}
+                                <span class="text-gray-600">${platform.rating} • ${platform.reviews} reviews</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-gray-800 mb-2">Description</h5>
+                        <p class="text-gray-600">${platform.description}</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-nature-50 p-4 rounded-xl">
+                            <div class="text-sm text-nature-700 font-bold mb-1">Starting Price</div>
+                            <div class="text-2xl font-bold text-gray-900">${platform.startingPrice}</div>
+                            <div class="text-xs text-gray-600">Full range: ${platform.priceRange}</div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-xl">
+                            <div class="text-sm text-blue-700 font-bold mb-1">Best For</div>
+                            <div class="text-lg font-bold text-gray-900">${platform.bestFor}</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-gray-800 mb-3">Key Features:</h5>
+                        <div class="flex flex-wrap gap-2">
+                            ${platform.features.map(feature => `
+                                <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full text-sm">${feature}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5 class="font-bold text-gray-800 mb-3">Popular Jharkhand Tours:</h5>
+                        <div class="flex flex-wrap gap-2">
+                            ${platform.popularTours.map(tour => `
+                                <span class="bg-nature-50 text-nature-800 px-4 py-2 rounded-full text-sm">${tour}</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="pt-6 border-t border-gray-200">
+                        <a href="${platform.url}" target="_blank" 
+                           class="block w-full bg-nature-600 text-white text-center py-4 rounded-xl font-bold hover:bg-nature-700 transition text-lg">
+                            Visit ${platform.name} Website
+                        </a>
+                        <p class="text-sm text-gray-500 mt-4 text-center">
+                            You will be redirected to ${platform.name}'s official website
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('platform-modal').style.display = 'none';
+        }
+
+        // Initialize
+        renderPlatforms('all');
+        renderComparisonTable();
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('platform-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

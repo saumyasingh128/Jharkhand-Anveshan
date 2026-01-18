@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Travels - Train & Bus Booking</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Playfair+Display:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        italic: ['"Lora"', 'serif'],
+                        sans: ['"Roboto"', 'sans-serif'],
+                    },
+                    colors: {
+                        sky: {
+                            950: '#082f49', 
+                        },
+                        emerald: {
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    },
+                    screens: {
+                        'xs': '475px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .text-glow { text-shadow: 0 2px 10px rgba(0,0,0,0.6); }
+        
+        .glass-heavy {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .active-tab {
+            background-color: #047857;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .inactive-tab {
+            color: #4b5563;
+            background-color: transparent;
+        }
+        .inactive-tab:hover {
+            background-color: rgba(255,255,255,0.5);
+            color: #065f46;
+        }
+        
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 90%;
+            width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .search-input {
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #047857;
+            box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.1);
+        }
+        
+        .station-item {
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .station-item:hover {
+            background-color: #f0fdf4;
+        }
+        
+        .clickable-field {
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+            padding: 0.25rem 0;
+        }
+        
+        .clickable-field:hover {
+            background-color: rgba(243, 244, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased bg-gray-50 text-gray-900">
+
+    <!-- Station Selection Modal -->
+    <div id="station-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="modal-title" class="text-xl font-bold text-gray-900"></h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <div class="mb-4">
+                <input type="text" id="station-search" placeholder="Search station or city..." class="search-input" oninput="searchStations()">
+            </div>
+            <div id="station-list" class="space-y-2"></div>
+        </div>
+    </div>
+
+    <!-- Date Selection Modal -->
+    <div id="date-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900">Select Travel Date</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <input type="date" id="date-picker" class="search-input" min="2024-01-01">
+            </div>
+            <div class="flex justify-end gap-3">
+                <button onclick="closeModal()" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                    Cancel
+                </button>
+                <button onclick="applyDate()" class="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700">
+                    Apply Date
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav class="absolute top-0 left-0 w-full z-50 px-6 py-6 md:px-12 flex justify-between items-center text-white transition-all duration-300">
+        <div class="flex items-center gap-3">
+            <div class="rounded-tr-lg rounded-bl-lg flex items-center justify-center shadow-lg shrink-0 group hover:scale-105 transition-transform">
+                 <img src="images/icon.jpg" alt="" class="w-10 h-10 rounded-full">
+            </div>
+            <div class="leading-tight text-sm md:text-base font-bold text-white drop-shadow-md">
+                <span class="block text-orange-500">Jharkhand</span>
+                <span class="block">Anveshan</span>
+            </div>
+        </div>
+
+        <ul class="hidden lg:flex items-center gap-8 text-lg font-medium tracking-wide">
+            <li><a href="#" class="border border-white/80 rounded-full px-6 py-1 hover:bg-white hover:text-emerald-900 transition duration-300">Home</a></li>
+            <li><a href="#booking-section" class="hover:text-emerald-300 transition relative group">Bookings<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all group-hover:w-full"></span></a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition">Routes</a></li>
+            <li><a href="#" class="hover:text-emerald-300 transition">Support</a></li>
+        </ul>
+
+        <button id="mobile-btn" class="lg:hidden text-white focus:outline-none p-2">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-emerald-900/98 z-[60] transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 text-white text-2xl font-serif">
+        <button id="close-btn" class="absolute top-6 right-6 p-2">
+            <i class="fa-solid fa-xmark text-3xl"></i>
+        </button>
+        <a href="#" class="mobile-link border border-white rounded-full px-10 py-3 hover:bg-white hover:text-emerald-900 transition">Home</a>
+        <a href="#booking-section" class="mobile-link hover:text-emerald-300 transition">Bookings</a>
+        <a href="#" class="mobile-link hover:text-emerald-300 transition">Routes</a>
+    </div>
+
+    <section id="hero-section" class="relative h-[100dvh] w-full overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Scenic Road" 
+                 class="w-full h-full object-cover object-center opacity-90">
+        </div>
+
+        <div class="absolute inset-0 bg-gradient-to-b from-sky-950/70 via-emerald-900/30 to-emerald-950/90 z-10 mix-blend-multiply"></div>
+
+        <div class="relative z-20 h-full flex flex-col justify-center px-6 md:px-20 lg:px-24">
+            <div class="max-w-5xl mt-10 md:mt-0">
+                
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-serif mb-6 text-glow tracking-wide leading-tight">
+                    Rails & Roads
+                </h1>
+
+                <p class="text-white/95 font-italic italic text-lg sm:text-xl md:text-2xl leading-relaxed mb-10 max-w-xl drop-shadow-md">
+                    Skip the airport. Experience the heart of Jharkhand through our premium Train and Bus network.
+                </p>
+
+                <!-- UPDATED INTERACTIVE SEARCH WIDGET -->
+                <div class="hidden md:block glass-heavy rounded-2xl p-1 max-w-4xl mb-8">
+                    <div class="flex gap-2 p-2 mb-2 border-b border-gray-300/50">
+                        <button onclick="setMode('train')" id="tab-train" class="active-tab flex items-center gap-2 px-8 py-3 rounded-xl text-base font-bold transition-all flex-1 justify-center">
+                            <i class="fa-solid fa-train"></i> Train
+                        </button>
+                        <button onclick="setMode('bus')" id="tab-bus" class="inactive-tab flex items-center gap-2 px-8 py-3 rounded-xl text-base font-bold transition-all flex-1 justify-center">
+                            <i class="fa-solid fa-bus"></i> Bus
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-4 px-4 py-4">
+                        <!-- From Field (Clickable) -->
+                        <div class="flex-1 border-r border-gray-400 px-4">
+                            <label id="label-from" class="block text-xs font-bold text-gray-500 uppercase">From (Station)</label>
+                            <div onclick="openStationModal('from')" class="clickable-field">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span id="val-from-code" class="text-lg font-bold text-gray-800">NDLS</span>
+                                        <span id="val-from-name" class="text-sm font-normal text-gray-500 ml-2">New Delhi</span>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down text-gray-400 text-sm ml-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Swap Button (Clickable) -->
+                        <div onclick="swapStations()" class="w-10 h-10 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-700 shadow-sm cursor-pointer hover:bg-emerald-200 transition-colors hover:scale-105">
+                            <i id="icon-swap" class="fa-solid fa-arrow-right-arrow-left text-sm"></i>
+                        </div>
+
+                        <!-- To Field (Clickable) -->
+                        <div class="flex-1 border-r border-gray-400 px-4">
+                            <label id="label-to" class="block text-xs font-bold text-gray-500 uppercase">To (Station)</label>
+                            <div onclick="openStationModal('to')" class="clickable-field">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span id="val-to-code" class="text-lg font-bold text-gray-800">RNC</span>
+                                        <span id="val-to-name" class="text-sm font-normal text-gray-500 ml-2">Ranchi Jn</span>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down text-gray-400 text-sm ml-2"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Date Field (Clickable) -->
+                        <div class="flex-1 px-4">
+                            <label class="block text-xs font-bold text-gray-500 uppercase">Travel Date</label>
+                            <div onclick="openDateModal()" class="clickable-field">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span id="display-day" class="text-lg font-bold text-gray-800">15</span>
+                                        <span id="display-month" class="text-lg font-bold text-gray-800"> Oct</span>
+                                        <span id="display-year" class="text-sm font-normal text-gray-500"> 2024</span>
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down text-gray-400 text-sm ml-2"></i>
+                                </div>
+                            </div>
+                            <input type="hidden" id="travel-date" value="2024-10-15">
+                        </div>
+                        
+                        <!-- Search Button (Clickable) -->
+                        <button onclick="performSearch()" 
+                                class="bg-emerald-700 text-white rounded-xl px-8 py-4 hover:bg-emerald-800 transition shadow-lg flex items-center gap-2 group hover:scale-105 active:scale-95">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span class="hidden lg:inline">Search</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button onclick="document.getElementById('booking-section').scrollIntoView({behavior: 'smooth'})" 
+                        class="md:hidden group relative overflow-hidden text-white border border-white rounded-xl px-8 py-3 uppercase tracking-widest text-sm font-semibold hover:text-emerald-900 transition-all duration-300 shadow-lg">
+                    <span class="absolute inset-0 w-full h-full bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></span>
+                    <span class="relative z-10">Start Search</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full h-24 md:h-32 bg-gradient-to-t from-gray-50 to-transparent z-30 pointer-events-none"></div>
+    </section>
+
+    <!-- KEEPING ALL YOUR EXISTING CONTEXTS EXACTLY AS THEY WERE -->
+    <section id="booking-section" class="relative min-h-screen w-full bg-gray-50 font-sans overflow-hidden">
+        
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-gray-50 via-white/80 to-emerald-50/30"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4 md:px-8 py-12 md:py-20 flex flex-col items-center">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-4xl md:text-6xl font-serif text-gray-900 leading-tight drop-shadow-sm">
+                    Select Your Ride <br>
+                    <span class="flex items-center justify-center gap-4 mt-3">
+                        <span class="h-[2px] w-8 md:w-32 bg-emerald-800"></span>
+                        <span class="italic text-2xl md:text-4xl font-serif text-emerald-800">Comfort on Ground</span>
+                        <span class="h-[2px] w-8 md:w-32 bg-emerald-800"></span>
+                    </span>
+                </h1>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Compare instant availability across India's top Train and Bus operators.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-10 bg-white/50 backdrop-blur-md p-2 rounded-full border border-gray-200">
+                <button onclick="filterBrands('all')" class="filter-btn active-filter px-6 py-2 rounded-full text-sm font-bold bg-emerald-700 text-white shadow-md transition-all">All</button>
+                <button onclick="filterBrands('train')" class="filter-btn px-6 py-2 rounded-full text-sm font-bold text-gray-600 hover:bg-white hover:shadow-sm transition-all"><i class="fa-solid fa-train mr-2"></i>Trains</button>
+                <button onclick="filterBrands('bus')" class="filter-btn px-6 py-2 rounded-full text-sm font-bold text-gray-600 hover:bg-white hover:shadow-sm transition-all"><i class="fa-solid fa-bus mr-2"></i>Buses</button>
+            </div>
+
+            <div id="brands-list" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-8 w-full max-w-7xl pb-32">
+                <!-- Brand items will be inserted here by JavaScript -->
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-6 left-0 right-0 z-50 flex justify-center px-4 w-full">
+            <div class="glass-heavy rounded-3xl md:rounded-full px-6 py-4 md:py-3 flex flex-col md:flex-row items-center gap-3 md:gap-8 shadow-2xl max-w-3xl w-full md:w-auto text-center md:text-left">
+                
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-700 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-location-arrow text-white text-xs"></i>
+                    </div>
+                    <span class="font-bold text-sm text-emerald-900 whitespace-nowrap">Jharkhand Anveshan</span>
+                </div>
+
+                <div class="hidden md:block w-[1px] h-6 bg-gray-400"></div>
+
+                <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-700">
+                    <a href="#" class="flex items-center gap-2 hover:text-pink-600 transition">
+                        <i class="fab fa-instagram"></i> <span>Instagram</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-2 hover:text-blue-700 transition">
+                        <i class="fab fa-facebook"></i> <span>Facebook</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-2 hover:text-black transition">
+                        <i class="fab fa-x-twitter"></i> <span>X</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // --- Mobile Menu Logic ---
+        const mobileBtn = document.getElementById('mobile-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+        }
+        mobileBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // --- Search Widget Data and Logic ---
+        const stations = {
+            train: [
+                { code: 'NDLS', name: 'New Delhi', city: 'Delhi' },
+                { code: 'RNC', name: 'Ranchi Junction', city: 'Ranchi' },
+                { code: 'HTE', name: 'Hatia', city: 'Ranchi' },
+                { code: 'DHN', name: 'Dhanbad Junction', city: 'Dhanbad' },
+                { code: 'MURI', name: 'Muri Junction', city: 'Ranchi' },
+                { code: 'BKSC', name: 'Bokaro Steel City', city: 'Bokaro' },
+                { code: 'JSME', name: 'Jasidih Junction', city: 'Deoghar' },
+                { code: 'BGP', name: 'Bhagalpur Junction', city: 'Bhagalpur' },
+                { code: 'PNBE', name: 'Patna Junction', city: 'Patna' },
+                { code: 'HWH', name: 'Howrah Junction', city: 'Kolkata' }
+            ],
+            bus: [
+                { code: 'Delhi', name: 'ISBT Kashmere Gate', city: 'Delhi' },
+                { code: 'Ranchi', name: 'Birsa Bus Stand', city: 'Ranchi' },
+                { code: 'Jamshedpur', name: 'Jugsalai Bus Stand', city: 'Jamshedpur' },
+                { code: 'Dhanbad', name: 'Dhanbad Bus Stand', city: 'Dhanbad' },
+                { code: 'Bokaro', name: 'Bokaro Bus Stand', city: 'Bokaro' },
+                { code: 'Deoghar', name: 'Deoghar Bus Stand', city: 'Deoghar' },
+                { code: 'Hazaribagh', name: 'Hazaribagh Bus Stand', city: 'Hazaribagh' },
+                { code: 'Patna', name: 'Patna Bus Stand', city: 'Patna' },
+                { code: 'Kolkata', name: 'Esplanade Bus Stand', city: 'Kolkata' },
+                { code: 'Gaya', name: 'Gaya Bus Stand', city: 'Gaya' }
+            ]
+        };
+
+        let currentMode = 'train';
+        let currentFrom = { code: 'NDLS', name: 'New Delhi', city: 'Delhi' };
+        let currentTo = { code: 'RNC', name: 'Ranchi Junction', city: 'Ranchi' };
+        let selectedDate = '2024-10-15';
+        let modalType = '';
+
+        // --- Search Widget Tab Logic ---
+        function setMode(mode) {
+            currentMode = mode;
+            
+            ['train', 'bus'].forEach(m => {
+                const btn = document.getElementById(`tab-${m}`);
+                if (m === mode) {
+                    btn.className = "active-tab flex items-center gap-2 px-8 py-3 rounded-xl text-base font-bold transition-all flex-1 justify-center";
+                } else {
+                    btn.className = "inactive-tab flex items-center gap-2 px-8 py-3 rounded-xl text-base font-bold transition-all flex-1 justify-center";
+                }
+            });
+
+            const lblFrom = document.getElementById('label-from');
+            const lblTo = document.getElementById('label-to');
+
+            if (mode === 'train') {
+                lblFrom.innerText = "From (Station)";
+                lblTo.innerText = "To (Station)";
+                currentFrom = { code: 'NDLS', name: 'New Delhi', city: 'Delhi' };
+                currentTo = { code: 'RNC', name: 'Ranchi Junction', city: 'Ranchi' };
+                updateStationDisplay();
+            } else if (mode === 'bus') {
+                lblFrom.innerText = "From (City)";
+                lblTo.innerText = "To (City)";
+                currentFrom = { code: 'Delhi', name: 'ISBT Kashmere Gate', city: 'Delhi' };
+                currentTo = { code: 'Ranchi', name: 'Birsa Bus Stand', city: 'Ranchi' };
+                updateStationDisplay();
+            }
+        }
+
+        function updateStationDisplay() {
+            document.getElementById('val-from-code').textContent = currentFrom.code;
+            document.getElementById('val-from-name').textContent = currentFrom.name;
+            document.getElementById('val-to-code').textContent = currentTo.code;
+            document.getElementById('val-to-name').textContent = currentTo.name;
+        }
+
+        // --- Station Selection Modal ---
+        function openStationModal(type) {
+            modalType = type;
+            const modal = document.getElementById('station-modal');
+            const title = document.getElementById('modal-title');
+            const list = document.getElementById('station-list');
+            
+            if (type === 'from') {
+                title.textContent = `Select ${currentMode === 'train' ? 'Departure Station' : 'Departure City'}`;
+            } else {
+                title.textContent = `Select ${currentMode === 'train' ? 'Arrival Station' : 'Arrival City'}`;
+            }
+            
+            list.innerHTML = '';
+            stations[currentMode].forEach(station => {
+                const div = document.createElement('div');
+                div.className = 'station-item';
+                div.innerHTML = `
+                    <div class="font-bold text-gray-900">${station.code}</div>
+                    <div class="text-sm text-gray-600">${station.name}</div>
+                    <div class="text-xs text-gray-500">${station.city}</div>
+                `;
+                div.onclick = () => selectStation(station);
+                list.appendChild(div);
+            });
+            
+            modal.style.display = 'flex';
+        }
+
+        function searchStations() {
+            const searchInput = document.getElementById('station-search').value.toLowerCase();
+            const list = document.getElementById('station-list');
+            const currentStations = stations[currentMode];
+            
+            list.innerHTML = '';
+            
+            const filtered = currentStations.filter(station => 
+                station.code.toLowerCase().includes(searchInput) ||
+                station.name.toLowerCase().includes(searchInput) ||
+                station.city.toLowerCase().includes(searchInput)
+            );
+            
+            filtered.forEach(station => {
+                const div = document.createElement('div');
+                div.className = 'station-item';
+                div.innerHTML = `
+                    <div class="font-bold text-gray-900">${station.code}</div>
+                    <div class="text-sm text-gray-600">${station.name}</div>
+                    <div class="text-xs text-gray-500">${station.city}</div>
+                `;
+                div.onclick = () => selectStation(station);
+                list.appendChild(div);
+            });
+        }
+
+        function selectStation(station) {
+            if (modalType === 'from') {
+                currentFrom = station;
+            } else {
+                currentTo = station;
+            }
+            updateStationDisplay();
+            closeModal();
+        }
+
+        function swapStations() {
+            const temp = currentFrom;
+            currentFrom = currentTo;
+            currentTo = temp;
+            updateStationDisplay();
+        }
+
+        // --- Date Selection Modal ---
+        function openDateModal() {
+            const modal = document.getElementById('date-modal');
+            const datePicker = document.getElementById('date-picker');
+            
+            datePicker.value = selectedDate;
+            modal.style.display = 'flex';
+        }
+
+        function applyDate() {
+            const datePicker = document.getElementById('date-picker');
+            selectedDate = datePicker.value;
+            
+            const date = new Date(selectedDate);
+            const day = date.getDate();
+            const month = date.toLocaleString('default', { month: 'short' });
+            const year = date.getFullYear();
+            
+            document.getElementById('display-day').textContent = day;
+            document.getElementById('display-month').textContent = ' ' + month;
+            document.getElementById('display-year').textContent = ' ' + year;
+            document.getElementById('travel-date').value = selectedDate;
+            
+            closeModal();
+        }
+
+        function closeModal() {
+            document.getElementById('station-modal').style.display = 'none';
+            document.getElementById('date-modal').style.display = 'none';
+            document.getElementById('station-search').value = '';
+        }
+
+        // --- Search Function ---
+        function performSearch() {
+            const searchData = {
+                mode: currentMode,
+                from: currentFrom,
+                to: currentTo,
+                date: selectedDate
+            };
+            
+            console.log('Search initiated:', searchData);
+            alert(`Searching for ${currentMode === 'train' ? 'Train' : 'Bus'} from ${currentFrom.code} (${currentFrom.name}) to ${currentTo.code} (${currentTo.name}) on ${selectedDate}`);
+            
+            document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- Initialize date display ---
+        function initializeDate() {
+            const date = new Date(selectedDate);
+            const day = date.getDate();
+            const month = date.toLocaleString('default', { month: 'short' });
+            const year = date.getFullYear();
+            
+            document.getElementById('display-day').textContent = day;
+            document.getElementById('display-month').textContent = ' ' + month;
+            document.getElementById('display-year').textContent = ' ' + year;
+        }
+
+        window.onclick = function(event) {
+            const stationModal = document.getElementById('station-modal');
+            const dateModal = document.getElementById('date-modal');
+            
+            if (event.target === stationModal || event.target === dateModal) {
+                closeModal();
+            }
+        }
+
+        // --- Initialize ---
+        setMode('train');
+        initializeDate();
+
+        // --- YOUR EXISTING BRANDS LOGIC (EXACTLY AS YOU HAD IT) ---
+        const brands = [
+            // Trains
+            { name: "IRCTC", category: "train", slogan: "“Lifeline of the nation”", url: "https://www.irctc.co.in", bgColor: "bg-white/80 backdrop-blur-md", logoColor: "bg-[#213d77]", logoType: "icon", icon: "fa-train-subway" },
+            { name: "ConfirmTkt", category: "train", slogan: "“Predict confirm status”", url: "https://www.confirmtkt.com", bgColor: "bg-white/80 backdrop-blur-md", logoColor: "bg-[#4CAF50]", logoType: "icon", icon: "fa-ticket" },
+            { name: "RailYatri", category: "train", slogan: "“Simplify train travel”", url: "https://www.railyatri.in", bgColor: "bg-white/80 backdrop-blur-md", logoColor: "bg-orange-500", logoType: "icon", icon: "fa-train" },
+
+            // Buses
+            { name: "RedBus", category: "bus", slogan: "“World's largest bus booking”", url: "https://www.redbus.in", bgColor: "bg-white/80 backdrop-blur-md", logoColor: "bg-[#d84e55]", logoType: "icon", icon: "fa-bus" },
+            { name: "AbhiBus", category: "bus", slogan: "“Bus ki ticket”", url: "https://www.abhibus.com", bgColor: "bg-white/80 backdrop-blur-md", logoColor: "bg-[#bd1c24]", logoType: "text", logoText: "AB" },
+            { name: "Zingbus", category: "bus", slogan: "“Premium bus travel”", url: "https://www.zingbus.com", bgColor: "bg-white/80 backdrop-blur-md", logoColor: "bg-[#4338ca]", logoType: "icon", icon: "fa-van-shuttle" },
+        ];
+
+        const container = document.getElementById('brands-list');
+
+        const getLogoHtml = (item) => {
+            let innerContent = '';
+            
+            if (item.logoType === 'text') {
+                innerContent = `<span class="font-bold text-white text-xl font-serif">${item.logoText}</span>`;
+            } else if (item.logoType === 'icon') {
+                 innerContent = `<i class="fa-solid ${item.icon} text-white text-xl"></i>`;
+            }
+            
+            return `<div class="w-14 h-14 md:w-16 md:h-16 rounded-2xl ${item.logoColor} flex items-center justify-center shadow-md shrink-0 overflow-hidden relative group-hover:scale-110 transition-transform duration-300">
+                        ${innerContent}
+                    </div>`;
+        };
+
+        function renderBrands(filter = 'all') {
+            container.innerHTML = '';
+            
+            const filtered = filter === 'all' ? brands : brands.filter(b => b.category === filter);
+
+            filtered.forEach((brand) => {
+                const itemLink = document.createElement('a');
+                itemLink.href = brand.url;
+                itemLink.target = "_blank";
+                itemLink.className = `fade-in group flex flex-row items-center gap-4 px-5 py-5 md:px-6 md:py-6 ${brand.bgColor} rounded-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer border border-sky-100 hover:border-emerald-300`;
+                
+                let catIcon = brand.category === 'train' ? 'fa-train' : 'fa-bus';
+
+                itemLink.innerHTML = `
+                    ${getLogoHtml(brand)}
+                    <div class="flex flex-col min-w-0">
+                        <div class="flex items-center gap-2">
+                             <h2 class="text-lg md:text-2xl font-serif font-bold text-gray-900 group-hover:text-emerald-700 transition-colors truncate">${brand.name}</h2>
+                             <i class="fa-solid ${catIcon} text-gray-300 text-xs"></i>
+                        </div>
+                        <p class="text-gray-500 text-xs md:text-sm font-medium opacity-90 truncate">${brand.slogan}</p>
+                    </div>
+                    <div class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">
+                        <i class="fa-solid fa-arrow-right text-emerald-600"></i>
+                    </div>
+                `;
+                container.appendChild(itemLink);
+            });
+        }
+
+        function filterBrands(cat) {
+            renderBrands(cat);
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => {
+                if(btn.innerText.toLowerCase().includes(cat) || (cat === 'all' && btn.innerText === 'All')) {
+                    btn.className = "filter-btn px-6 py-2 rounded-full text-sm font-bold bg-emerald-700 text-white shadow-md transition-all";
+                } else {
+                    btn.className = "filter-btn px-6 py-2 rounded-full text-sm font-bold text-gray-600 hover:bg-white hover:shadow-sm transition-all";
+                }
+            });
+        }
+
+        // Init brands
+        renderBrands('all');
+    </script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parasnath - Shikharji | The Holiest Jain Pilgrimage Site</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'forest-dark': '#022c22',
+                        'forest-mid': '#065f46',
+                        'sacred-gold': '#d97706',
+                        'cloud-white': '#f8fafc',
+                        'slate-rock': '#334155',
+                        'peak-gray': '#475569',
+                        'spiritual-orange': '#f59e0b',
+                        'temple-yellow': '#fbbf24',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'float-up': 'floatUp 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        floatUp: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%, 100%': { opacity: '0.7' },
+                            '50%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #022c22; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, #d97706, #f59e0b); 
+            border-radius: 5px; 
+        }
+        
+        .mountain-bg {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(6, 95, 70, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(217, 119, 6, 0.05) 0%, transparent 20%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .sticky-nav {
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-nav.scrolled {
+            background: rgba(2, 44, 34, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gold-text {
+            background: linear-gradient(180deg, #fbbf24, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .sacred-border {
+            border-image: linear-gradient(45deg, #d97706, #f59e0b, #fbbf24) 1;
+        }
+        
+        .spiritual-glow {
+            text-shadow: 0 0 20px rgba(217, 119, 6, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-cloud-white text-slate-rock font-sans mountain-bg">
+
+    <nav id="navbar" class="sticky-nav fixed w-full z-50 bg-forest-dark/95 backdrop-blur-md shadow-xl border-b border-sacred-gold/30">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="  rounded-lg">
+                        <span><img src="images/icon.jpg" alt="" class="w-10 h-10 rounded-full"></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl md:text-2xl font-serif font-bold  tracking-widest text-orange-500">Jharkhand Anveshan</span>
+                       
+                    </div>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="group text-gray-300 hover:text-sacred-gold text-sm font-medium uppercase tracking-wider transition relative">
+                        <i class="fas fa-mountain mr-2"></i>The Peak
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sacred-gold group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#pilgrimage" class="group text-gray-300 hover:text-sacred-gold text-sm font-medium uppercase tracking-wider transition relative">
+                        <i class="fas fa-hiking mr-2"></i>The Journey
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sacred-gold group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#significance" class="group text-gray-300 hover:text-sacred-gold text-sm font-medium uppercase tracking-wider transition relative">
+                        <i class="fas fa-hands-praying mr-2"></i>Significance
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-sacred-gold group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#video-darshan" class="border border-sacred-gold text-sacred-gold px-6 py-3 rounded-full hover:bg-sacred-gold hover:text-white transition text-xs font-bold uppercase tracking-widest animate-pulse-slow">
+                        <i class="fas fa-video mr-2"></i>Virtual Darshan
+                    </a>
+                </div>
+
+                <button onclick="toggleMenu()" class="md:hidden text-white">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-forest-dark/95 border-t border-sacred-gold/30 absolute w-full backdrop-blur-md">
+            <a href="#hero" class="block px-6 py-4 text-white hover:bg-white/5 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-mountain mr-3 text-sacred-gold"></i>The Peak
+            </a>
+            <a href="#pilgrimage" class="block px-6 py-4 text-white hover:bg-white/5 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-hiking mr-3 text-sacred-gold"></i>The Journey
+            </a>
+            <a href="#significance" class="block px-6 py-4 text-white hover:bg-white/5 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-hands-praying mr-3 text-sacred-gold"></i>Significance
+            </a>
+            <a href="#video-darshan" class="block px-6 py-4 text-sacred-gold font-bold hover:bg-white/5 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-video mr-3"></i>Watch Video
+            </a>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden bg-forest-dark">
+        <div class="absolute inset-0 z-0">
+            <img src="images/paras1.jpg" alt="Lush Green Mountains Parasnath" class="w-full h-full object-cover">
+        </div>
+
+        <div class="absolute inset-0 z-0 bg-forest-dark/60 mix-blend-multiply"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-t from-forest-dark via-black/30 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-forest-dark to-transparent z-10"></div>
+
+        <div class="relative z-10 text-center px-4 animate-fade-in-up">
+            <div class="inline-flex items-center bg-sacred-gold/20 text-sacred-gold px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
+                <i class="fas fa-mountain mr-2"></i>
+                <span class="text-sm font-bold uppercase tracking-wider">Highest Peak in Jharkhand</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl font-serif font-bold text-white mb-6 drop-shadow-2xl leading-tight">
+                Closer to <br><span class="gold-text spiritual-glow animate-glow">Salvation</span>
+            </h1>
+            <p class="text-xl text-gray-200 max-w-3xl mx-auto font-light leading-relaxed mb-12">
+                The holiest Jain pilgrimage where 20 out of 24 Tirthankaras attained Nirvana. A spiritual journey touching the clouds of Jharkhand at 1,365 meters.
+            </p>
+            
+            <div class="mt-12 flex flex-wrap justify-center gap-6">
+                <a href="#pilgrimage" class="inline-flex items-center bg-sacred-gold text-black font-bold py-4 px-10 hover:bg-white transition duration-300 uppercase tracking-widest text-sm shadow-xl hover:scale-105">
+                    <i class="fas fa-hiking mr-3"></i> Start the Journey
+                </a>
+                <a href="#significance" class="inline-flex items-center bg-transparent border-2 border-white text-white font-bold py-4 px-10 hover:bg-white/10 transition duration-300 uppercase tracking-widest text-sm shadow-xl hover:scale-105">
+                    <i class="fas fa-book-open mr-3"></i> Learn Significance
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+            <a href="#pilgrimage" class="text-white hover:text-sacred-gold transition animate-bounce">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="significance" class="py-24 bg-gradient-to-b from-cloud-white to-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-sacred-gold to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center bg-sacred-gold/10 text-sacred-gold px-4 py-2 rounded-full">
+                        <i class="fas fa-hands-praying mr-2"></i>
+                        <span class="text-sm font-bold uppercase tracking-wider">Spiritual Significance</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-forest-dark mb-4">The Holiest <span class="gold-text">Jain Pilgrimage</span></h2>
+                    <div class="h-1 w-20 bg-sacred-gold"></div>
+                    
+                    <div class="space-y-6 text-slate-rock leading-relaxed">
+                        <p>
+                            Parasnath Hill, also known as Shikharji, is the most important Jain pilgrimage site. It is believed that 20 out of the 24 Jain Tirthankaras (spiritual teachers) attained Moksha (salvation) here, including Lord Parshvanath, the 23rd Tirthankara.
+                        </p>
+                        <p>
+                            The name "Parasnath" is derived from Lord Parshvanath, while "Shikharji" means "peak of excellence" or "venerable peak." At 1,365 meters (4,478 feet), it is the highest mountain in the state of Jharkhand.
+                        </p>
+                        <p>
+                            The pilgrimage to Shikharji involves visiting 24 temples (tonks) along the 27-kilometer circular route, each representing one of the Tirthankaras. This sacred journey is considered one of the most significant acts in Jainism.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="bg-white border border-gray-200 shadow-sm p-5 rounded-xl">
+                            <i class="fas fa-24 text-2xl text-sacred-gold mb-3"></i>
+                            <h4 class="font-bold text-forest-dark mb-1">24 Tirthankaras</h4>
+                            <p class="text-gray-600 text-sm">20 attained Nirvana at Shikharji</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 shadow-sm p-5 rounded-xl">
+                            <i class="fas fa-calendar-alt text-2xl text-sacred-gold mb-3"></i>
+                            <h4 class="font-bold text-forest-dark mb-1">Ancient Site</h4>
+                            <p class="text-gray-600 text-sm">Dating back to 8th-9th century BCE</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute -inset-4 border-2 border-sacred-gold/30 z-0 rounded-2xl"></div>
+                    <div class="relative z-10 overflow-hidden rounded-xl shadow-2xl">
+                        <img src="images/paras2.jpg" alt="Jal Mandir Shikharji" class="w-full h-[500px] object-cover hover:scale-110 transition duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest-dark via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8">
+                            <div class="bg-black/70 backdrop-blur-sm p-4 rounded-lg max-w-md">
+                                <h3 class="text-2xl font-bold text-white">Jal Mandir</h3>
+                                <p class="text-gray-300 mt-2">The main temple at the summit dedicated to Lord Parshvanath</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200 card-hover">
+                    <div class="text-4xl text-sacred-gold mb-6">
+                        <i class="fas fa-om"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-forest-dark mb-4">Moksha Sthal</h3>
+                    <p class="text-gray-600 mb-6">
+                        Shikharji is revered as the "Place of Salvation" where 20 Tirthankaras attained Nirvana, making it the most sacred site in Jainism.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200 card-hover">
+                    <div class="text-4xl text-sacred-gold mb-6">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-forest-dark mb-4">Highest Peak</h3>
+                    <p class="text-gray-600 mb-6">
+                        At 1,365 meters, Parasnath Hill is the highest mountain in Jharkhand, offering breathtaking views of the surrounding landscape.
+                    </p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200 card-hover">
+                    <div class="text-4xl text-sacred-gold mb-6">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-forest-dark mb-4">Ancient History</h3>
+                    <p class="text-gray-600 mb-6">
+                        The site has been a pilgrimage destination for over 2,500 years, with temples and inscriptions dating back centuries.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pilgrimage" class="py-24 px-4 bg-white relative">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-sacred-gold/10 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center bg-sacred-gold/10 text-sacred-gold px-4 py-2 rounded-full mb-6">
+                        <i class="fas fa-hiking mr-2"></i>
+                        <span class="text-sm font-bold uppercase tracking-wider">The Sacred Trek</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-forest-dark mb-4">The 27KM Spiritual Journey</h2>
+                    <p class="text-gray-600 text-lg">A circular pilgrimage route starting from Madhuban, passing through lush forests to visit all 24 holy shrines (Tonks).</p>
+                </div>
+                <div class="hidden md:block mt-6 md:mt-0">
+                    <div class="bg-gradient-to-br from-sacred-gold to-temple-yellow text-black p-8 rounded-2xl shadow-xl animate-float-up">
+                        <div class="text-5xl font-serif font-bold">27<span class="text-2xl">KM</span></div>
+                        <div class="text-sm uppercase tracking-widest font-bold">Round Trip</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 h-auto md:h-[550px]">
+                
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-80 md:h-full card-hover">
+                    <img src="images/madhuban.jpg" alt="Foothills" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest-dark to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="text-sacred-gold text-xs font-bold uppercase tracking-widest mb-2 block">Stage 1: The Base</span>
+                        <h3 class="text-2xl font-serif text-white font-bold">Madhuban</h3>
+                        <div class="mt-4">
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                The starting point of the pilgrimage, surrounded by Dharamshalas, temples, and facilities for pilgrims. This is where devotees prepare for the spiritual journey ahead.
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-300">
+                                <i class="fas fa-home mr-2"></i>
+                                <span>Accommodation & Food Available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 left-4 bg-white text-sacred-gold px-4 py-2 rounded-full font-bold text-sm">
+                        Starting Point
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-80 md:h-full card-hover md:- md:mb-8 border-t-4 border-sacred-gold">
+                    <img src="images/paras1.jpg" alt="Trek Path" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest-dark to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="text-sacred-gold text-xs font-bold uppercase tracking-widest mb-2 block">Stage 2: The Climb</span>
+                        <h3 class="text-2xl font-serif text-white font-bold">The Forest Path</h3>
+                        <div class="mt-4">
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                A steep climb through dense green forests with 24 temples along the route. The path winds through beautiful landscapes with resting points and water stations.
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-300">
+                                <i class="fas fa-person-hiking mr-2"></i>
+                                <span>6-8 hours to complete • Dolis available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 right-4 bg-amber-500 text-black px-4 py-2 rounded-full font-bold text-sm">
+                        Moderate Difficulty
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl shadow-xl h-80 md:h-full card-hover">
+                    <img src="images/paras2.jpg" alt="Jal Mandir" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-forest-dark to-transparent opacity-90"></div>
+                    <div class="absolute bottom-0 left-0 p-8">
+                        <span class="text-sacred-gold text-xs font-bold uppercase tracking-widest mb-2 block">Stage 3: The Summit</span>
+                        <h3 class="text-2xl font-serif text-white font-bold">Jal Mandir</h3>
+                        <div class="mt-4">
+                            <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                The main temple at the peak dedicated to Lord Parshvanath. Offers panoramic views above the clouds and is the spiritual climax of the pilgrimage.
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-300">
+                                <i class="fas fa-eye mr-2"></i>
+                                <span>Breathtaking 360° Views</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-4 left-4 bg-green-600 text-white px-4 py-2 rounded-full font-bold text-sm">
+                        Spiritual Peak
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-24 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-forest-dark to-forest-mid text-white rounded-2xl p-8 border border-sacred-gold/30">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-lightbulb mr-3 text-sacred-gold"></i>
+                        Pilgrimage Tips
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-sacred-gold/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-calendar-alt text-sacred-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Best Time to Visit</h4>
+                                <p class="text-gray-300 text-sm">October to March (avoid monsoon season for safer trekking)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-sacred-gold/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-shoe-prints text-sacred-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">What to Carry</h4>
+                                <p class="text-gray-300 text-sm">Comfortable walking shoes, water, light snacks, and modest clothing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-forest-dark to-forest-mid text-white rounded-2xl p-8 border border-sacred-gold/30">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
+                        <i class="fas fa-map-marked-alt mr-3 text-sacred-gold"></i>
+                        Getting There
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-sacred-gold/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-train text-sacred-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Nearest Station</h4>
+                                <p class="text-gray-300 text-sm">Parasnath Railway Station (2km from Madhuban base)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-sacred-gold/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-bed text-sacred-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Accommodation</h4>
+                                <p class="text-gray-300 text-sm">Multiple Dharamshalas and guest houses available at Madhuban</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-darshan" class="py-24 bg-forest-dark relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-sacred-gold rounded-full opacity-5 blur-[150px]"></div>
+
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-sacred-gold/20 text-sacred-gold px-4 py-2 rounded-full mb-6">
+                    <i class="fas fa-video mr-2"></i>
+                    <span class="text-sm font-bold uppercase tracking-wider">Virtual Pilgrimage</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mt-2">Digital Darshan</h2>
+                <p class="text-gray-400 text-lg max-w-3xl mx-auto mt-4 font-serif">
+                    Experience the spiritual journey to Shikharji from anywhere in the world. A virtual pilgrimage to the holiest Jain site.
+                </p>
+            </div>
+
+            <div class="relative group">
+                <div class="absolute -inset-4 bg-gradient-to-r from-yellow-600 via-yellow-300 to-yellow-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                
+                <div class="relative bg-black rounded-xl overflow-hidden border-2 border-sacred-gold/50 shadow-2xl">
+                    <div class="aspect-video w-full overflow-hidden">
+                        <iframe 
+                            class="w-full h-full" 
+                            src="https://www.youtube.com/embed/VGaf2zYqKis" 
+                            title="Shikharji Yatra" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                        <div class="flex justify-between items-center">
+                            <div class="text-left">
+                                <h4 class="text-white font-bold">Shikharji Pilgrimage Documentary</h4>
+                                <p class="text-gray-400 text-sm">The Holiest Jain Pilgrimage Site</p>
+                            </div>
+                            <div class="bg-sacred-gold text-black px-4 py-2 rounded-lg font-bold uppercase text-xs">
+                                <i class="fas fa-expand mr-2"></i> Full Screen
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <div class="inline-flex items-center bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto">
+                    <i class="fas fa-quote-left text-3xl text-sacred-gold mr-6"></i>
+                    <p class="text-gray-300 text-lg italic">
+                        "Every stone here echoes with the silence of meditation. Every step brings you closer to liberation."
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800">
+                    <i class="fas fa-hands-praying text-4xl text-sacred-gold mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Spiritual Preparation</h4>
+                    <p class="text-gray-400">Guidelines for pilgrims including fasting, prayers, and meditation practices</p>
+                </div>
+                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800">
+                    <i class="fas fa-map-signs text-4xl text-sacred-gold mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Route Map & Guide</h4>
+                    <p class="text-gray-400">Detailed map of the 27km circular route with all 24 temples marked</p>
+                </div>
+                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800">
+                    <i class="fas fa-clock text-4xl text-sacred-gold mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Timings & Seasons</h4>
+                    <p class="text-gray-400">Best times to visit, temple opening hours, and seasonal considerations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-gray-400 py-12 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-sacred-gold/20 p-3 rounded-lg">
+                            <i class="fas fa-mountain text-sacred-gold text-2xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-serif text-3xl font-bold text-white tracking-widest">SHIKHARJI</span>
+                            <p class="text-gray-400 text-sm mt-1">Parasnath Hill • Holiest Jain Pilgrimage Site</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex space-x-6 text-2xl">
+                    <a href="#" class="text-gray-600 hover:text-sacred-gold transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-sacred-gold transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-sacred-gold transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-sacred-gold transition"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div>
+                    <h5 class="text-lg font-bold text-sacred-gold mb-4">Explore</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#hero" class="hover:text-white transition">The Peak</a></li>
+                        <li><a href="#significance" class="hover:text-white transition">Significance</a></li>
+                        <li><a href="#pilgrimage" class="hover:text-white transition">The Journey</a></li>
+                        <li><a href="#video-darshan" class="hover:text-white transition">Virtual Darshan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold text-sacred-gold mb-4">Pilgrimage</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Planning Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition">Accommodation</a></li>
+                        <li><a href="#" class="hover:text-white transition">Temple Timings</a></li>
+                        <li><a href="#" class="hover:text-white transition">Doli Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold text-sacred-gold mb-4">Resources</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Photo Gallery</a></li>
+                        <li><a href="#" class="hover:text-white transition">Historical Background</a></li>
+                        <li><a href="#" class="hover:text-white transition">Visitor Guidelines</a></li>
+                        <li><a href="#" class="hover:text-white transition">Spiritual Texts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold text-sacred-gold mb-4">Contact</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 text-sacred-gold mt-1"></i>
+                            <span>Parasnath Hill, Giridih District, Jharkhand, India</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-sacred-gold"></i>
+                            <span>+91 XXX XXX XXXX</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-sacred-gold"></i>
+                            <span>info@shikharjipilgrimage.com</span>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm">
+                <div class="mb-4 md:mb-0">
+                    &copy; 2024 Shikharji Pilgrimage Board. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-sacred-gold transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-sacred-gold transition">Terms of Service</a>
+                    <a href="#" class="hover:text-sacred-gold transition">Accessibility</a>
+                    <a href="#" class="hover:text-sacred-gold transition">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        if(window.innerWidth < 768) {
+                            const mobileMenu = document.getElementById('mobile-menu');
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

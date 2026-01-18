@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dassam Falls | Jharkhand's Natural Wonder</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css for additional animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Custom styles and animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(240, 180, 41, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(240, 180, 41, 0.6); }
+        }
+        
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+        }
+        
+        .card-hover-effect {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover-effect:hover {
+            transform: translateY(-15px) scale(1.02);
+        }
+        
+        .image-zoom-effect {
+            transition: transform 0.5s ease;
+        }
+        
+        .image-zoom-effect:hover {
+            transform: scale(1.05);
+        }
+        
+        .water-flow {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background-size: 200% 100%;
+            animation: waterShine 3s infinite linear;
+        }
+        
+        @keyframes waterShine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #0c4b33, #1a6d4f, #f0b429);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #f0b429;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #f0b429 }
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1a6d4f;
+            border-radius: 10px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #0c4b33;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-green-50 to-blue-50 text-gray-800 overflow-x-hidden">
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500 bg-gradient-to-r from-emerald-900/95 to-teal-900/95 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-water text-amber-400 text-2xl animate-pulse"></i>
+                <h1 class="text-2xl font-bold text-white">Dassam Falls</h1>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-white hover:text-amber-300 font-medium transition-colors duration-300 relative group">
+                    About
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#beauty" class="nav-link text-white hover:text-amber-300 font-medium transition-colors duration-300 relative group">
+                    Beauty
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#safety" class="nav-link text-white hover:text-amber-300 font-medium transition-colors duration-300 relative group">
+                    Safety
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#video" class="nav-link text-white hover:text-amber-300 font-medium transition-colors duration-300 relative group">
+                    Video
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-hover:w-full transition-all duration-300"></span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-emerald-900/95 backdrop-blur-md overflow-hidden max-h-0 transition-all duration-500">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="#about" class="text-white hover:text-amber-300 font-medium py-2 border-b border-emerald-800">About</a>
+                <a href="#beauty" class="text-white hover:text-amber-300 font-medium py-2 border-b border-emerald-800">Beauty</a>
+                <a href="#safety" class="text-white hover:text-amber-300 font-medium py-2 border-b border-emerald-800">Safety</a>
+                <a href="#video" class="text-white hover:text-amber-300 font-medium py-2">Video</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="h-screen relative flex items-center justify-center overflow-hidden">
+        <!-- Animated background -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-emerald-900/70 to-teal-900/70 z-10"></div>
+            <img src="images/dasam.jpeg" 
+                 alt="Dassam Falls" 
+                 class="w-full h-full object-cover parallax-bg">
+            
+            <!-- Animated water overlay -->
+            <div class="absolute bottom-0 left-0 w-full h-1/3 water-flow opacity-30"></div>
+            
+            <!-- Floating elements -->
+            <div class="absolute top-1/4 left-10 w-16 h-16 rounded-full bg-amber-400/20 animate-float"></div>
+            <div class="absolute top-1/3 right-20 w-10 h-10 rounded-full bg-emerald-400/20 animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-1/4 left-1/4 w-12 h-12 rounded-full bg-teal-400/20 animate-float" style="animation-delay: 2s;"></div>
+        </div>
+        
+        <!-- Hero content -->
+        <div class="relative z-20 text-center text-white px-4 animate-fadeInUp">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">DASSAM FALLS</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light">Where the Kanchi River plunges 144 feet into nature's majestic embrace</p>
+            <a href="#about" class="inline-block bg-amber-400 hover:bg-amber-500 text-emerald-900 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg animate-pulse-glow">
+                Explore the Wonder <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 scroll-indicator">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 text-emerald-900 relative">
+                <span class="typewriter">About Dassam Falls</span>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-amber-400 mt-4"></div>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Dassam Falls, also known as Dassam Ghagh, is a spectacular natural waterfall located near Taimara village in Jharkhand's Ranchi district.
+                    </p>
+                    
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Formed by the Kanchi River, it drops 44 meters (144 feet) into a deep plunge pool. The name "Dassam" means "ten" in Mundari language, representing the ten streams created during monsoon.
+                    </p>
+                    
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        Surrounded by lush forests, it's an ecological haven with rich biodiversity, attracting nature enthusiasts and photographers year-round.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mt-8">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-mountain text-emerald-600 text-xl"></i>
+                            <span class="font-medium">Height: 144 feet</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt text-emerald-600 text-xl"></i>
+                            <span class="font-medium">Ranchi District</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-water text-emerald-600 text-xl"></i>
+                            <span class="font-medium">Kanchi River</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl transform rotate-3 transition-transform duration-700 hover:rotate-0">
+                        <img src="images/dasam.jpeg" 
+                             alt="Dassam Falls view" 
+                             class="w-full h-96 object-cover image-zoom-effect">
+                    </div>
+                    
+                    <!-- Decorative element -->
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-amber-400 rounded-full opacity-20 animate-float"></div>
+                    <div class="absolute -bottom-6 -left-6 w-20 h-20 bg-emerald-400 rounded-full opacity-20 animate-float" style="animation-delay: 1.5s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beauty Cards Section with Photos -->
+    <section id="beauty" class="py-20 bg-gradient-to-b from-emerald-50 to-teal-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-4 text-emerald-900">The Raw Beauty of Dassam Falls</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto">Witness nature's masterpiece through these stunning aspects</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-500 opacity-0 translate-y-10" data-animate="fade-up">
+                    <div class="h-56 overflow-hidden">
+                        <img src="images/dasamcascade.jpeg" 
+                             alt="Majestic Waterfall" 
+                             class="w-full h-full object-cover image-zoom-effect">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-water text-emerald-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-emerald-900">Majestic Cascades</h3>
+                        </div>
+                        <p class="text-gray-700">Ten powerful streams create a breathtaking spectacle during monsoon season.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-500 opacity-0 translate-y-10" data-animate="fade-up" data-delay="100">
+                    <div class="h-56 overflow-hidden">
+                        <img src="images/lushforest.jpg" 
+                             alt="Lush Forest" 
+                             class="w-full h-full object-cover image-zoom-effect">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-tree text-emerald-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-emerald-900">Lush Greenery</h3>
+                        </div>
+                        <p class="text-gray-700">Dense forests of sal and mahua trees surround the falls, creating a serene sanctuary.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-500 opacity-0 translate-y-10" data-animate="fade-up" data-delay="200">
+                    <div class="h-56 overflow-hidden">
+                        <img src="images/dasamrock.jpeg" 
+                             alt="Rock Formations" 
+                             class="w-full h-full object-cover image-zoom-effect">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-mountain text-emerald-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-emerald-900">Rock Formations</h3>
+                        </div>
+                        <p class="text-gray-700">Ancient basalt rocks shaped by centuries of flowing water create unique patterns.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl transition-all duration-500 opacity-0 translate-y-10" data-animate="fade-up" data-delay="300">
+                    <div class="h-56 overflow-hidden">
+                        <img src="images/seasonal.jpeg" 
+                             alt="Seasonal Changes" 
+                             class="w-full h-full object-cover image-zoom-effect">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mr-4">
+                                <i class="fas fa-cloud-sun text-emerald-600 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-emerald-900">Seasonal Changes</h3>
+                        </div>
+                        <p class="text-gray-700">From roaring monsoon torrents to gentle winter streams, each season brings new beauty.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Photo Gallery -->
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold text-center mb-10 text-emerald-900">Gallery</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="rounded-2xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105">
+                        <img src="images/dasam2.jpeg" 
+                             alt="Waterfall Closeup" 
+                             class="w-full h-64 object-cover image-zoom-effect">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105">
+                        <img src="images/dasam4.jpeg" 
+                             alt="Forest View" 
+                             class="w-full h-64 object-cover image-zoom-effect">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105">
+                        <img src="images/rockformation.webp" 
+                             alt="River Flow" 
+                             class="w-full h-64 object-cover image-zoom-effect">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Safety Warning Card -->
+    <section id="safety" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 border-l-8 border-red-500 rounded-2xl shadow-2xl p-8 transform transition-all duration-500 hover:scale-105 animate-pulse-glow">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="mb-6 md:mb-0 md:mr-8">
+                            <div class="w-24 h-24 rounded-full bg-red-100 flex items-center justify-center mx-auto">
+                                <i class="fas fa-exclamation-triangle text-red-500 text-4xl"></i>
+                            </div>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <h3 class="text-3xl font-bold text-red-700 mb-4">Important Safety Notice</h3>
+                            <p class="text-xl text-gray-800 mb-4">
+                                <span class="font-bold">Swimming is strictly prohibited here.</span> The undercurrents are strong and unpredictable, and the rocks are sharp and slippery.
+                            </p>
+                            <p class="text-lg text-gray-700">
+                                Several accidents have occurred due to disregard of safety rules. Please admire the beauty from a safe distance and follow all posted guidelines.
+                            </p>
+                            <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-ban text-red-500 mr-2"></i>
+                                    <span>No Swimming</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-exclamation-circle text-red-500 mr-2"></i>
+                                    <span>Strong Undercurrents</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-mountain text-red-500 mr-2"></i>
+                                    <span>Slippery Rocks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 bg-gradient-to-b from-teal-50 to-emerald-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-4 text-emerald-900">Experience Dassam Falls</h2>
+            <p class="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">Watch the majestic beauty of the falls in motion</p>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:shadow-3xl">
+                    <!-- Video placeholder with play button -->
+                    <div id="video-placeholder" class="relative h-96 bg-gradient-to-r from-emerald-900 to-teal-900 flex items-center justify-center cursor-pointer">
+                        <div class="text-center">
+                            <div class="w-24 h-24 rounded-full bg-amber-400/80 flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 hover:scale-110">
+                                <i class="fas fa-play text-white text-3xl"></i>
+                            </div>
+                            <p class="text-white text-xl font-medium">Click to watch the Dassam Falls experience</p>
+                        </div>
+                    </div>
+                    
+                    <!-- YouTube video (hidden by default) -->
+                    <div id="youtube-video" class="hidden relative h-96">
+                        <iframe id="video-iframe" class="absolute top-0 left-0 w-full h-full" 
+                                src="" 
+                                title="Dassam Falls Documentary" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                        <i class="fas fa-camera text-emerald-600 text-3xl mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Best Photo Spots</h4>
+                        <p class="text-gray-700">Capture stunning shots from designated viewing areas</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                        <i class="fas fa-hiking text-emerald-600 text-3xl mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Nearby Trails</h4>
+                        <p class="text-gray-700">Explore scenic walking paths around the falls</p>
+                    </div>
+                    <div class="text-center p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl">
+                        <i class="fas fa-sun text-emerald-600 text-3xl mb-4"></i>
+                        <h4 class="font-bold text-lg mb-2">Best Time to Visit</h4>
+                        <p class="text-gray-700">July to December for the most spectacular views</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-water text-amber-400 text-3xl mr-3"></i>
+                        <h3 class="text-2xl font-bold">Dassam Falls</h3>
+                    </div>
+                    <p class="text-gray-300">Jharkhand's natural wonder and a testament to the raw beauty of India's waterfalls.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-amber-300">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-300 hover:text-amber-300 transition-colors duration-300">About the Falls</a></li>
+                        <li><a href="#beauty" class="text-gray-300 hover:text-amber-300 transition-colors duration-300">Natural Beauty</a></li>
+                        <li><a href="#safety" class="text-gray-300 hover:text-amber-300 transition-colors duration-300">Safety Information</a></li>
+                        <li><a href="#video" class="text-gray-300 hover:text-amber-300 transition-colors duration-300">Video Experience</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-xl font-bold mb-6 text-amber-300">Visit Information</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-amber-400 mr-3"></i>
+                            <span>Taimara Village, Ranchi District</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-road text-amber-400 mr-3"></i>
+                            <span>40 km from Ranchi, Jharkhand</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock text-amber-400 mr-3"></i>
+                            <span>Best time: July to December</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-emerald-800 mt-10 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Dassam Falls Tourism. All rights reserved. | Designed with <i class="fas fa-heart text-red-400 mx-1"></i> for nature enthusiasts</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 bg-amber-400 text-emerald-900 rounded-full shadow-lg flex items-center justify-center text-xl transition-all duration-300 transform translate-y-20 opacity-0 hover:bg-amber-500 hover:scale-110 z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // JavaScript for interactive elements and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuBtn.addEventListener('click', function() {
+                if (mobileMenu.classList.contains('max-h-0')) {
+                    mobileMenu.classList.remove('max-h-0');
+                    mobileMenu.classList.add('max-h-96', 'py-4');
+                    menuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    mobileMenu.classList.add('max-h-0');
+                    mobileMenu.classList.remove('max-h-96', 'py-4');
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('max-h-0')) {
+                        mobileMenu.classList.add('max-h-0');
+                        mobileMenu.classList.remove('max-h-96', 'py-4');
+                        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Navbar background on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('bg-emerald-900', 'shadow-lg');
+                    navbar.classList.remove('bg-gradient-to-r', 'from-emerald-900/95', 'to-teal-900/95');
+                } else {
+                    navbar.classList.remove('bg-emerald-900', 'shadow-lg');
+                    navbar.classList.add('bg-gradient-to-r', 'from-emerald-900/95', 'to-teal-900/95');
+                }
+            });
+            
+            // Back to top button
+            const backToTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+                    backToTopBtn.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    backToTopBtn.classList.remove('translate-y-0', 'opacity-100');
+                    backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Video placeholder click handler
+            const videoPlaceholder = document.getElementById('video-placeholder');
+            const youtubeVideo = document.getElementById('youtube-video');
+            const videoIframe = document.getElementById('video-iframe');
+            
+            videoPlaceholder.addEventListener('click', function() {
+                // Load the YouTube video (using an actual Dassam Falls video)
+                videoIframe.src = "https://www.youtube.com/embed/18SbOH0nqRA";
+                videoPlaceholder.classList.add('hidden');
+                youtubeVideo.classList.remove('hidden');
+            });
+            
+            // Animate elements on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('[data-animate]');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        const delay = element.getAttribute('data-delay') || 0;
+                        
+                        setTimeout(() => {
+                            element.classList.remove('opacity-0', 'translate-y-10');
+                            element.classList.add('opacity-100', 'translate-y-0');
+                            
+                            // Add specific animation class based on data attribute
+                            if (element.getAttribute('data-animate') === 'fade-up') {
+                                element.classList.add('animate__animated', 'animate__fadeInUp');
+                            }
+                        }, delay);
+                    }
+                });
+            };
+            
+            // Initial animation check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Typewriter effect for the heading
+            const typewriterElement = document.querySelector('.typewriter');
+            setTimeout(() => {
+                typewriterElement.style.animation = 'none';
+                typewriterElement.style.borderRight = 'none';
+            }, 3500);
+            
+            // Add hover effect to all cards
+            const cards = document.querySelectorAll('.card-hover-effect');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.zIndex = '10';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.zIndex = '1';
+                });
+            });
+            
+            // Parallax effect for hero section
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallaxElement = document.querySelector('.parallax-bg');
+                if (parallaxElement) {
+                    parallaxElement.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+            
+            // Add random floating animation to decorative elements
+            const floatElements = document.querySelectorAll('.animate-float');
+            floatElements.forEach((el, index) => {
+                // Set random animation duration between 4-8 seconds
+                const duration = 4 + Math.random() * 4;
+                el.style.animationDuration = `${duration}s`;
+                
+                // Set random delay for staggered effect
+                el.style.animationDelay = `${Math.random() * 2}s`;
+            });
+        });
+    </script>
+</body>
+</html>

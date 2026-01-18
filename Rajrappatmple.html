@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajrappa Temple - Chhinnamasta, Jharkhand</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #0a1929;
+            color: #e6f1ff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .devanagari {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a2c42;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #9d4edd;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7b2cbf;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .zoom-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .zoom-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(157, 78, 221, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(157, 78, 221, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(157, 78, 221, 0); }
+        }
+        
+        .image-hover-zoom {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+        
+        .image-hover-zoom img {
+            transition: transform 0.7s ease;
+        }
+        
+        .image-hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: #9d4edd;
+            transition: width 0.4s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(to right, transparent, #9d4edd, #ff9e00, #9d4edd, transparent);
+            margin: 4rem auto;
+            width: 80%;
+            border-radius: 3px;
+        }
+        
+        .floating {
+            animation: floating 4s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .temple-card {
+            background: linear-gradient(145deg, #1a2c42, #0f1f35);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            border: 1px solid #2d3e57;
+        }
+        
+        .temple-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
+            border-color: #9d4edd;
+        }
+        
+        .cosmic-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239d4edd' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .gradient-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(157, 78, 221, 0.3));
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .purple-gradient {
+            background: linear-gradient(135deg, #9d4edd 0%, #7b2cbf 100%);
+        }
+        
+        .orange-gradient {
+            background: linear-gradient(135deg, #ff9e00 0%, #ff6d00 100%);
+        }
+        
+        .dark-bg {
+            background-color: #0a1929;
+        }
+        
+        .purple-text {
+            color: #9d4edd;
+        }
+        
+        .orange-text {
+            color: #ff9e00;
+        }
+        
+        .flame {
+            position: relative;
+        }
+        
+        .flame::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 30px;
+            background: linear-gradient(to top, transparent, #ff9e00, #9d4edd);
+            border-radius: 50% 50% 20% 20%;
+            filter: blur(5px);
+            z-index: -1;
+        }
+        
+        .aarti-timing {
+            background: linear-gradient(45deg, rgba(157, 78, 221, 0.1), rgba(255, 158, 0, 0.1));
+            border-left: 5px solid #9d4edd;
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+        }
+        
+        .river-flow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .river-flow::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+            animation: river 3s linear infinite;
+        }
+        
+        @keyframes river {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .chhinnamasta-icon {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        
+        .chhinnamasta-icon::before {
+            content: 'ॐ';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: #ff9e00;
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+        
+        .chhinnamasta-icon::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #ff9e00, transparent 70%);
+            border-radius: 50%;
+            filter: blur(10px);
+            z-index: -1;
+        }
+        
+        .mystical-border {
+            border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M20,20 Q40,10 60,20 T100,20' fill='none' stroke='%239d4edd' stroke-width='2'/%3E%3Cpath d='M20,80 Q40,90 60,80 T100,80' fill='none' stroke='%239d4edd' stroke-width='2'/%3E%3C/svg%3E") 30 round;
+            border-width: 10px;
+            border-style: solid;
+        }
+        
+        .blood-drop {
+            width: 20px;
+            height: 30px;
+            background: radial-gradient(circle at 50% 0%, #dc2626, #7b2cbf);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            margin: 0 auto;
+            position: relative;
+            animation: drop 3s infinite;
+        }
+        
+        @keyframes drop {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(10px) scale(0.9); opacity: 0.7; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        
+        .blood-drop::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #dc2626, transparent);
+            border-radius: 50%;
+            filter: blur(3px);
+        }
+        
+        .mystical-glow {
+            animation: mysticalGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes mysticalGlow {
+            0% { box-shadow: 0 0 10px rgba(157, 78, 221, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(157, 78, 221, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(157, 78, 221, 0.5); }
+        }
+        
+        /* Popup Modal Styles */
+        .popup-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s ease;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .popup-modal.active .popup-content {
+            transform: translateY(0);
+        }
+        
+        .popup-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: #9d4edd;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-popup:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .popup-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+        
+        .popup-btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: white;
+            color: #9d4edd;
+            min-width: 180px;
+        }
+        
+        .popup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: #f0fdf4;
+        }
+        
+        .popup-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="cosmic-pattern">
+    <!-- Popup Modal -->
+    <div id="videoPopup" class="popup-modal">
+        <div class="popup-content">
+            <button class="close-popup">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="popup-icon">
+                <i class="fas fa-video"></i>
+            </div>
+            
+            <span class="popup-badge">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                Visit Rajrappa!
+            </span>
+            
+            <h2 id="popupTitle" class="text-3xl font-bold text-white mb-3">Experience Mystical Energy!</h2>
+            <p id="popupMessage" class="text-white/90 mb-6 text-lg">
+                Videos can only show you glimpses of the divine energy. To truly experience the spiritual power of Rajrappa Temple, you need to visit in person!
+            </p>
+            
+            <div class="popup-buttons">
+                <button class="popup-btn" id="exploreMoreBtn">
+                    <i class="fas fa-compass"></i>
+                    Explore Rajrappa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-900/95 backdrop-blur-md z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="chhinnamasta-icon"></div>
+                <div>
+                    <h1 class="text-2xl font-bold text-white">Rajrappa Temple</h1>
+                    <p class="text-xs text-gray-400 devanagari">छिन्नमस्ता मंदिर, रजरप्पा</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Temple</a>
+                <a href="#history" class="nav-link text-gray-300 hover:text-purple-400 font-medium">History</a>
+                <a href="#significance" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Significance</a>
+                <a href="#aarti" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Aarti</a>
+                <a href="#food" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Food</a>
+                <a href="#vibe" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Vibe</a>
+                <a href="#video" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Video</a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 py-4 px-6 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Temple</a>
+                <a href="#history" class="nav-link text-gray-300 hover:text-purple-400 font-medium">History</a>
+                <a href="#significance" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Significance</a>
+                <a href="#aarti" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Aarti</a>
+                <a href="#food" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Food</a>
+                <a href="#vibe" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Vibe</a>
+                <a href="#video" class="nav-link text-gray-300 hover:text-purple-400 font-medium">Video</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden river-flow">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-purple-900/70 z-10"></div>
+            <img src="images/rajrappa2.jpg" 
+                 alt="Rajrappa Temple" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-20">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 fade-in">
+                    <div class="mb-6">
+                        <h2 class="text-3xl text-purple-300 font-medium mb-2">The Sacred</h2>
+                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-shadow">
+                            Rajrappa <span class="orange-text">Temple</span>
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
+                            One of the 51 Shakti Peethas, dedicated to Goddess Chhinnamasta - the self-decapitated goddess. Located at the confluence of Bhairavi and Damodar rivers in Jharkhand.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#about" class="px-8 py-3 purple-gradient text-white font-medium rounded-full hover:shadow-xl transition duration-300 shadow-lg hover:shadow-2xl flex items-center pulse">
+                            Explore Temple <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#significance" class="px-8 py-3 border-2 border-purple-500 text-purple-300 font-medium rounded-full hover:bg-purple-500/10 transition duration-300 flex items-center">
+                            <i class="fas fa-star-of-david mr-2"></i> Significance
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center space-x-6">
+                        <div class="text-center">
+                            <div class="blood-drop mb-2"></div>
+                            <p class="text-gray-300 text-sm">Shakti Peeth</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-water text-purple-300 text-xl"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm">River Confluence</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-skull text-orange-300 text-xl"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm">Chhinnamasta</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 flex justify-center slide-in-right">
+                    <div class="relative floating mystical-glow">
+                        <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl image-hover-zoom border-8 border-purple-500/30">
+                            <img src="images/chinnamastika.jpg" alt="Rajrappa Temple Main" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 temple-card p-6 rounded-xl shadow-2xl">
+                            <div class="flex items-center">
+                                <div class="w-14 h-14 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                    <i class="fas fa-history text-purple-300 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white text-lg">51 Shakti Peeth</p>
+                                    <p class="text-sm text-gray-400">One of the Sacred Sites</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -right-6 orange-gradient text-white p-6 rounded-xl shadow-2xl">
+                            <div class="text-center">
+                                <p class="font-bold text-xl">Chhinnamasta</p>
+                                <p class="text-sm">The Headless Goddess</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <a href="#about" class="animate-bounce flex flex-col items-center text-purple-300">
+                <span class="text-sm mb-2">Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+    
+    <!-- Temple Description Section -->
+    <section id="about" class="py-16 md:py-24 dark-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Mystical Rajrappa Temple</h2>
+                <p class="text-gray-400 max-w-3xl mx-auto">A powerful Shakti Peeth where Goddess Sati's head fell, now worshipped as Goddess Chhinnamasta</p>
+                <div class="w-24 h-1 purple-gradient mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center mb-16">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 slide-in-left">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="image-hover-zoom rounded-xl overflow-hidden shadow-2xl mt-8">
+                            <img src="images/raj3.jpg" alt="Temple Architecture" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="image-hover-zoom rounded-xl overflow-hidden shadow-2xl mt-8">
+                            <img src="images/chinnamastika.jpg" alt="Temple Interior" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="image-hover-zoom rounded-xl overflow-hidden shadow-2xl mt-8">
+                            <img src="images/rajrappa-food.jpg" alt="Sacred Site" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="image-hover-zoom rounded-xl overflow-hidden shadow-2xl mt-8">
+                            <img src="images/arti.jpg" alt="Rituals" class="w-full h-64 object-cover">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-12 slide-in-right">
+                    <div class="mb-6">
+                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-4">Chhinnamasta - The Headless Goddess</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Rajrappa Temple is one of the 51 Shakti Peethas, where it is believed that the head (Mastak) of Goddess Sati fell when Lord Shiva carried her burning body. The presiding deity is worshipped as Chhinnamasta - the self-decapitated goddess.
+                        </p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            The temple is situated at the confluence of the Bhairavi and Damodar rivers, creating a powerful spiritual energy center. The main idol depicts Goddess Chhinnamasta standing on the bodies of Kamdev and Rati, holding her own severed head in one hand and a sword in the other, with three streams of blood flowing from her neck.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-800/50 p-8 rounded-2xl border-l-8 border-purple-600 shadow-lg mb-8">
+                        <h4 class="font-bold text-white mb-4 flex items-center text-xl">
+                            <i class="fas fa-star text-purple-400 mr-3"></i> Unique Features
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                    <i class="fas fa-skull text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">Chhinnamasta</p>
+                                    <p class="text-sm text-gray-400">Self-decapitated goddess</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                    <i class="fas fa-water text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">River Confluence</p>
+                                    <p class="text-sm text-gray-400">Bhairavi & Damodar rivers</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                    <i class="fas fa-mountain text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">51 Shakti Peeth</p>
+                                    <p class="text-sm text-gray-400">Head of Sati fell here</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                    <i class="fas fa-fire text-orange-400"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-white">Tantric Worship</p>
+                                    <p class="text-sm text-gray-400">Major Tantric center</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Significance Section -->
+            <div id="significance" class="mt-20 pt-12 border-t border-gray-800">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-white mb-4">Spiritual Significance</h3>
+                    <p class="text-gray-400 max-w-3xl mx-auto">Understanding the deep symbolism and power of Goddess Chhinnamasta</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="temple-card p-8 text-center zoom-in">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-brain text-purple-300 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-4">Self-Sacrifice</h4>
+                        <p class="text-gray-400">Chhinnamasta represents the ultimate sacrifice - cutting off one's own head to feed others, symbolizing transcendence of ego and attachment.</p>
+                    </div>
+                    
+                    <div class="temple-card p-8 text-center zoom-in">
+                        <div class="w-16 h-16 rounded-full bg-orange-900/50 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-recycle text-orange-300 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-4">Life-Death Cycle</h4>
+                        <p class="text-gray-400">The three streams of blood represent the three gunas (qualities) and the continuous cycle of creation, preservation, and destruction.</p>
+                    </div>
+                    
+                    <div class="temple-card p-8 text-center zoom-in">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-yin-yang text-purple-300 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-4">Tantric Power</h4>
+                        <p class="text-gray-400">As a major Tantric center, the temple represents the awakening of Kundalini energy and spiritual transformation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- History Section -->
+            <div id="history" class="mt-20 pt-12 border-t border-gray-800">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-white mb-4">Historical Significance</h3>
+                    <p class="text-gray-400 max-w-3xl mx-auto">Discover the ancient legends and historical importance of Rajrappa Temple</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row items-center bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-2xl shadow-xl overflow-hidden temple-card">
+                    <div class="lg:w-1/2 p-8 lg:p-12 slide-in-left">
+                        <h4 class="text-2xl font-bold text-white mb-6">Legend & Origin</h4>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            According to Hindu mythology, after Goddess Sati immolated herself in Daksha's yagna, Lord Shiva carried her burning body across the universe. To calm Shiva's destructive Tandava dance, Lord Vishnu used his Sudarshana Chakra to cut Sati's body into 51 pieces, which fell at different places on Earth.
+                        </p>
+                        <p class="text-gray-400 mb-6 leading-relaxed">
+                            Sati's head (Mastak) fell at Rajrappa, making it one of the most important Shakti Peethas. The temple has been a major pilgrimage site for centuries, attracting both mainstream Hindu devotees and Tantric practitioners.
+                        </p>
+                        <p class="text-gray-400 leading-relaxed">
+                            The current temple structure dates back several centuries and has been renovated multiple times. It remains one of the most powerful and mysterious spiritual sites in Eastern India.
+                        </p>
+                    </div>
+                    <div class="lg:w-1/2 p-4 slide-in-right">
+                        <div class="image-hover-zoom rounded-xl overflow-hidden shadow-2xl">
+                            <img src="images/kali2.jpg" alt="Historical Temple" class="w-full h-96 object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aarti Timings Section -->
+            <div id="aarti" class="mt-20 pt-12 border-t border-gray-800">
+                <div class="text-center mb-12 fade-in">
+                    <h3 class="text-3xl font-bold text-white mb-4">Aarti & Ritual Timings</h3>
+                    <p class="text-gray-400 max-w-3xl mx-auto">Experience the powerful rituals and ceremonies at Rajrappa Temple</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="temple-card p-8 text-center zoom-in">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-sun text-purple-300 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-4">Morning Aarti</h4>
+                        <p class="text-3xl font-bold purple-text mb-2">5:00 AM</p>
+                        <p class="text-gray-400">Mangala Aarti</p>
+                        <p class="text-gray-400 mt-4">Darshan: 6:00 AM to 12:00 PM</p>
+                    </div>
+                    
+                    <div class="temple-card p-8 text-center zoom-in">
+                        <div class="w-16 h-16 rounded-full bg-orange-900/50 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-cloud-sun text-orange-300 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-4">Afternoon Puja</h4>
+                        <p class="text-3xl font-bold purple-text mb-2">1:00 PM</p>
+                        <p class="text-gray-400">Madhyanha Puja</p>
+                        <p class="text-gray-400 mt-4">Temple reopens at 3:00 PM</p>
+                    </div>
+                    
+                    <div class="temple-card p-8 text-center zoom-in">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-6 flame">
+                            <i class="fas fa-fire text-purple-300 text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-4">Evening Aarti</h4>
+                        <p class="text-3xl font-bold purple-text mb-2">6:30 PM</p>
+                        <p class="text-gray-400">Sandhya Aarti</p>
+                        <p class="text-gray-400 mt-4">Last Darshan: 8:00 PM</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 aarti-timing p-8 rounded-2xl fade-in">
+                    <h4 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <i class="fas fa-calendar-alt text-purple-400 mr-3"></i> Special Rituals & Days
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-star-and-crescent text-purple-300"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Tuesdays</p>
+                                <p class="text-sm text-gray-400">Special Tantric rituals</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-moon text-purple-300"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Amavasya</p>
+                                <p class="text-sm text-gray-400">New Moon special puja</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-sun text-purple-300"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Purnima</p>
+                                <p class="text-sm text-gray-400">Full Moon rituals</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-purple-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-day text-purple-300"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Navratri</p>
+                                <p class="text-sm text-gray-400">9-day grand festival</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Famous Foods Section -->
+    <section id="food" class="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Temple Prasad & Local Cuisine</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Experience the unique offerings and local flavors around Rajrappa Temple</p>
+                <div class="w-24 h-1 purple-gradient mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Food Item 1 -->
+                <div class="temple-card p-0 overflow-hidden fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/malpua.jpg" alt="Pua" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white mb-3">Temple Prasad - Pua & Malpua</h3>
+                            <span class="bg-purple-900/50 text-purple-300 text-sm font-medium px-3 py-1 rounded-full">Sacred Offering</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            Sweet fried pancakes made from wheat flour, jaggery, and bananas, offered as sacred prasad to devotees. Considered especially powerful when received as prasad from Chhinnamasta.
+                        </p>
+                        <div class="flex items-center purple-text">
+                            <i class="fas fa-gifts mr-2"></i>
+                            <span class="font-medium">Available as temple prasad</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 2 -->
+                <div class="temple-card p-0 overflow-hidden fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/thekua.jpg" alt="Thekua" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">Thekua & Sesame Sweets</h3>
+                        <p class="text-gray-400 mb-4">
+                            Crunchy sweet snacks made from wheat flour, jaggery, and sesame seeds. Sesame is considered sacred to Goddess Chhinnamasta and is often used in offerings.
+                        </p>
+                        <div class="flex items-center purple-text">
+                            <i class="fas fa-store mr-2"></i>
+                            <span class="font-medium">Local sweet shops</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 3 -->
+                <div class="temple-card p-0 overflow-hidden fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/litti.jpg" alt="Litti Chokha" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-white mb-3">Litti Chokha</h3>
+                            <span class="bg-orange-900/50 text-orange-300 text-sm font-medium px-3 py-1 rounded-full">Local Specialty</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">
+                            The iconic dish of Jharkhand - baked wheat balls stuffed with sattu served with mashed potato and brinjal curry. Popular among pilgrims.
+                        </p>
+                        <div class="flex items-center purple-text">
+                            <i class="fas fa-utensils mr-2"></i>
+                            <span class="font-medium">Street food stalls nearby</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 4 -->
+                <div class="temple-card p-0 overflow-hidden fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/duska.jpg" alt="Dhuska" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">Dhuska with Aloo Chokha</h3>
+                        <p class="text-gray-400 mb-4">
+                            Deep-fried rice and lentil pancakes served with spicy mashed potatoes, a popular breakfast item for pilgrims starting their day early.
+                        </p>
+                        <div class="flex items-center purple-text">
+                            <i class="fas fa-coffee mr-2"></i>
+                            <span class="font-medium">Morning food stalls</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 5 -->
+                <div class="temple-card p-0 overflow-hidden fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/coconut.jpg" alt="Sweets" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">Coconut & Jaggery Offerings</h3>
+                        <p class="text-gray-400 mb-4">
+                            Traditional offerings to Goddess Chhinnamasta include whole coconuts and jaggery, which are then distributed as prasad to devotees.
+                        </p>
+                        <div class="flex items-center purple-text">
+                            <i class="fas fa-praying-hands mr-2"></i>
+                            <span class="font-medium">Temple offering counters</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 6 -->
+                <div class="temple-card p-0 overflow-hidden fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/pakora.jpg" alt="Tea" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">Herbal Tea & Pakora</h3>
+                        <p class="text-gray-400 mb-4">
+                            Special herbal teas made with local herbs and spices, served with fried vegetable pakoras. Popular during monsoon and winter visits.
+                        </p>
+                        <div class="flex items-center purple-text">
+                            <i class="fas fa-mug-hot mr-2"></i>
+                            <span class="font-medium">Tea stalls around temple</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Temple Prasad Special -->
+            <div class="mt-16 purple-gradient rounded-2xl p-8 md:p-12 shadow-2xl fade-in">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h3 class="text-2xl font-bold text-white mb-4">Special Tantric Offerings</h3>
+                        <p class="text-purple-100 mb-4">
+                            At Rajrappa Temple, special offerings are made to Goddess Chhinnamasta that include red hibiscus flowers, vermilion, red cloth, and specific fruits. During Tantric rituals, offerings may also include specific grains, pulses, and symbolic items representing the five elements.
+                        </p>
+                        <p class="text-purple-100">
+                            The temple is unique in that it accepts both vegetarian and non-vegetarian offerings (in specific Tantric rituals), reflecting the goddess's fierce nature. However, regular daily worship includes only vegetarian offerings that are then distributed as prasad.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="relative floating mystical-glow">
+                            <div class="w-48 h-48 rounded-full overflow-hidden border-8 border-purple-300/30 shadow-2xl">
+                                <img src="images/rajrappa-food.jpg" alt="Temple Prasad" class="w-full h-full object-cover">
+                            </div>
+                            <div class="absolute -bottom-4 -right-4 bg-orange-500 text-gray-900 p-4 rounded-lg shadow-lg">
+                                <p class="font-bold">Tantric Prasad</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Vibe & Environment Section -->
+    <section id="vibe" class="py-16 md:py-24 dark-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">The Mystical Vibe & Atmosphere</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Experience the powerful energy and unique spiritual ambiance of Rajrappa Temple</p>
+                <div class="w-24 h-1 purple-gradient mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center mb-12">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 slide-in-left">
+                    <div class="relative">
+                        <div class="image-hover-zoom rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="images/rajrappa4.jpg" alt="Temple Atmosphere" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 purple-gradient text-white p-6 rounded-xl shadow-2xl w-64">
+                            <h4 class="font-bold text-lg mb-2">Powerful Energy</h4>
+                            <p class="text-sm">Tantric vibrations and spiritual power</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-12 slide-in-right">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-6">A Unique Blend of Devotion & Mysticism</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        The atmosphere at Rajrappa Temple is unlike any other. There's a palpable sense of raw, primal energy combined with deep devotion. The sound of the converging rivers, the chanting of mantras, and the occasional Tantric rituals create a powerful sensory experience.
+                    </p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        You'll encounter a diverse mix of people - mainstream Hindu pilgrims offering coconuts and flowers, Tantric practitioners performing esoteric rituals, curious tourists, and local tribal communities who have worshipped here for generations. Despite the diversity, there's a shared sense of reverence for the powerful goddess.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="flex items-start temple-card p-4">
+                            <div class="bg-purple-900/50 p-3 rounded-lg mr-4">
+                                <i class="fas fa-water text-purple-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">River Confluence</h4>
+                                <p class="text-gray-400 text-sm">Powerful energy of Bhairavi & Damodar rivers meeting</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start temple-card p-4">
+                            <div class="bg-purple-900/50 p-3 rounded-lg mr-4">
+                                <i class="fas fa-drum text-purple-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Tantric Chants</h4>
+                                <p class="text-gray-400 text-sm">Esoteric mantras and ritual sounds</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start temple-card p-4">
+                            <div class="bg-purple-900/50 p-3 rounded-lg mr-4">
+                                <i class="fas fa-fire text-orange-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Sacrificial Fires</h4>
+                                <p class="text-gray-400 text-sm">Homa and yajna rituals</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start temple-card p-4">
+                            <div class="bg-purple-900/50 p-3 rounded-lg mr-4">
+                                <i class="fas fa-hands-helping text-purple-300 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Diverse Devotees</h4>
+                                <p class="text-gray-400 text-sm">From mainstream pilgrims to Tantric practitioners</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Festival Highlights -->
+            <div class="mt-16 bg-gradient-to-r from-gray-800/50 to-gray-900/50 rounded-2xl p-8 md:p-12 shadow-xl fade-in">
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Major Festivals & Rituals</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center temple-card p-6">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-star-of-david text-purple-300 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-3">Navratri & Durga Puja</h4>
+                        <p class="text-gray-400">The most important festival with 9 days of special pujas, Tantric rituals, and grand celebrations. Thousands flock to the temple during this time.</p>
+                    </div>
+                    
+                    <div class="text-center temple-card p-6">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-moon text-purple-300 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-3">Amavasya (New Moon)</h4>
+                        <p class="text-gray-400">Special Tantric rituals are performed on new moon nights. Considered especially powerful for spiritual practices and offerings to Chhinnamasta.</p>
+                    </div>
+                    
+                    <div class="text-center temple-card p-6">
+                        <div class="w-16 h-16 rounded-full bg-purple-900/50 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-fire text-orange-400 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-3">Kali Puja & Diwali</h4>
+                        <p class="text-gray-400">Special worship of the fierce aspects of the goddess. The temple is decorated with lamps and special fire rituals are performed.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <p class="text-gray-300 italic">"Rajrappa is not just a temple; it's an energy center where the veil between worlds feels thin, and the goddess's power is palpable in the air, water, and earth."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Video Section -->
+    <section id="video" class="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Experience Rajrappa Temple Virtually</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Watch these videos to experience the temple's mystical energy, rituals, and sacred ceremonies</p>
+                <div class="w-24 h-1 purple-gradient mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto fade-in">
+                <!-- Main Video Container -->
+                <div class="bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden shadow-2xl mb-12 mystical-border">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe 
+                            id="temple-video"
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/2844mTC8mcI" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-8 purple-gradient">
+                        <h3 class="text-2xl font-bold text-white mb-3">Rajrappa Temple - Mystical Journey</h3>
+                        <p class="text-purple-100">Experience the powerful energy, Tantric rituals, and sacred confluence at this unique Shakti Peeth dedicated to Goddess Chhinnamasta.</p>
+                    </div>
+                </div>
+                
+                <!-- Video Thumbnails -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Temple Tour -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger temple-card overflow-hidden"
+                         data-video-id="2844mTC8mcI"
+                         data-category="temple-tour"
+                         data-title="Sacred Temple Tour"
+                         data-message="No video can capture the divine energy that fills every stone of Rajrappa Temple. Feel the ancient vibrations and spiritual power that has drawn devotees for centuries. Visit to experience the real presence of Goddess Chhinnamasta!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-purple-900 to-gray-800 flex items-center justify-center">
+                                <i class=" text-purple-400 text-4xl">
+                                    <img src="images/rajrappa1.jpg" alt="" class="mt-0">
+                                </i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class="fas fa-play text-white text-2xl"></i>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                                <p class="text-white text-sm font-medium">Temple Tour</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navratri Festival -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger temple-card overflow-hidden"
+                         data-video-id="hFcJ4k-2HxY"
+                         data-category="navratri"
+                         data-title="Navratri Festival Experience"
+                         data-message="During Navratri, Rajrappa transforms into a celestial abode of the goddess. Feel the energy of thousands chanting together, witness the grand rituals, and immerse yourself in the divine celebration. Come during Navratri to experience this spiritual transformation!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-orange-900 to-purple-800 flex items-center justify-center">
+                                <i class="fas fa-star-and-crescent text-orange-400 text-4xl"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class="text-white text-2xl">
+                                    <img src="images/navratri.jpg" alt="">
+                                </i>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                                <p class="text-white text-sm font-medium">Navratri Festival</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tantric Rituals -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger temple-card overflow-hidden"
+                         data-video-id="F3nHvKFBNz8"
+                         data-category="tantric-rituals"
+                         data-title="Ancient Tantric Rituals"
+                         data-message="Tantric rituals at Rajrappa are a gateway to spiritual awakening. The mantras, yantras, and sacred fire ceremonies create an energy field that can only be experienced in person. Visit to awaken your spiritual consciousness!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-red-900 to-purple-900 flex items-center justify-center">
+                                <i class="fas fa-fire text-red-400 text-4xl"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class="text-white text-2xl">
+                                    <img src="images/arti.jpg" alt="">
+                                </i>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                                <p class="text-white text-sm font-medium">Tantric Rituals</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- River Confluence -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger temple-card overflow-hidden"
+                         data-video-id="T2B7d7_Vrac"
+                         data-category="river-confluence"
+                         data-title="Sacred River Confluence"
+                         data-message="Stand at the sacred Sangam where Bhairavi meets Damodar. Feel the cleansing energy, witness the ritual baths, and experience the purification that only this holy confluence can provide. Visit to cleanse your soul!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-blue-900 to-cyan-800 flex items-center justify-center">
+                                <i class="fas fa-water text-blue-300 text-4xl"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class=" text-white text-2xl">
+                                    <img src="images/rajrappariver.jpg" alt="">
+                                </i>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-3">
+                                <p class="text-white text-sm font-medium">River Confluence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-12">
+                    <div class="inline-flex items-center bg-gray-800/50 px-6 py-4 rounded-full">
+                        <div class="blood-drop mr-4"></div>
+                        <p class="text-gray-300 font-medium devanagari">"छिन्नमस्तायै नमः" - Salutations to Goddess Chhinnamasta</p>
+                        <div class="blood-drop ml-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="chhinnamasta-icon"></div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Rajrappa Temple</h2>
+                            <p class="text-gray-400 devanagari">छिन्नमस्ता मंदिर, रजरप्पा</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        One of the 51 Shakti Peethas, where Goddess Sati's head fell. A powerful Tantric center dedicated to Goddess Chhinnamasta at the confluence of Bhairavi and Damodar rivers.
+                    </p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="#home" class="text-gray-300 hover:text-purple-300 transition duration-300">Home</a>
+                        <a href="#about" class="text-gray-300 hover:text-purple-300 transition duration-300">Temple Info</a>
+                        <a href="#history" class="text-gray-300 hover:text-purple-300 transition duration-300">History</a>
+                        <a href="#significance" class="text-gray-300 hover:text-purple-300 transition duration-300">Significance</a>
+                        <a href="#aarti" class="text-gray-300 hover:text-purple-300 transition duration-300">Aarti Timings</a>
+                        <a href="#food" class="text-gray-300 hover:text-purple-300 transition duration-300">Food & Prasad</a>
+                        <a href="#vibe" class="text-gray-300 hover:text-purple-300 transition duration-300">Vibe & Festivals</a>
+                        <a href="#video" class="text-gray-300 hover:text-purple-300 transition duration-300">Video Tour</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Rajrappa Temple, Jharkhand. All rights reserved. | This is a demonstration website for educational purposes.</p>
+                <p class="mt-2">Images from Unsplash & YouTube. Content is fictional for demonstration.</p>
+                <div class="flex justify-center space-x-6 mt-6">
+                    <a href="#" class="text-gray-400 hover:text-purple-300"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-purple-300"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-purple-300"><i class="fab fa-youtube text-xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-purple-300"><i class="fab fa-twitter text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 purple-gradient text-white w-12 h-12 rounded-full shadow-2xl hover:shadow-3xl transition duration-300 hidden z-40 flex items-center justify-center mystical-glow">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Change icon based on state
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.className = 'fas fa-bars text-2xl';
+            } else {
+                icon.className = 'fas fa-times text-2xl';
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('i').className = 'fas fa-bars text-2xl';
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Add special effect for certain elements
+                    if (entry.target.classList.contains('temple-card')) {
+                        entry.target.style.transitionDelay = '0.1s';
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in, .temple-card').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+            
+            // Parallax effect for hero section
+            const heroSection = document.getElementById('home');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            if (heroSection) {
+                heroSection.style.backgroundPosition = `center ${rate}px`;
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Popup Modal Functionality
+        const videoPopup = document.getElementById('videoPopup');
+        const closePopup = document.querySelector('.close-popup');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupMessage = document.getElementById('popupMessage');
+        const exploreMoreBtn = document.getElementById('exploreMoreBtn');
+        const popupTriggers = document.querySelectorAll('.popup-trigger');
+
+        // Category-specific icons
+        const categoryIcons = {
+            'temple-tour': 'fa-torii-gate',
+            'navratri': 'fa-star-and-crescent',
+            'tantric-rituals': 'fa-fire',
+            'river-confluence': 'fa-water'
+        };
+
+        // Category-specific colors
+        const categoryColors = {
+            'temple-tour': ['#7b2cbf', '#9d4edd'],
+            'navratri': ['#f59e0b', '#d97706'],
+            'tantric-rituals': ['#dc2626', '#9d4edd'],
+            'river-confluence': ['#0ea5e9', '#0369a1']
+        };
+
+        // Open popup with category-specific content
+        popupTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                const title = this.getAttribute('data-title');
+                const message = this.getAttribute('data-message');
+                const videoId = this.getAttribute('data-video-id');
+                
+                // Update popup content
+                popupTitle.textContent = title;
+                popupMessage.textContent = message;
+                
+                // Update icon based on category
+                const popupIcon = document.querySelector('.popup-icon i');
+                popupIcon.className = `fas ${categoryIcons[category] || 'fa-video'}`;
+                
+                // Update gradient color based on category
+                const colors = categoryColors[category] || ['#7b2cbf', '#9d4edd'];
+                document.querySelector('.popup-content').style.background = 
+                    `linear-gradient(135deg, ${colors[0]}, ${colors[1]})`;
+                
+                // Update the main video iframe
+                const videoIframe = document.getElementById('temple-video');
+                if (videoId && videoIframe) {
+                    videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                }
+                
+                // Show popup
+                videoPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close popup
+        closePopup.addEventListener('click', () => {
+            videoPopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Explore More button action
+        exploreMoreBtn.addEventListener('click', () => {
+            // Scroll to temple description section
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                window.scrollTo({
+                    top: aboutSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Close popup
+            videoPopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close popup when clicking outside
+        videoPopup.addEventListener('click', (e) => {
+            if (e.target === videoPopup) {
+                videoPopup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoPopup.classList.contains('active')) {
+                videoPopup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Video thumbnail functionality (for non-popup thumbnails)
+        const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+        const videoIframe = document.getElementById('temple-video');
+        
+        videoThumbnails.forEach(thumbnail => {
+            // Only add event listener if it's not a popup trigger
+            if (!thumbnail.classList.contains('popup-trigger')) {
+                thumbnail.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-video-id');
+                    if (videoId && videoIframe) {
+                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                    }
+                    
+                    // Update active state
+                    videoThumbnails.forEach(t => t.classList.remove('ring-4', 'ring-purple-600'));
+                    this.classList.add('ring-4', 'ring-purple-600');
+                });
+            }
+        });
+        
+        // Initialize first thumbnail as active
+        if (videoThumbnails.length > 0) {
+            videoThumbnails[0].classList.add('ring-4', 'ring-purple-600');
+        }
+        
+        // Add floating animation to elements on scroll
+        window.addEventListener('scroll', () => {
+            const floatingElements = document.querySelectorAll('.floating');
+            floatingElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.animationPlayState = 'running';
+                } else {
+                    el.style.animationPlayState = 'paused';
+                }
+            });
+        });
+        
+        // Add hover effect to temple cards
+        const templeCards = document.querySelectorAll('.temple-card');
+        templeCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Typewriter effect for hero subtitle
+        const heroSubtitle = document.querySelector('#home p.text-xl');
+        if (heroSubtitle) {
+            const originalText = heroSubtitle.textContent;
+            heroSubtitle.textContent = '';
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    heroSubtitle.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                }
+            };
+            // Start typewriter effect after a short delay
+            setTimeout(typeWriter, 1000);
+        }
+        
+        // Animate blood drops
+        const bloodDrops = document.querySelectorAll('.blood-drop');
+        bloodDrops.forEach((drop, index) => {
+            setInterval(() => {
+                drop.style.transform = `translateY(${Math.random() * 5}px) scale(${0.9 + Math.random() * 0.2})`;
+                drop.style.opacity = `${0.7 + Math.random() * 0.3}`;
+            }, 1000 + index * 500);
+        });
+        
+        // Add mystical sound effect on certain interactions
+        const mysticalElements = document.querySelectorAll('.chhinnamasta-icon, .blood-drop');
+        mysticalElements.forEach(element => {
+            element.addEventListener('click', function() {
+                // Create a mystical sound effect using Web Audio API
+                try {
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    
+                    // Create multiple oscillators for a mystical sound
+                    for (let i = 0; i < 3; i++) {
+                        const oscillator = audioContext.createOscillator();
+                        const gainNode = audioContext.createGain();
+                        
+                        oscillator.connect(gainNode);
+                        gainNode.connect(audioContext.destination);
+                        
+                        oscillator.frequency.value = 300 + i * 100;
+                        oscillator.type = i === 0 ? 'sine' : 'triangle';
+                        
+                        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+                        
+                        oscillator.start(audioContext.currentTime);
+                        oscillator.stop(audioContext.currentTime + 2);
+                    }
+                } catch (e) {
+                    console.log("Audio context not supported");
+                }
+            });
+        });
+        
+        // River flow animation
+        const riverElements = document.querySelectorAll('.river-flow');
+        riverElements.forEach(element => {
+            // Make sure the animation runs continuously
+            element.style.animationPlayState = 'running';
+        });
+        
+        // Mystical glow animation for certain elements
+        const mysticalGlowElements = document.querySelectorAll('.mystical-glow');
+        mysticalGlowElements.forEach(element => {
+            setInterval(() => {
+                const intensity = 0.5 + Math.random() * 0.5;
+                const color = Math.random() > 0.5 ? '157, 78, 221' : '255, 158, 0';
+                element.style.boxShadow = `0 0 ${15 + intensity * 20}px rgba(${color}, ${intensity})`;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

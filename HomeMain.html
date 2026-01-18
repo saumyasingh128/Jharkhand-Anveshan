@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Tourism Concept</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Poppins:wght@300;400;600;800&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Using Poppins/Lato for sans, Playfair Display for serif
+                        sans: ['Poppins', 'Lato', 'sans-serif'], 
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'highlight-red': '#ff4d4d',
+                        'highlight-green': '#4ade80',
+                        'highlight-blue': '#3b82f6',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar hiding for clean UI */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Text Stroke for the main title to make it pop */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Image Cluster Hover Effect */
+        .image-cluster img { transition: transform 0.4s ease; }
+        .image-cluster:hover img { transform: scale(1.05); z-index: 20; }
+        
+        /* Central Line within the Timeline Panel */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 10%;
+            bottom: 10%;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-50%);
+        }
+
+        /* The Dot on the line */
+        .timeline-dot {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background-color: #d1d5db;
+            border: 4px solid #000;
+            border-radius: 50%;
+            z-index: 10;
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+        }
+        
+        /* Fade-in Animation Classes (used for card container) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scrollbar styling for the body */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 4px;
+        }
+        
+        /* Glassmorphism utility classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-heavy {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden font-sans"> 
+
+    <div class="relative w-full h-screen bg-[url('images/HomeBg.png')] bg-cover bg-center bg-no-repeat">
+        
+        
+        <div class="absolute inset-0 bg-black/20"></div>
+
+        <nav class="relative z-50 flex justify-between items-center px-6 py-4 md:px-12 backdrop-blur-sm bg-white/5 border-b border-white/10 rounded-b-2xl mx-2 md:mx-8 mt-2">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-yellow-500 rounded-full flex items-center justify-center">
+                    <img src="images/icon.jpg" alt="" class="w-10 h-12 rounded-full object-cover">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-green-400 font-bold text-sm leading-tight">JHARKHAND</span>
+                    <span class="text-xs text-gray-200 text-orange-500">Anveshan</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+                <a href="#" class="hover:text-yellow-400 transition">About</a>
+                <a href="#" class="hover:text-yellow-400 transition">Contact</a>
+                <a href="#" class="hover:text-yellow-400 transition">Nai Manzilen nai raahe</a>
+            </div>
+
+            <button class="border border-white/60 px-6 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 text-sm font-semibold backdrop-blur-md">
+                Sign in
+            </button>
+        </nav>
+
+        <main class="relative z-40 h-full flex flex-col justify-center items-center">
+            
+            <h1 class="absolute top-[20%] md:top-[18%] w-full text-center text-xl md:text-[9rem] font-extrabold tracking-tighter uppercase opacity-90 drop-shadow-2xl select-none pointer-events-none font-semibold font-serif">
+                Jharkhand
+            </h1>
+
+           <div id="card-scroll-container" class="absolute bottom-[18%] left-4 md:left-12 reveal ">
+    
+    <div id="card-scroll" class="flex gap-4 overflow-x-auto hide-scrollbar snap-x w-[80vw] md:w-auto pt-10 pb-10 pr-10 pl-10">
+        
+        <a href="SpiMain.html" class="snap-center shrink-0 w-32 h-48 md:w-44 md:h-64 rounded-2xl border-2 border-white/50 shadow-2xl relative group cursor-pointer 
+            transition-transform duration-300 ease-in-out block hover:scale-105 overflow-hidden">
+            
+            <img src="images/temple.jpg" 
+                class="w-full h-full object-cover transition-transform duration-300" 
+                alt="Temple">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            
+            <div class="absolute bottom-0 left-0 right-0 p-2 text-center bg-black/70 backdrop-blur-sm">
+                <h4 class="text-sm md:text-base font-serif font-bold tracking-wider text-white">Spiritual Sites</h4>
+            </div>
+        </a>
+
+        <a href="waterfall.html" class="snap-center shrink-0 w-32 h-48 md:w-44 md:h-64 rounded-2xl border-2 border-white/50 shadow-2xl relative group cursor-pointer 
+            transition-transform duration-300 block hover:scale-105 overflow-hidden">
+            
+            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=400&auto=format&fit=crop" 
+                class="w-full h-full object-cover transition-transform duration-300" 
+                alt="Waterfall">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+            <div class="absolute bottom-0 left-0 right-0 p-2 text-center bg-black/70 backdrop-blur-sm">
+                <h4 class="text-sm md:text-base font-serif font-bold tracking-wider text-white">Waterfalls</h4>
+            </div>
+        </a>
+
+        <a href="hillstation.html" class="snap-center shrink-0 w-32 h-48 md:w-44 md:h-64 rounded-2xl border-2 border-white/50 shadow-2xl relative group cursor-pointer 
+            transition-transform duration-300 block hover:scale-105 overflow-hidden">
+            
+            <img src="images/Beautiful Hill station near TamilNadu.jpeg" 
+                class="w-full h-full object-cover transition-transform duration-300" 
+                alt="Hills">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            
+            <div class="absolute bottom-0 left-0 right-0 p-2 text-center bg-black/70 backdrop-blur-sm">
+                <h4 class="text-sm md:text-base font-serif font-bold tracking-wider text-white">Hill Stations</h4>
+            </div>
+        </a>
+        
+        <a href="citytour.html" class="snap-center shrink-0 w-32 h-48 md:w-44 md:h-64 rounded-2xl border-2 border-white/50 shadow-2xl relative group cursor-pointer 
+            transition-transform duration-300 block hover:scale-105 overflow-hidden">
+            
+            <img src="images/steelplant.jpg" 
+                class="w-full h-full object-cover transition-transform duration-300" 
+                alt="Cityscapes">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+            <div class="absolute bottom-0 left-0 right-0 p-2 text-center bg-black/70 backdrop-blur-sm">
+                <h4 class="text-sm md:text-base font-serif font-bold tracking-wider text-white">City Tours</h4>
+            </div>
+        </a>
+
+    </div>
+</div>
+            <div class="absolute bottom-[28%] right-0">
+                <button class="bg-white/20 backdrop-blur-md border-l border-t border-b border-white/30 text-white text-xl md:text-2xl px-10 py-3 rounded-l-lg hover:bg-white/40 transition shadow-lg tracking-widest font-serif">
+                   <a href="tour.html">Book</a> 
+                </button>
+            </div>
+
+            <div class="absolute bottom-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent pt-16 pb-6 px-4">
+                <p class="text-center text-xs md:text-sm tracking-[0.3em] font-light mb-2 uppercase text-gray-300">
+                    Explore the intense beauty of Jharkhand
+                </p>
+                <div class="flex items-center justify-center gap-4 md:gap-8 w-full">
+                    <div class="h-[1px] bg-white/50 w-16 md:w-48"></div>
+                    <h2 class="text-4xl md:text-6xl font-serif text-white">About The Tour</h2>
+                    <div class="h-[1px] bg-white/50 w-16 md:w-48"></div>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <div class="min-h-screen w-screen flex flex-col lg:flex-row bg-black text-gray-300 font-sans">
+        <div class="w-full lg:w-[35%] flex flex-col justify-center px-8 lg:px-12 border-b lg:border-r border-white/10 py-16 lg:py-0 relative z-10 bg-black">
+            <div class="mb-12 lg:mb-24">
+                <h2 class="text-2xl font-serif text-white mb-4">Spiritual Core</h2>
+                <p class="text-sm lg:text-base leading-relaxed text-justify text-gray-400">
+                    <span class="text-highlight-red font-bold">Jharkhand</span> is a significant spiritual center, prominently featuring sites sacred to both 
+                    <span class="text-highlight-red">Hinduism and Jainism</span>. It is the home of one of the twelve 
+                    <span class="text-highlight-red">Jyotirlingas</span> of <span class="text-highlight-red">Lord Shiva</span>, attracting millions of devotees during the annual 
+                    <span class="text-highlight-red">Shravan Mela</span> pilgrimage. The state also features other ancient and unique temples like the Sun Temple in 
+                    <span class="text-highlight-red">Ranchi</span>, built in the shape of a chariot.
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-serif text-white mb-4">The Land of Forests and Waterfalls</h2>
+                <p class="text-sm lg:text-base leading-relaxed text-justify text-gray-400">
+                    <span class="text-highlight-blue font-bold">Jharkhand</span>, famously known as the "<span class="text-highlight-green">Land of Forests</span>," is celebrated for its numerous and beautiful waterfalls, particularly those clustered around the capital, Ranchi, which is often nicknamed the "<span class="text-highlight-blue">City of Waterfalls</span>." The landscape offers diverse **ecosystems** and **adventure sports** opportunities.
+                </p>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-[65%] relative flex flex-col justify-evenly py-16 lg:py-8 bg-black">
+            <div class="timeline-line hidden lg:block"></div>
+            <div class="grid grid-cols-2 w-full h-auto lg:h-[30%] relative items-center mb-8 lg:mb-0">
+                <div class="hidden lg:block"></div> <div class="col-span-2 lg:col-span-1 relative lg:pl-10 flex items-center justify-center lg:justify-start">
+                    <div class="hidden lg:block timeline-dot absolute left-0" style="left: -2px;"></div>
+                    <div class="flex flex-col mr-3 text-right w-fit"> 
+                        <span class="text-xs text-gray-500 font-sans tracking-widest uppercase mb-1">Day 1-3</span>
+                        <h2 class="text-2xl lg:text-3xl text-white font-serif leading-tight whitespace-nowrap">Religious Places</h2>
+                    </div>
+                    <div class="relative w-32 h-32 lg:w-40 lg:h-40 image-cluster flex-shrink-0">
+                        <div class="absolute right-0 w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-white/20 shadow-lg z-0 ">
+                            <img src="images/Surya Dev, Sun God.jpeg" class="w-full h-full object-cover" alt="Hindu Temple">
+                        </div>
+                        <div class="absolute bottom-0 left-0 w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-white/20 shadow-lg z-10 mt-16">
+                            <img src="images/Lord Hanuman Wallpaper.jpeg" class="w-full h-full object-cover" alt="Jain Temple">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 w-full h-auto lg:h-[30%] relative items-center mb-8 lg:mb-0">
+                <div class="col-span-2 lg:col-span-1 relative lg:pr-10 flex items-center justify-center lg:justify-end">
+                    <div class="hidden lg:block timeline-dot absolute right-0" style="right: -2px;"></div>
+                    <div class="relative w-32 h-32 lg:w-40 lg:h-40 image-cluster flex-shrink-0 mr-3"> 
+                        <div class="absolute top-0 left-0 w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-white/20 shadow-lg z-0">
+                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=300&fit=crop" class="w-full h-full object-cover" alt="Waterfall 1">
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-white/20 shadow-lg z-10">
+                            <img src="images/Waterfall.jpeg" class="w-full h-full object-cover" alt="Waterfall 2">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col text-left w-fit">
+                        <span class="text-xs text-gray-500 font-sans tracking-widest uppercase mb-1">Day 4-6</span>
+                        <h2 class="text-2xl lg:text-3xl text-white font-serif leading-tight">Waterfalls</h2>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block"></div> </div>
+
+            <div class="grid grid-cols-2 w-full h-auto lg:h-[30%] relative items-center">
+                <div class="hidden lg:block"></div> <div class="col-span-2 lg:col-span-1 relative lg:pl-10 flex items-center justify-center lg:justify-start">
+                    <div class="hidden lg:block timeline-dot absolute left-0" style="left: -2px;"></div>
+
+                    <div class="flex flex-col mr-3 text-right w-fit"> 
+                        <span class="text-xs text-gray-500 font-sans tracking-widest uppercase mb-1">Day 7-8</span>
+                        <h2 class="text-2xl lg:text-3xl text-white font-serif leading-tight whitespace-nowrap">Hill Stations</h2>
+                    </div>
+                    
+                    <div class="relative w-32 h-32 lg:w-40 lg:h-40 image-cluster flex-shrink-0">
+                        <div class="absolute top-4 left-2 w-28 h-28 lg:w-32 lg:h-32 rounded-full overflow-hidden border-2 border-white/20 shadow-lg z-10">
+                            <img src="images/Beautiful Hill station near TamilNadu.jpeg" class="w-full h-full object-cover" alt="Hill Station View">
+                        </div>
+                         <div class="absolute bottom-0 right-0 w-24 h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden border-2 border-white/20 shadow-lg z-10">
+                            <img src="images/Beautiful Hill station near TamilNadu.jpeg" class="w-full h-full object-cover" alt="Hill Station 2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="relative w-full min-h-screen bg-[url('images/HomeFooterbg.jpg')] bg-cover bg-center bg-no-repeat py-8">
+        
+        <div class="absolute inset-0 bg-black/50"></div> <div class="relative z-10 container mx-auto px-4 py-8 flex flex-col">
+
+            <header class="mb-16 mt-8 w-full">
+                <div class="flex items-center justify-center gap-4 md:gap-8">
+                    <div class="h-[2px] bg-white w-12 md:w-32 lg:w-48 rounded-full opacity-80"></div>
+
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif tracking-wide text-center whitespace-nowrap">
+                        What's Included
+                    </h1>
+
+                    <div class="h-[2px] bg-white w-12 md:w-32 lg:w-48 rounded-full opacity-80"></div>
+                </div>
+            </header>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                
+                <div class="glass-panel p-6 rounded-2xl hover:bg-white/20 transition duration-300 group cursor-pointer">
+                     <a href="Flight.html" class="block">
+                    <div class="text-amber-600 group-hover:text-amber-400 transition text-3xl mb-3">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif mb-2">Flights</h3>
+                    <p class="text-gray-300 text-sm font-light leading-relaxed">
+                        We provide you with the necessary flight bookings.
+                    </p>
+                     </a>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl hover:bg-white/20 transition duration-300 group cursor-pointer">
+                     <a href="Guides.html" class="block">
+                    <div class="text-amber-600 group-hover:text-amber-400 transition text-3xl mb-3">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif mb-2">Guides</h3>
+                    <p class="text-gray-300 text-sm font-light leading-relaxed">
+                        We provide you with awesome, knowledgeable local guides.
+                    </p>
+                    </a>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl hover:bg-white/20 transition duration-300 group cursor-pointer">
+                     <a href="Transportation.html" class="block">
+                    <div class="text-amber-600 group-hover:text-amber-400 transition text-3xl mb-3">
+                        <i class="fa-solid fa-bus"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif mb-2">Transfers</h3>
+                    <p class="text-gray-300 text-sm font-light leading-relaxed">
+                        We provide all facilities with transportation between destinations.
+                    </p>
+                </a>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl hover:bg-white/20 transition duration-300 group cursor-pointer ">
+                    <a href="HotelsHome.html" class="block">
+                        <div class="text-amber-600 group-hover:text-amber-400 transition text-3xl mb-3">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        
+                        <h3 class="text-2xl font-serif mb-2 text-white">Hotels </h3>
+                        
+                        <p class="text-gray-300 text-sm font-light leading-relaxed">
+                            We provide quality hotels according to your preferences.
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <section class="flex flex-col items-center justify-center mb-24"> <div class="glass-heavy p-8 md:p-10 rounded-[30px] w-full max-w-lg">
+                    <h2 class="text-2xl md:text-3xl font-serif mb-2">Want to Join us but still</h2>
+                    <h2 class="text-2xl md:text-3xl font-serif mb-8">Have Questions?</h2>
+                    
+                    <p class="text-xl mb-6 font-light font-sans">Leave a Request</p> <form id="contactForm" class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Your Name" required
+                                    class="w-full bg-transparent border-b border-gray-400 py-2 text-white placeholder-gray-300 focus:outline-none focus:border-white transition-colors font-sans">
+                        </div>
+                        
+                        <div>
+                            <input type="tel" placeholder="Phone Number" required
+                                    class="w-full bg-transparent border-b border-gray-400 py-2 text-white placeholder-gray-300 focus:outline-none focus:border-white transition-colors font-sans">
+                        </div>
+                        
+                        <div>
+                            <input type="text" placeholder="Comment" 
+                                    class="w-full bg-transparent border-b border-gray-400 py-2 text-white placeholder-gray-300 focus:outline-none focus:border-white transition-colors font-sans">
+                        </div>
+                        
+                        <button type="submit" 
+                                     class="w-full bg-white/80 hover:bg-white text-gray-900 font-medium py-3 rounded-xl mt-4 transition-all duration-300 transform hover:scale-[1.02] font-sans">
+                            Send
+                        </button>
+                    </form>
+                </div>
+            </section>
+            
+            <div class="w-full flex justify-center px-4 mb-6"> 
+                <div class="glass-heavy rounded-full px-6 py-3 flex flex-wrap items-center justify-center gap-4 md:gap-8 shadow-2xl">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-red-500 flex items-center justify-center">
+                            <i class="fa-solid fa-mountain-sun text-xs text-white"></i>
+                        </div>
+                        <span class="font-bold text-sm text-amber-500 font-sans">Jharkhand Tourism</span>
+                    </div>
+
+                    <div class="flex items-center gap-4 text-sm font-light font-sans">
+                        <a href="#" class="flex items-center gap-2 hover:text-amber-400 transition">
+                            <i class="fa-brands fa-instagram text-pink-500"></i> <span class="hidden sm:inline">Follow Us on Instagram</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-2 hover:text-amber-400 transition">
+                            <i class="fa-brands fa-facebook text-blue-500"></i> <span class="hidden sm:inline">Follow Us on Facebook</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-2 hover:text-amber-400 transition">
+                            <i class="fa-brands fa-x-twitter text-blue-500"></i> <span class="hidden sm:inline">Follow Us on Twitter</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        // === New Intersection Observer for Fade-in Transition ===
+        const cardContainer = document.getElementById('card-scroll-container');
+        
+        // Ensure the container is visible immediately after page load if it's already in the viewport
+        function checkVisibility() {
+            const rect = cardContainer.getBoundingClientRect();
+            const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+            
+            // If the element is visible (its top is above the bottom of the viewport)
+            if (rect.top <= windowHeight) {
+                cardContainer.classList.add('active');
+                window.removeEventListener('scroll', checkVisibility);
+                window.removeEventListener('resize', checkVisibility);
+            }
+        }
+        
+        // Start checking visibility immediately and on scroll/resize
+        document.addEventListener('DOMContentLoaded', checkVisibility);
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('resize', checkVisibility);
+        
+        // === Remaining JavaScript (Scroll function is now obsolete but kept for reference) ===
+        /*
+        function scrollCards() {
+            const container = document.getElementById('card-scroll');
+            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 5) {
+                container.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                container.scrollBy({
+                    top: 0,
+                    left: 200,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        */
+
+        // Contact Form Submission Simulation
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contactForm');
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                
+                if (submitBtn.classList.contains('cursor-not-allowed')) {
+                    return;
+                }
+
+                const originalText = submitBtn.innerText;
+                submitBtn.innerText = 'Sending...';
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+                submitBtn.disabled = true; // Disable button
+
+                // Simulate network request
+                setTimeout(() => {
+                    submitBtn.innerText = 'Request Sent!';
+                    submitBtn.classList.remove('bg-white/80', 'text-gray-900', 'hover:bg-white');
+                    submitBtn.classList.add('bg-green-500', 'text-white', 'hover:bg-green-600');
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        form.reset();
+                        submitBtn.innerText = originalText;
+                        submitBtn.classList.remove('bg-green-500', 'text-white', 'hover:bg-green-600', 'opacity-75', 'cursor-not-allowed');
+                        submitBtn.classList.add('bg-white/80', 'text-gray-900', 'hover:bg-white');
+                        submitBtn.disabled = false; // Re-enable button
+                        alert("Thank you! We have received your request.");
+                    }, 2000);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

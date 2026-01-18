@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janarnath Temple - Ranchi, Jharkhand</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f9f7f2;
+            color: #333;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c89d58;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b38645;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .image-hover-zoom {
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .image-hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+        
+        .image-hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #c89d58;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #c89d58, transparent);
+            margin: 4rem auto;
+            width: 80%;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Popup Modal Styles */
+        .popup-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: linear-gradient(135deg, #b38645, #c89d58);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s ease;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .popup-modal.active .popup-content {
+            transform: translateY(0);
+        }
+        
+        .popup-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: #b38645;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .close-popup:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .popup-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+        
+        .popup-btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: white;
+            color: #b38645;
+            min-width: 180px;
+        }
+        
+        .popup-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: #fef9f3;
+        }
+        
+        .popup-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Popup Modal -->
+    <div id="videoPopup" class="popup-modal">
+        <div class="popup-content">
+            <button class="close-popup">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="popup-icon">
+                <i class="fas fa-video"></i>
+            </div>
+            
+            <span class="popup-badge">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                Visit Janarnath!
+            </span>
+            
+            <h2 id="popupTitle" class="text-3xl font-bold text-white mb-3">Experience Divine Blessings!</h2>
+            <p id="popupMessage" class="text-white/90 mb-6 text-lg">
+                No video can replace the divine energy you feel when standing before Lord Shiva's sacred abode. Visit Janarnath Temple to receive blessings and experience true spirituality.
+            </p>
+            
+            <div class="popup-buttons">
+                <button class="popup-btn" id="exploreMoreBtn">
+                    <i class="fas fa-compass"></i>
+                    Explore Temple
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center">
+                    <i class="fas fa-om text-white text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">Janarnath Temple</h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Home</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Temple</a>
+                <a href="#food" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Food</a>
+                <a href="#vibe" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Vibe</a>
+                <a href="#video" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Video</a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Home</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Temple</a>
+                <a href="#food" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Food</a>
+                <a href="#vibe" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Vibe</a>
+                <a href="#video" class="nav-link text-gray-700 hover:text-amber-700 font-medium">Video</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-b from-amber-50 to-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6">
+                        Welcome to <span class="text-amber-700">Janarnath Temple</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        A sacred Hindu temple dedicated to Lord Shiva, located in the heart of Ranchi, Jharkhand. This architectural marvel and spiritual sanctuary attracts devotees and tourists alike with its serene ambiance and divine presence.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#about" class="px-6 py-3 bg-amber-600 text-white font-medium rounded-full hover:bg-amber-700 transition duration-300 shadow-lg hover:shadow-xl">
+                            Explore Temple
+                        </a>
+                        <a href="#video" class="px-6 py-3 border-2 border-amber-600 text-amber-700 font-medium rounded-full hover:bg-amber-50 transition duration-300">
+                            Watch Video <i class="fas fa-play ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 flex justify-center slide-in-right">
+                    <div class="relative">
+                        <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl image-hover-zoom">
+                            <img src="images/jagarnath1.jpeg" alt="Janarnath Temple" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-xl">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                                    <i class="fas fa-map-marker-alt text-amber-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-gray-800">Ranchi, Jharkhand</p>
+                                    <p class="text-sm text-gray-600">Open 6 AM - 9 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Temple Description Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">The Sacred Janarnath Temple</h2>
+                <div class="w-24 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 slide-in-left">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="image-hover-zoom rounded-lg overflow-hidden shadow-lg mt-8">
+                            <img src="images/jagarnath1.jpeg" alt="Temple Architecture" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="image-hover-zoom rounded-lg overflow-hidden shadow-lg mt-8">
+                            <img src="images/jagarnath.jpg" alt="Temple Interior" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="image-hover-zoom rounded-lg overflow-hidden shadow-lg mt-8">
+                            <img src="images/jagarnath2.jpeg" alt="Shiva Lingam" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="image-hover-zoom rounded-lg overflow-hidden shadow-lg mt-8">
+                            <img src="images/jagarnathfestivel.jpg" alt="Temple Festival" class="w-full h-64 object-cover">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-12 slide-in-right">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">A Divine Abode in Ranchi</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Janarnath Temple is one of the most revered Shiva temples in Jharkhand. Located in the capital city of Ranchi, this temple is famous for its beautiful architecture and spiritual ambiance. The temple's main sanctum houses a magnificent Shiva Lingam that draws thousands of devotees throughout the year.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Built in the North Indian Nagara style of architecture, the temple features intricate carvings and a towering spire (shikhara) that can be seen from a distance. The temple complex also includes smaller shrines dedicated to other Hindu deities like Lord Ganesha, Goddess Parvati, and Lord Hanuman.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        The temple is particularly crowded during Maha Shivratri, Shravan month, and other Hindu festivals when devotees gather to offer prayers and perform rituals. The peaceful atmosphere, coupled with the rhythmic chanting of mantras, creates a truly divine experience for visitors.
+                    </p>
+                    
+                    <div class="bg-amber-50 p-6 rounded-xl border-l-4 border-amber-600">
+                        <h4 class="font-bold text-gray-800 mb-2 flex items-center">
+                            <i class="fas fa-info-circle text-amber-600 mr-2"></i> Temple Highlights
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-amber-600 mr-3"></i>
+                                <span>Open: 6:00 AM to 9:00 PM</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar-alt text-amber-600 mr-3"></i>
+                                <span>Best Time: July-August (Shravan)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-amber-600 mr-3"></i>
+                                <span>Special Aarti: 7:00 PM daily</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-monument text-amber-600 mr-3"></i>
+                                <span>Architecture: Nagara Style</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Famous Foods Section -->
+    <section id="food" class="py-16 md:py-24 bg-gradient-to-b from-white to-amber-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Famous Foods Around the Temple</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Savor the authentic flavors of Jharkhand with these local delicacies available near Janarnath Temple</p>
+                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Food Item 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/litti.jpg" alt="Litti Chokha" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Litti Chokha</h3>
+                            <span class="bg-amber-100 text-amber-800 text-sm font-medium px-3 py-1 rounded-full">Must Try</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            The iconic dish of Jharkhand - baked wheat balls stuffed with sattu (roasted gram flour) served with mashed potato and brinjal curry.
+                        </p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-utensils mr-2"></i>
+                            <span class="font-medium">Available at nearby stalls</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/malpua.jpg" alt="Pua" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Pua & Malpua</h3>
+                        <p class="text-gray-600 mb-4">
+                            Traditional sweet pancakes made from wheat flour, jaggery, and bananas, deep-fried and often offered as Prasad in temples.
+                        </p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-cookie-bite mr-2"></i>
+                            <span class="font-medium">Temple Prasad & local sweet shops</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/thekua.jpg" alt="Thekua" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Thekua</h3>
+                        <p class="text-gray-600 mb-4">
+                            A crunchy sweet snack made from wheat flour, jaggery, and coconut, traditionally prepared during Chhath Puja but available year-round.
+                        </p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-store mr-2"></i>
+                            <span class="font-medium">Local vendors around temple</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/duska.jpg" alt="Dhuska" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Dhuska with Ghugni</h3>
+                        <p class="text-gray-600 mb-4">
+                            Deep-fried rice and lentil pancakes served with a spicy chickpea curry, a popular breakfast item in Jharkhand.
+                        </p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-coffee mr-2"></i>
+                            <span class="font-medium">Morning street food stalls</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 5 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/jharkhandichiken.jpg" alt="Chicken Curry" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-gray-800">Jharkhandi Chicken Curry</h3>
+                            <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Non-veg</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">
+                            A spicy and flavorful chicken curry cooked with local herbs and spices, served with steamed rice or roti.
+                        </p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-utensil-spoon mr-2"></i>
+                            <span class="font-medium">Nearby restaurants</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 6 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 fade-in">
+                    <div class="image-hover-zoom h-56 overflow-hidden">
+                        <img src="images/ricebeer.jpg" alt="Rice Beer" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Handia (Rice Beer)</h3>
+                        <p class="text-gray-600 mb-4">
+                            Traditional fermented rice beer, a part of tribal culture in Jharkhand, often consumed during festivals and celebrations.
+                        </p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-glass-cheers mr-2"></i>
+                            <span class="font-medium">Local tribal areas (non-temple zones)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Vibe & Environment Section -->
+    <section id="vibe" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">The Vibe & People</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Experience the unique atmosphere and cultural tapestry around Janarnath Temple</p>
+                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center mb-12">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 slide-in-left">
+                    <div class="relative">
+                        <div class="image-hover-zoom rounded-xl overflow-hidden shadow-2xl">
+                            <img src="images/jagarnath.jpg" alt="Temple Atmosphere" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-amber-600 text-white p-6 rounded-xl shadow-2xl w-64">
+                            <h4 class="font-bold text-lg mb-2">Spiritual Energy</h4>
+                            <p class="text-sm">The air is filled with devotion and the sound of temple bells</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-12 slide-in-right">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">Cultural Harmony & Spiritual Ambiance</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        The area around Janarnath Temple is a beautiful blend of spirituality, tradition, and daily life. From early morning when the temple bells ring for the first aarti, to late evening when devotees gather for the final prayers, there's a continuous flow of positive energy.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        You'll see a mix of people - devout locals performing their daily rituals, tourists exploring the architectural beauty, street vendors selling flowers and offerings, and children playing in the temple courtyard. The atmosphere is one of harmonious coexistence where modern life blends seamlessly with ancient traditions.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-hands-praying text-amber-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Devotional Practices</h4>
+                                <p class="text-gray-600 text-sm">Daily rituals, offerings, and prayer ceremonies</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-users text-amber-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Community Gatherings</h4>
+                                <p class="text-gray-600 text-sm">Festivals and cultural events throughout the year</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-store text-amber-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Local Markets</h4>
+                                <p class="text-gray-600 text-sm">Vibrant stalls selling religious items and local crafts</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-amber-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-music text-amber-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Cultural Sounds</h4>
+                                <p class="text-gray-600 text-sm">Temple bells, bhajans, and traditional music</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl p-8 md:p-12 mt-12 fade-in">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Festivals & Celebrations</h3>
+                        <p class="text-gray-600 mb-4">
+                            The temple comes alive during festivals like Maha Shivratri, Shravan month, Diwali, and Holi. During these times, the temple is decorated beautifully, and special ceremonies are conducted. The entire area transforms into a carnival of faith with devotional songs, cultural performances, and community feasts.
+                        </p>
+                        <p class="text-gray-600">
+                            What's truly remarkable is the unity in diversity - people from all walks of life, different communities, and various parts of India come together to celebrate, showcasing the true spirit of India's cultural fabric.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="relative floating">
+                            <div class="w-48 h-48 rounded-full overflow-hidden border-8 border-white shadow-2xl">
+                                <img src="images/mahashivratri.jpg" alt="Festival Celebration" class="w-full h-full object-cover">
+                            </div>
+                            <div class="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg">
+                                <p class="font-bold text-gray-800">Maha Shivratri</p>
+                                <p class="text-sm text-gray-600">Grandest festival here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <!-- Video Section -->
+    <section id="video" class="py-16 md:py-24 bg-gradient-to-b from-amber-50 to-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Experience Janarnath Temple Virtually</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Watch these videos to get a glimpse of the temple's beauty, rituals, and atmosphere</p>
+                <div class="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto fade-in">
+                <!-- Main Video Container -->
+                <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl mb-8">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe 
+                            id="temple-video"
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/fF62mVleAwI" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6 bg-gradient-to-r from-gray-800 to-gray-900">
+                        <h3 class="text-xl font-bold text-white mb-2">Janarnath Temple - A Visual Journey</h3>
+                        <p class="text-gray-300">Explore the architectural marvel, daily rituals, and spiritual ambiance of this sacred place in Ranchi, Jharkhand.</p>
+                    </div>
+                </div>
+                
+                <!-- Video Thumbnails -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Temple Tour -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+                         data-video-id="fF62mVleAwI"
+                         data-category="temple-tour"
+                         data-title="Experience Divine Architecture"
+                         data-message="Witness the magnificent Nagara architecture, intricate carvings, and sacred Shiva Lingam in person. Feel the ancient stones come alive with devotion. Visit Janarnath Temple to experience real divine presence!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
+                                <i class="fas fa-torii-gate text-white text-4xl"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class="text-white text-xl">
+                                    <img src="images/jagarnath1.jpeg" alt="" class="w-full h-32 object-cover">
+                                </i>
+                            </div>
+                        </div>
+                        <p class="p-3 text-sm font-medium text-gray-800 text-center">Temple Tour</p>
+                    </div>
+                    
+                    <!-- Rituals & Ceremonies -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+                         data-video-id="k2WYelPqQqU"
+                         data-category="rituals"
+                         data-title="Witness Sacred Rituals"
+                         data-message="Experience the powerful morning and evening aartis, witness abhishekam ceremonies, and feel the vibrations of sacred mantras. These rituals can only truly be experienced by visiting in person!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center ">
+                                <i class="fas fa-hands-praying text-white text-4xl"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class="text-white text-xl">
+                                      <img src="images/arti.jpg" alt="" class="w-full h-32 object-cover" >
+                                </i>
+                            </div>
+                        </div>
+                        <p class="p-3 text-sm font-medium text-gray-800 text-center">Rituals & Ceremonies</p>
+                    </div>
+                    
+                    <!-- Festival Celebration -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+                         data-video-id="F-TMuJpKZ-4"
+                         data-category="festival"
+                         data-title="Celebrate With Devotees"
+                         data-message="Join thousands of devotees during Maha Shivratri and Shravan month. Experience the collective energy, devotional music, and festive decorations that transform the temple. Come celebrate with us!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                                <i class="fas fa-star-and-crescent text-white text-4xl"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class="text-white text-xl ">
+                                      <img src="images/jagarnathfestivel.jpg" alt="" class="w-full h-32 object-cover">
+                                </i>
+                            </div>
+                        </div>
+                        <p class="p-3 text-sm font-medium text-gray-800 text-center">Festival Celebration</p>
+                    </div>
+                    
+                    <!-- Local Culture -->
+                    <div class="cursor-pointer video-thumbnail popup-trigger rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+                         data-video-id="T2B7d7_Vrac"
+                         data-category="culture"
+                         data-title="Immerse in Local Culture"
+                         data-message="Experience the vibrant local markets, taste authentic Jharkhand cuisine, and meet the warm-hearted people of Ranchi. Videos can't capture the true cultural experience - you need to be here!">
+                        <div class="relative">
+                            <div class="w-full h-32 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                                <i class="fas fa-users text-white text-4xl"></i>
+                            </div>
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <i class="text-white text-xl">
+                                      <img src="images/jagarnath.jpg" alt="" class="w-full h-32 object-cover">
+                                </i>
+                            </div>
+                        </div>
+                        <p class="p-3 text-sm font-medium text-gray-800 text-center">Local Culture</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center">
+                            <i class="fas fa-om text-white text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold">Janarnath Temple</h2>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        A sacred pilgrimage site in Ranchi, Jharkhand, dedicated to Lord Shiva. Experience divine spirituality, rich culture, and warm hospitality.
+                    </p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <div class="flex flex-col space-y-2">
+                        <a href="#home" class="text-gray-300 hover:text-amber-400 transition duration-300">Home</a>
+                        <a href="#about" class="text-gray-300 hover:text-amber-400 transition duration-300">Temple Info</a>
+                        <a href="#food" class="text-gray-300 hover:text-amber-400 transition duration-300">Local Foods</a>
+                        <a href="#vibe" class="text-gray-300 hover:text-amber-400 transition duration-300">Cultural Vibe</a>
+                        <a href="#video" class="text-gray-300 hover:text-amber-400 transition duration-300">Video Tour</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Janarnath Temple, Ranchi. All rights reserved. | This is a demonstration website for educational purposes.</p>
+                <p class="mt-2">Images from Unsplash & YouTube. Content is fictional for demonstration.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-600 text-white w-12 h-12 rounded-full shadow-lg hover:bg-amber-700 transition duration-300 hidden z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Popup Modal Functionality
+        const videoPopup = document.getElementById('videoPopup');
+        const closePopup = document.querySelector('.close-popup');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupMessage = document.getElementById('popupMessage');
+        const exploreMoreBtn = document.getElementById('exploreMoreBtn');
+        const popupTriggers = document.querySelectorAll('.popup-trigger');
+
+        // Category-specific icons
+        const categoryIcons = {
+            'temple-tour': 'fa-torii-gate',
+            'rituals': 'fa-hands-praying',
+            'festival': 'fa-star-and-crescent',
+            'culture': 'fa-users'
+        };
+
+        // Category-specific colors
+        const categoryColors = {
+            'temple-tour': ['#b38645', '#c89d58'],
+            'rituals': ['#d97706', '#f59e0b'],
+            'festival': ['#dc2626', '#ea580c'],
+            'culture': ['#059669', '#10b981']
+        };
+
+        // Open popup with category-specific content
+        popupTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                const title = this.getAttribute('data-title');
+                const message = this.getAttribute('data-message');
+                const videoId = this.getAttribute('data-video-id');
+                
+                // Update popup content
+                popupTitle.textContent = title;
+                popupMessage.textContent = message;
+                
+                // Update icon based on category
+                const popupIcon = document.querySelector('.popup-icon i');
+                popupIcon.className = `fas ${categoryIcons[category] || 'fa-video'}`;
+                
+                // Update gradient color based on category
+                const colors = categoryColors[category] || ['#b38645', '#c89d58'];
+                document.querySelector('.popup-content').style.background = 
+                    `linear-gradient(135deg, ${colors[0]}, ${colors[1]})`;
+                
+                // Update the main video iframe
+                const videoIframe = document.getElementById('temple-video');
+                if (videoId && videoIframe) {
+                    videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                }
+                
+                // Show popup
+                videoPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close popup
+        closePopup.addEventListener('click', () => {
+            videoPopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Explore More button action
+        exploreMoreBtn.addEventListener('click', () => {
+            // Scroll to temple description section
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+                window.scrollTo({
+                    top: aboutSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Close popup
+            videoPopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close popup when clicking outside
+        videoPopup.addEventListener('click', (e) => {
+            if (e.target === videoPopup) {
+                videoPopup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoPopup.classList.contains('active')) {
+                videoPopup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Video thumbnail functionality (non-popup)
+        const videoThumbnails = document.querySelectorAll('.video-thumbnail');
+        const videoIframe = document.getElementById('temple-video');
+        
+        videoThumbnails.forEach(thumbnail => {
+            // Only add event listener if it's not a popup trigger (popup triggers have their own handler)
+            if (!thumbnail.classList.contains('popup-trigger')) {
+                thumbnail.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-video-id');
+                    if (videoId && videoIframe) {
+                        videoIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                    }
+                });
+            }
+        });
+
+        // Add pulse animation to CTA button
+        const ctaButton = document.querySelector('a[href="#about"]');
+        if (ctaButton) {
+            setInterval(() => {
+                ctaButton.classList.toggle('pulse');
+            }, 4000);
+        }
+        
+        // Add floating animation to some elements on scroll
+        window.addEventListener('scroll', () => {
+            const floatingElements = document.querySelectorAll('.floating');
+            floatingElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.animationPlayState = 'running';
+                } else {
+                    el.style.animationPlayState = 'paused';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

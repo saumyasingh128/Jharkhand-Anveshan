@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhanbad - The Coal Capital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Kanit for strong, industrial headings */
+        h1, h2, h3, h4, .nav-logo {
+            font-family: 'Kanit', sans-serif;
+            text-transform: uppercase;
+        }
+        /* Roboto Condensed for compact, efficient body text */
+        body, p, a, span {
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar - Industrial Theme */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171717; /* Neutral 900 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d97706; /* Amber 600 */
+            border: 3px solid #171717;
+            border-radius: 2px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .slide-in-right {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .zoom-in {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .zoom-in.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        /* Industrial Hazard Divider */
+        .section-divider {
+            height: 6px;
+            background: repeating-linear-gradient(
+                45deg,
+                #d97706,
+                #d97706 10px,
+                #171717 10px,
+                #171717 20px
+            );
+            margin: 2rem auto;
+            width: 180px;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(217, 119, 6, 0.15), 0 10px 10px -5px rgba(217, 119, 6, 0.1);
+            border-color: #d97706;
+        }
+        
+        .food-card {
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s;
+        }
+        
+        .food-card:hover .food-overlay {
+            background: rgba(0, 0, 0, 0.85);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: #f59e0b; /* Amber 500 */
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Diamond Dust Effect */
+        .diamond-dust {
+            background-image: radial-gradient(circle, #333 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-neutral-900 text-gray-200">
+    <nav class="sticky top-0 z-50 bg-neutral-900/95 backdrop-blur-md shadow-lg border-b border-neutral-800">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-gem text-2xl text-amber-500"></i>
+                <h1 class="text-3xl font-black nav-logo text-white tracking-tighter">DHANBAD<span class="text-amber-500">.</span></h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-bold text-sm hover:text-amber-500 transition tracking-wider text-gray-300">Home</a>
+                <a href="#about" class="nav-link font-bold text-sm hover:text-amber-500 transition tracking-wider text-gray-300">Coal Capital</a>
+                <a href="#attractions" class="nav-link font-bold text-sm hover:text-amber-500 transition tracking-wider text-gray-300">Landmarks</a>
+                <a href="#food" class="nav-link font-bold text-sm hover:text-amber-500 transition tracking-wider text-gray-300">Spicy Bites</a>
+                <a href="#video" class="nav-link font-bold text-sm hover:text-amber-500 transition tracking-wider text-gray-300">Vlog</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-neutral-800 px-4 py-6 border-t border-neutral-700">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link font-bold py-2 text-white">Home</a>
+                <a href="#about" class="nav-link font-bold py-2 text-white">Coal Capital</a>
+                <a href="#attractions" class="nav-link font-bold py-2 text-white">Landmarks</a>
+                <a href="#food" class="nav-link font-bold py-2 text-white">Spicy Bites</a>
+                <a href="#video" class="nav-link font-bold py-2 text-white">Vlog</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative overflow-hidden h-screen max-h-[850px]">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-neutral-950/90 to-amber-900/40"></div>
+            <img src="images/d1.png" 
+                 alt="Dhanbad Coal Mine Aesthetic" class="w-full h-full object-cover  brightness-75">
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-4 h-full flex items-center text-white">
+            <div class="max-w-4xl fade-in mt-[-50px]">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="h-[4px] w-12 bg-amber-500"></span>
+                    <h2 class="text-xl md:text-2xl font-bold text-amber-500 tracking-[0.3em]">THE BLACK DIAMOND CITY</h2>
+                </div>
+                <h1 class="text-6xl md:text-9xl font-black mb-4 leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-400">DHANBAD</h1>
+                <p class="text-lg md:text-2xl mb-8 text-gray-300 border-l-4 border-amber-600 pl-6 max-w-2xl font-light">Fueling the nation's energy. Home to the prestigious IIT (ISM), scenic dams, and a spirit of resilience.</p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#about" class="bg-amber-600 hover:bg-amber-700 text-black font-extrabold px-8 py-4 uppercase tracking-widest shadow-lg transition-all duration-300 transform hover:scale-105 rounded-sm">
+                        Explore City
+                    </a>
+                    <a href="#video" class="bg-transparent hover:bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold px-8 py-4 uppercase tracking-widest shadow-lg transition-all duration-300 rounded-sm">
+                        Watch Video <i class="fas fa-play ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-50"></div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-neutral-900 diamond-dust">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 slide-in-left">
+                <h2 class="text-4xl md:text-6xl font-black mb-4 text-white">ENERGY <span class="text-amber-500">HUB</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto text-xl">Dhanbad is one of the fastest-growing cities in India. It is famous for its rich coalfields, but it is also a center for education and scenic beauty.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="zoom-in relative group">
+                    <div class="absolute -inset-2 bg-gradient-to-br from-amber-600 to-black opacity-40 group-hover:opacity-60 transition duration-500 rounded-sm"></div>
+                    <div class="relative overflow-hidden shadow-2xl border-4 border-neutral-800 rounded-sm">
+                        <img src="images/iitd.jpg" 
+                             alt="IIT ISM Dhanbad" class="w-full h-80 md:h-[500px] object-cover transition duration-500 hover:scale-110 filter contrast-125">
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <h3 class="text-3xl font-bold mb-6 text-white uppercase tracking-tight">More Than Just Coal</h3>
+                    <div class="space-y-6 text-gray-400">
+                        <p class="leading-relaxed">
+                            While Jharia's coal mines power the nation, Dhanbad takes pride in <strong>IIT (ISM) Dhanbad</strong>, an institute of national importance founded in 1926 with British architecture.
+                        </p>
+                        <p class="leading-relaxed">
+                            The city is undergoing a rapid transformation with new flyovers, malls, and parks, balancing its industrial heritage with modern living.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <div class="bg-neutral-800 p-5 border-l-4 border-amber-500 hover:bg-neutral-700 transition shadow-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-graduation-cap text-amber-500 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-white uppercase">Education</h4>
+                                </div>
+                                <p class="text-sm">IIT (ISM) is the crown jewel of technical education.</p>
+                            </div>
+                            
+                            <div class="bg-neutral-800 p-5 border-l-4 border-gray-500 hover:bg-neutral-700 transition shadow-lg">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-industry text-gray-400 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-white uppercase">Economy</h4>
+                                </div>
+                                <p class="text-sm">BCCL, Tata Steel, and ECL headquarters drive the economy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="attractions" class="py-16 md:py-24 bg-neutral-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 slide-in-left">
+                <h2 class="text-4xl md:text-6xl font-black mb-4 text-white">ICONIC <span class="text-amber-500">SPOTS</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto">Escape the city dust and explore the serene waters and spiritual centers of Dhanbad.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 zoom-in">
+                    <div class="bg-neutral-900 p-8 shadow-2xl h-full border-t-4 border-amber-600 rounded-sm relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-5">
+                            <i class="fas fa-water text-9xl text-white"></i>
+                        </div>
+                        <div class="space-y-8 relative z-10">
+                            <div class="flex items-start">
+                                <div class="bg-neutral-800 p-4 rounded-sm mr-6 shrink-0 border border-neutral-700">
+                                    <i class="fas fa-water text-blue-400 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-white mb-2 uppercase">Maithon Dam</h4>
+                                    <p class="text-gray-400">"Mother's Abode". Located on the Barakar River, this massive dam offers boating, deer parks, and the famous Kalyaneshwari Temple nearby. It's the biggest reservoir of DVC.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-neutral-800 p-4 rounded-sm mr-6 shrink-0 border border-neutral-700">
+                                    <i class="fas fa-om text-orange-500 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-white mb-2 uppercase">Shakti Mandir</h4>
+                                    <p class="text-gray-400">Situated in the heart of the city, this temple dedicated to Goddess Durga draws thousands of devotees. The 'Akhand Jyoti' (eternal flame) is brought from Jwalaji.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-neutral-800 p-4 rounded-sm mr-6 shrink-0 border border-neutral-700">
+                                    <i class="fas fa-leaf text-green-500 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-white mb-2 uppercase">Bhatinda Falls</h4>
+                                    <p class="text-gray-400">A cascading waterfall surrounded by rocky terrains near Moonidih. It is a perfect picnic spot for nature lovers who enjoy raw landscapes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <div class="bg-amber-600 p-8 text-black shadow-xl h-full relative overflow-hidden rounded-sm">
+                        <h3 class="text-3xl font-black mb-8 relative z-10 uppercase tracking-tighter">City Stats</h3>
+                        
+                        <div class="space-y-6 relative z-10 font-bold border-black/20">
+                            <div class="flex items-center justify-between border-b border-black/20 pb-2">
+                                <span class="opacity-70">Nickname</span>
+                                <span>Coal Capital</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-black/20 pb-2">
+                                <span class="opacity-70">Railway Div</span>
+                                <span>East Central (ECR)</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-black/20 pb-2">
+                                <span class="opacity-70">Top Institute</span>
+                                <span>IIT (ISM)</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-black/20 pb-2">
+                                <span class="opacity-70">Famous Lake</span>
+                                <span>Topchanchi Lake</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 bg-black/20 p-4 border border-black/30 rounded-sm">
+                            <p class="text-black text-sm font-semibold italic"><i class="fas fa-bolt mr-2"></i> Dhanbad Railway Station is one of the busiest in the state, handling massive coal freight.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="food" class="py-16 md:py-24 bg-neutral-900 text-white relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')] opacity-40"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-4xl md:text-6xl font-black mb-4 uppercase">Street <span class="text-amber-500">Fuel</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto">From spicy Litti Chokha to sweet Rabri, Dhanbad's food scene is as robust as its industry.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover fade-in border border-neutral-700">
+                    <div class="bg-neutral-800 overflow-hidden rounded-sm shadow-lg h-full">
+                        <div class="h-56 food-card" style="background-image: url('images/litti.jpg')">
+                            <div class="food-overlay h-full p-4 flex items-end">
+                                <h3 class="text-2xl font-bold text-white uppercase">Litti Chokha</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-300">The staple food. Roasted wheat balls stuffed with sattu, dipped in ghee, and served with spicy mashed eggplant (chokha). Available at every chowk.</p>
+                            <div class="mt-4 flex text-amber-500 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in border border-neutral-700">
+                    <div class="bg-neutral-800 overflow-hidden rounded-sm shadow-lg h-full">
+                        <div class="h-56 food-card" style="background-image: url('images/chatt.jpg')">
+                            <div class="food-overlay h-full  p-4 flex items-end">
+                                <h3 class="text-2xl font-bold text-white uppercase">Gupchup (Chaat)</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-300">Dhanbad's Gupchup (Panipuri) is famously spicy. The chaat stalls near Bank More and Hirapur serve tangy mixtures that wake up your senses.</p>
+                            <div class="mt-4 flex text-amber-500 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover fade-in border border-neutral-700">
+                    <div class="bg-neutral-800 overflow-hidden rounded-sm shadow-lg h-full">
+                        <div class="h-56 food-card" style="background-image: url('images/rabri.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/95 to-transparent p-4 flex items-end">
+                                <h3 class="text-2xl font-bold text-white uppercase">Rabri & Sweets</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-gray-300">After a spicy meal, locals love the thick, creamy Rabri. The sweet shops in Jharia and Dhanbad main market are legendary.</p>
+                            <div class="mt-4 flex text-amber-500 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="py-16 md:py-24 bg-neutral-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-4xl md:text-6xl font-black mb-4 text-white uppercase">Visual <span class="text-amber-500">Tour</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-400 max-w-3xl mx-auto">Experience the contrasting beauty of coal mines and pristine lakes.</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto fade-in">
+                <div class="bg-neutral-800 overflow-hidden shadow-2xl p-1 md:p-2 border border-neutral-700 rounded-sm">
+                    <div class="relative pb-[56.25%] h-0 overflow-hidden bg-black rounded-sm">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/36lcshK7-Ng" 
+                            title="Dhanbad City Tour" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="p-6 bg-neutral-800 text-white rounded-b-sm">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-amber-500 uppercase">Dhanbad Cinematic</h3>
+                                <p class="text-gray-400 text-sm mt-1">Drone shots of Maithon, IIT ISM, and the bustling city.</p>
+                            </div>
+                            <a href="https://youtu.be/36lcshK7-Ng?si=UeNHp0ZyquaGG4O6" target="_blank" class="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-black text-sm font-black transition flex items-center justify-center rounded-sm shadow-lg uppercase tracking-wide">
+                                <i class="fab fa-youtube mr-2"></i> Watch More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-gray-500 py-12 border-t-4 border-amber-600">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fas fa-gem text-3xl text-amber-500"></i>
+                        <h2 class="text-3xl font-black text-white uppercase tracking-tighter">Dhanbad<span class="text-amber-500">.</span></h2>
+                    </div>
+                    <p class="text-gray-500 mb-6 leading-relaxed text-sm">The Coal Capital of India. A city of contrasts, energy, and education. The engine of Jharkhand's economy.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-neutral-900 hover:bg-amber-600 w-10 h-10 flex items-center justify-center transition-colors text-white rounded-sm">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-neutral-900 hover:bg-amber-600 w-10 h-10 flex items-center justify-center transition-colors text-white rounded-sm">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-neutral-900 hover:bg-amber-600 w-10 h-10 flex items-center justify-center transition-colors text-white rounded-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-neutral-800 pb-2 inline-block uppercase tracking-wider">Explore</h3>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="#home" class="hover:text-amber-500 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Home</a></li>
+                        <li><a href="#attractions" class="hover:text-amber-500 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Maithon Dam</a></li>
+                        <li><a href="#about" class="hover:text-amber-500 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> IIT ISM</a></li>
+                        <li><a href="#food" class="hover:text-amber-500 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Street Food</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-neutral-800 pb-2 inline-block uppercase tracking-wider">Contact</h3>
+                    <ul class="space-y-4 text-sm font-semibold">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-amber-500 mr-3 mt-1"></i>
+                            <span>Bank More, Dhanbad,<br>Jharkhand - 826001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-train text-amber-500 mr-3"></i>
+                            <span>Station Code: DHN (ECR)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-neutral-900 mt-12 pt-8 text-center text-xs text-gray-600 font-bold uppercase tracking-widest">
+                <p>&copy; 2024 Dhanbad City Portal. All rights reserved. | Made with <i class="fas fa-bolt text-amber-500 mx-1"></i> in Jharkhand</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-amber-600 hover:bg-amber-700 text-black w-12 h-12 shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50 rounded-sm border-2 border-black">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

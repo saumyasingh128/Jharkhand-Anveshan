@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagore Hill - Beacon of Peace | Literary Heritage of Ranchi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brick-red': '#9f1239',
+                        'peace-cream': '#fbfaf8',
+                        'ink-black': '#1c1917',
+                        'sky-blue': '#bae6fd',
+                        'paper-tan': '#f5f1e8',
+                        'heritage-brown': '#8b4513',
+                        'poetry-gold': '#d4a017',
+                        'literary-gray': '#3a3a3a',
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'page-turn': 'pageTurn 0.8s ease-out',
+                        'float-text': 'floatText 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        pageTurn: {
+                            '0%': { transform: 'rotateY(90deg)', opacity: '0' },
+                            '100%': { transform: 'rotateY(0)', opacity: '1' },
+                        },
+                        floatText: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f5f1e8; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, #9f1239, #d4a017); 
+            border-radius: 5px; 
+        }
+        
+        .paper-bg {
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(159, 18, 57, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(212, 160, 23, 0.03) 0%, transparent 20%),
+                url('https://www.transparenttextures.com/patterns/paper.png');
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .sticky-nav {
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .poetry-text {
+            background: linear-gradient(180deg, #9f1239, #d4a017);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+        
+        .literary-border {
+            border-image: linear-gradient(45deg, #9f1239, #d4a017, #8b4513) 1;
+        }
+        
+        .paper-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Fix for image aspect ratios */
+        .object-fit-cover {
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* Gradient text fallback for Firefox */
+        @supports not (-webkit-background-clip: text) {
+            .poetry-text {
+                color: #9f1239;
+                background: none;
+                -webkit-text-fill-color: initial;
+            }
+        }
+        
+        /* Mobile menu animation */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Hero section responsive fixes */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 3.5rem;
+                line-height: 1.2;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            #hero h1 {
+                font-size: 2.8rem;
+            }
+            #hero p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-peace-cream text-ink-black font-sans paper-bg">
+
+    <nav id="navbar" class="sticky-nav fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-md border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="rounded-lg">
+                        <span><img src="images/icon.jpg" alt="Jharkhand Anveshan Icon" class="w-10 h-10 rounded-full object-cover"></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-serif font-bold text-orange-500 tracking-wide">Jharkhand Anveshan</span>
+                        <span class="hidden md:block text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">Morabadi, Ranchi • Literary Heritage Site</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#hero" class="group text-gray-600 hover:text-brick-red font-bold text-sm uppercase tracking-wide transition relative py-2">
+                        <i class="fas fa-hill-rockslide mr-2"></i>The Hill
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brick-red group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#history" class="group text-gray-600 hover:text-brick-red font-bold text-sm uppercase tracking-wide transition relative py-2">
+                        <i class="fas fa-history mr-2"></i>History
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brick-red group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#legacy" class="group text-gray-600 hover:text-brick-red font-bold text-sm uppercase tracking-wide transition relative py-2">
+                        <i class="fas fa-book-open mr-2"></i>Legacy
+                        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-brick-red group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#video-tour" class="bg-brick-red text-white px-6 py-3 rounded-sm hover:bg-black transition-all duration-300 shadow-lg text-xs font-bold uppercase tracking-widest hover:scale-105">
+                        <i class="fas fa-video mr-2"></i>Virtual Tour
+                    </a>
+                </div>
+
+                <button onclick="toggleMenu()" class="md:hidden text-gray-800 focus:outline-none">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 top-20 shadow-xl">
+            <a href="#hero" class="block px-6 py-4 text-gray-800 font-bold hover:bg-stone-50 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-hill-rockslide mr-3 text-brick-red"></i>The Hill
+            </a>
+            <a href="#history" class="block px-6 py-4 text-gray-800 font-bold hover:bg-stone-50 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-history mr-3 text-brick-red"></i>History
+            </a>
+            <a href="#legacy" class="block px-6 py-4 text-gray-800 font-bold hover:bg-stone-50 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-book-open mr-3 text-brick-red"></i>Legacy
+            </a>
+            <a href="#video-tour" class="block px-6 py-4 text-brick-red font-bold hover:bg-stone-50 transition flex items-center" onclick="toggleMenu()">
+                <i class="fas fa-video mr-3"></i>Virtual Tour
+            </a>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="images/tagore.jpeg" alt="Portrait of Rabindranath Tagore" class="w-full h-full object-cover grayscale-[20%] sepia-[10%] object-position-center">
+        </div>
+
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-peace-cream to-transparent z-10"></div>
+
+        <div class="relative z-10 container mx-auto px-4 text-center animate-fade-in-up">
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/30 px-6 py-2 mb-8 rounded-full">
+                <i class="fas fa-mountain text-white mr-2"></i>
+                <span class="text-white font-bold uppercase tracking-[0.2em] text-sm">
+                    300 Ft Above Ranchi • Literary Sanctuary
+                </span>
+            </div>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+                WHERE SILENCE <br> MEETS <span class="poetry-text animate-float-text">POETRY</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-100 mb-12 font-light max-w-3xl mx-auto drop-shadow-md leading-relaxed px-4">
+                A serene hill in Ranchi associated with the legacy of Gurudev Rabindranath Tagore's family. A perfect spot for sunrise, sunsets, literary inspiration, and peaceful introspection.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 px-4">
+                <a href="#history" class="inline-flex items-center bg-white text-brick-red px-8 py-4 font-bold hover:bg-brick-red hover:text-white transition-all duration-300 uppercase tracking-widest text-sm border-2 border-white shadow-xl hover:scale-105 rounded-sm">
+                    <i class="fas fa-history mr-3"></i> Explore History
+                </a>
+                <a href="#legacy" class="inline-flex items-center bg-transparent border-2 border-white text-white px-8 py-4 font-bold hover:bg-white/10 transition-all duration-300 uppercase tracking-widest text-sm shadow-xl hover:scale-105 rounded-sm">
+                    <i class="fas fa-book-open mr-3"></i> Literary Legacy
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
+            <a href="#history" class="text-white hover:text-brick-red transition animate-bounce block">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <section class="bg-gradient-to-r from-brick-red to-poetry-gold text-white py-12 relative z-20 shadow-lg">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <i class="fas fa-quote-left text-3xl opacity-50 mb-4"></i>
+            <p class="font-serif text-xl md:text-2xl lg:text-3xl italic leading-relaxed">
+                "Clouds come floating into my life, no longer to carry rain or usher storm, but to add color to my sunset sky."
+            </p>
+            <span class="block mt-6 text-sm font-bold uppercase tracking-widest opacity-80">— Rabindranath Tagore</span>
+        </div>
+    </section>
+
+    <section id="history" class="py-16 md:py-24 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-12 md:mb-16">
+            <div class="inline-flex items-center bg-brick-red/10 text-brick-red px-4 py-2 rounded-full mb-6">
+                <i class="fas fa-landmark mr-2"></i>
+                <span class="text-sm font-bold uppercase tracking-wider">Historical Significance</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-ink-black mb-4">The Legacy of Tagore Hill</h2>
+            <div class="h-1 w-20 bg-brick-red mx-auto"></div>
+            <p class="mt-6 text-gray-600 max-w-3xl mx-auto font-serif text-lg leading-relaxed">
+                Formerly known as Morabadi Hill, this serene location became the ashram of Jyotirindranath Tagore, brother of Rabindranath Tagore, in 1908. Today, it stands as a symbol of literary heritage and spiritual retreat.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center mb-16 md:mb-24">
+            <div class="space-y-6 md:space-y-8">
+                <div class="bg-white paper-shadow rounded-xl p-6 md:p-8 card-hover">
+                    <h3 class="text-xl md:text-2xl font-serif font-bold text-ink-black mb-4">Historical Timeline</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-brick-red text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="font-bold text-sm">1908</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-ink-black">Jyotirindranath Tagore's Ashram</h4>
+                                <p class="text-gray-600 text-sm mt-1">The hill became the residence and ashram of Jyotirindranath Tagore, who named it "Brahma Sthal" (Place of God).</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-brick-red text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="font-bold text-sm">1939</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-ink-black">Rabindranath Tagore's Visit</h4>
+                                <p class="text-gray-600 text-sm mt-1">The Nobel laureate visited the hill, further cementing its connection to the Tagore family legacy.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-brick-red text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="font-bold text-sm">1960</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-ink-black">Development as Tourist Site</h4>
+                                <p class="text-gray-600 text-sm mt-1">The Bihar government (now Jharkhand) developed the hill as a tourist and heritage site.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-paper-tan to-white paper-shadow rounded-xl p-6 md:p-8 card-hover">
+                    <h3 class="text-xl md:text-2xl font-serif font-bold text-ink-black mb-4">Quick Facts</h3>
+                    <div class="grid grid-cols-2 gap-4 md:gap-6">
+                        <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                            <i class="fas fa-ruler-vertical text-2xl text-brick-red mb-3"></i>
+                            <div class="text-xl font-bold text-ink-black">300 ft</div>
+                            <div class="text-gray-600 text-xs mt-1">Height Above City</div>
+                        </div>
+                        <div class="text-center p-4 bg-white rounded-lg shadow-sm">
+                            <i class="fas fa-stairs text-2xl text-brick-red mb-3"></i>
+                            <div class="text-xl font-bold text-ink-black">~300 Steps</div>
+                            <div class="text-gray-600 text-xs mt-1">To Reach Summit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group overflow-hidden rounded-2xl shadow-2xl h-[400px] md:h-[550px] card-hover">
+                <img src="images/tagorehillstructure.jpg" alt="Tagore Hill Structure" class="w-full h-full object-cover object-position-center transition duration-700 group-hover:scale-110 filter sepia-[10%]">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 md:bottom-8 left-4 md:left-8 text-white">
+                    <div class="bg-black/60 backdrop-blur-sm p-4 md:p-6 rounded-xl max-w-md">
+                        <h3 class="text-2xl md:text-3xl font-serif font-bold">Brahma Sthal</h3>
+                        <p class="text-gray-200 mt-2 text-sm md:text-base">The peace centre at the hilltop built by Jyotirindranath Tagore, featuring meditation halls and a library.</p>
+                        <div class="flex items-center mt-4 text-sm text-gray-300">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>Open Daily: 6:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute top-4 right-4 bg-brick-red text-white px-4 py-2 rounded-full font-bold text-sm">
+                    Heritage Structure
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="legacy" class="py-16 md:py-24 bg-gradient-to-b from-white to-paper-tan relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-brick-red/10 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12 md:mb-16">
+                <div class="inline-flex items-center bg-brick-red/10 text-brick-red px-4 py-2 rounded-full mb-6">
+                    <i class="fas fa-book mr-2"></i>
+                    <span class="text-sm font-bold uppercase tracking-wider">Literary & Cultural Legacy</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-ink-black mb-4">The Tagore Connection</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto font-serif text-lg">How Tagore Hill became intertwined with India's literary and cultural renaissance</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+                <div class="bg-white paper-shadow rounded-xl p-6 md:p-8 card-hover border-t-4 border-brick-red">
+                    <div class="text-4xl text-brick-red mb-6">
+                        <i class="fas fa-user-pen"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-serif font-bold text-ink-black mb-4">Jyotirindranath Tagore</h3>
+                    <p class="text-gray-600 mb-6">
+                        The elder brother of Rabindranath Tagore, Jyotirindranath was a playwright, musician, and artist who established his ashram on the hill in 1908.
+                    </p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <i class="fas fa-calendar-alt mr-2 text-brick-red"></i>
+                        <span>Lived here 1908-1925</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white paper-shadow rounded-xl p-6 md:p-8 card-hover border-t-4 border-poetry-gold">
+                    <div class="text-4xl text-poetry-gold mb-6">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-serif font-bold text-ink-black mb-4">Rabindranath Tagore</h3>
+                    <p class="text-gray-600 mb-6">
+                        The Nobel laureate visited the hill in 1939, drawing inspiration from its serene environment for his literary works.
+                    </p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <i class="fas fa-star mr-2 text-poetry-gold"></i>
+                        <span>Nobel Prize in Literature 1913</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white paper-shadow rounded-xl p-6 md:p-8 card-hover border-t-4 border-heritage-brown">
+                    <div class="text-4xl text-heritage-brown mb-6">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-serif font-bold text-ink-black mb-4">Cultural Renaissance</h3>
+                    <p class="text-gray-600 mb-6">
+                        The hill became a hub for artists, writers, and thinkers during the Bengal Renaissance, influencing India's cultural development.
+                    </p>
+                    <div class="flex items-center text-gray-500 text-sm">
+                        <i class="fas fa-users mr-2 text-heritage-brown"></i>
+                        <span>Cultural & Intellectual Hub</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="views" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div class="relative group overflow-hidden rounded-2xl shadow-xl h-64 md:h-80 card-hover">
+                    <img src="images/tagorecityview.webp" alt="City View from Top" class="w-full h-full object-cover object-position-center transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-l from-black/70 to-transparent"></div>
+                    <div class="absolute bottom-4 md:bottom-6 right-4 md:right-6 text-right text-white">
+                        <div class="bg-black/60 backdrop-blur-sm p-4 rounded-lg">
+                            <h3 class="text-lg md:text-2xl font-serif font-bold">Panoramic City Views</h3>
+                            <p class="text-xs md:text-sm text-gray-300 mt-1">Breathtaking 360° views of Ranchi city skyline from the summit</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group overflow-hidden rounded-2xl shadow-xl h-64 md:h-80 card-hover">
+                    <img src="images/tagorenaturewalk.webp" alt="Steps to Hill" class="w-full h-full object-cover object-position-center transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-r from-green-900/80 to-transparent"></div>
+                    <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 text-white">
+                        <div class="bg-black/60 backdrop-blur-sm p-4 rounded-lg">
+                            <h3 class="text-lg md:text-2xl font-serif font-bold">Nature Walk</h3>
+                            <p class="text-xs md:text-sm text-gray-300 mt-1">A short trek through lush greenery to reach the peaceful summit</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 md:mt-16 bg-gradient-to-r from-brick-red/10 to-poetry-gold/10 rounded-2xl p-6 md:p-8 border border-brick-red/20">
+                <h3 class="text-xl md:text-2xl font-bold text-ink-black mb-6 flex items-center">
+                    <i class="fas fa-lightbulb mr-3 text-brick-red"></i>
+                    Visitor Information
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-start">
+                        <div class="bg-brick-red/20 p-3 rounded-lg mr-4 flex-shrink-0">
+                            <i class="fas fa-clock text-brick-red"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-ink-black mb-2">Timings & Entry</h4>
+                            <p class="text-gray-600 text-sm">Open daily from 6:00 AM to 6:00 PM. Free entry for all visitors.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-brick-red/20 p-3 rounded-lg mr-4 flex-shrink-0">
+                            <i class="fas fa-sun text-brick-red"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-ink-black mb-2">Best Time to Visit</h4>
+                            <p class="text-gray-600 text-sm">Early morning for sunrise or late afternoon for sunset views.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video-tour" class="py-16 md:py-24 bg-ink-black relative overflow-hidden text-white">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/notebook-dark.png');"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-8 md:gap-16">
+                
+                <div class="w-full lg:w-2/5 text-left">
+                    <div class="inline-flex items-center bg-white/10 text-white px-4 py-2 rounded-full mb-6">
+                        <i class="fas fa-video mr-2"></i>
+                        <span class="text-sm font-bold uppercase tracking-wider">Virtual Experience</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mt-4 mb-6 leading-tight">A CLIMB TO <br> SERENITY</h2>
+                    <p class="text-gray-400 leading-relaxed mb-8 font-serif text-lg">
+                        Experience the calm atmosphere that inspired poetry and art. Watch the drone view of the hill and the surrounding Ramakrishna Mission Ashram.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3 text-white">
+                            <div class="bg-brick-red/20 p-3 rounded-lg flex-shrink-0">
+                                <i class="fas fa-eye text-brick-red"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">360° Panoramic Views</h4>
+                                <p class="text-gray-400 text-sm">See Ranchi from every angle</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 text-white">
+                            <div class="bg-brick-red/20 p-3 rounded-lg flex-shrink-0">
+                                <i class="fas fa-book-open text-brick-red"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Literary Inspiration</h4>
+                                <p class="text-gray-400 text-sm">Where poetry found its voice</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex items-center gap-2 text-sm font-bold text-white border-b border-brick-red pb-1 w-max">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>Ticket: Free Entry • Open to All</span>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-3/5">
+                    <div class="relative group">
+                        <div class="absolute -inset-2 md:-inset-4 bg-gradient-to-r from-brick-red via-poetry-gold to-brick-red rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                        
+                        <div class="relative bg-black shadow-2xl overflow-hidden aspect-video z-10 border-4 border-brick-red rounded-lg">
+                            <iframe 
+                                class="w-full h-full" 
+                                src="https://www.youtube.com/embed/UvCoKv_gWzc?si=shYAW9uPX1IUlJS8" 
+                                title="Tagore Hill Video Tour" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-brick-red text-white px-4 md:px-6 py-2 rounded-full font-bold text-sm">
+                            <i class="fas fa-play-circle mr-2"></i> Full Screen Recommended
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-800">
+                    <i class="fas fa-camera text-4xl text-brick-red mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Photography Spots</h4>
+                    <p class="text-gray-400">Best locations and angles for capturing Tagore Hill's beauty throughout the day</p>
+                </div>
+                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-800">
+                    <i class="fas fa-map-marked-alt text-4xl text-brick-red mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Nearby Attractions</h4>
+                    <p class="text-gray-400">Explore Ramakrishna Mission, Divyayan KVK, and other cultural sites nearby</p>
+                </div>
+                <div class="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-800">
+                    <i class="fas fa-calendar-check text-4xl text-brick-red mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Events & Activities</h4>
+                    <p class="text-gray-400">Literary gatherings, meditation sessions, and cultural events held at the hill</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-stone-900 text-gray-500 py-12 md:py-16 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 md:mb-10">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-3">
+                        <div class="bg-brick-red/20 p-3 rounded-lg">
+                            <i class="fas fa-mountain text-brick-red text-2xl"></i>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <span class="font-serif text-2xl md:text-3xl text-white font-bold tracking-wide uppercase">TAGORE HILL</span>
+                            <p class="text-gray-400 text-sm mt-1">Morabadi, Ranchi • Literary Heritage Site • Maintained by Jharkhand Tourism</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex space-x-6 text-2xl">
+                    <a href="#" class="text-gray-600 hover:text-brick-red transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-brick-red transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-brick-red transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-brick-red transition"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8 md:mb-10">
+                <div>
+                    <h5 class="text-lg font-bold text-brick-red mb-4">Explore</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#hero" class="hover:text-white transition">The Hill</a></li>
+                        <li><a href="#history" class="hover:text-white transition">History</a></li>
+                        <li><a href="#legacy" class="hover:text-white transition">Tagore Legacy</a></li>
+                        <li><a href="#video-tour" class="hover:text-white transition">Virtual Tour</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold text-brick-red mb-4">Nearby Sites</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Ramakrishna Mission Ashram</a></li>
+                        <li><a href="#" class="hover:text-white transition">Divyayan KVK</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ranchi Art Gallery</a></li>
+                        <li><a href="#" class="hover:text-white transition">Rock Garden</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold text-brick-red mb-4">Visitor Info</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Directions (Morabadi)</a></li>
+                        <li><a href="#" class="hover:text-white transition">Timings: 6AM - 6PM</a></li>
+                        <li><a href="#" class="hover:text-white transition">Accessibility</a></li>
+                        <li><a href="#" class="hover:text-white transition">Photography Guidelines</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold text-brick-red mb-4">Contact</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-3 text-brick-red mt-1"></i>
+                            <span>Tagore Hill, Morabadi, Ranchi, Jharkhand, India</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-3 text-brick-red"></i>
+                            <span>+91 XXX XXX XXXX</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-brick-red"></i>
+                            <span>info@tagorehilltourism.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    &copy; 2024 Tagore Hill Tourism. All rights reserved.
+                </div>
+                <div class="flex space-x-4 md:space-x-6">
+                    <a href="#" class="hover:text-brick-red transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-brick-red transition">Terms of Service</a>
+                    <a href="#" class="hover:text-brick-red transition">Accessibility</a>
+                    <a href="#" class="hover:text-brick-red transition">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        if(window.innerWidth < 768) {
+                            const mobileMenu = document.getElementById('mobile-menu');
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

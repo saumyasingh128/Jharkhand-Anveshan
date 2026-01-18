@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamshedpur - The Steel City</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Oswald for headings gives a strong, industrial feel */
+        h1, h2, h3, h4, .nav-logo {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+        }
+        /* Roboto for body text for clean readability (Planned City vibe) */
+        body, p, a, span {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar - Steel Theme */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; /* Slate 600 */
+            border-radius: 2px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .slide-in-right {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .zoom-in {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .zoom-in.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        /* Industrial Divider */
+        .section-divider {
+            height: 5px;
+            background: linear-gradient(90deg, #334155, #10b981, #334155);
+            margin: 2rem auto;
+            width: 100px;
+            position: relative;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .food-card {
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s;
+        }
+        
+        .food-card:hover .food-overlay {
+            background: rgba(15, 23, 42, 0.8); /* Slate 900 */
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: #10b981; /* Emerald Green */
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Steel shine effect */
+        .text-shine {
+            background: linear-gradient(to right, #94a3b8 20%, #e2e8f0 40%, #94a3b8 60%, #e2e8f0 80%);
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md shadow-xl border-b border-slate-700 text-white">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-industry text-2xl text-emerald-400"></i>
+                <h1 class="text-2xl font-bold nav-logo tracking-wider">JAMSHEDPUR<span class="text-emerald-400">.</span></h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-medium hover:text-emerald-400 transition tracking-wide text-sm uppercase">Home</a>
+                <a href="#about" class="nav-link font-medium hover:text-emerald-400 transition tracking-wide text-sm uppercase">Legacy</a>
+                <a href="#food" class="nav-link font-medium hover:text-emerald-400 transition tracking-wide text-sm uppercase">Street Food</a>
+                <a href="#landmarks" class="nav-link font-medium hover:text-emerald-400 transition tracking-wide text-sm uppercase">Landmarks</a>
+                <a href="#video" class="nav-link font-medium hover:text-emerald-400 transition tracking-wide text-sm uppercase">Vlog</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-slate-800 px-4 py-6 border-t border-slate-700">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link font-medium py-2">Home</a>
+                <a href="#about" class="nav-link font-medium py-2">Legacy</a>
+                <a href="#food" class="nav-link font-medium py-2">Street Food</a>
+                <a href="#landmarks" class="nav-link font-medium py-2">Landmarks</a>
+                <a href="#video" class="nav-link font-medium py-2">Vlog</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative overflow-hidden h-screen max-h-[900px]">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-blue-900/40"></div>
+            <img src="images/j2.png" 
+                 alt="Jamshedpur Jubilee Park" class="w-full h-full object-fit">
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-4 h-full flex items-center text-white">
+            <div class="max-w-4xl fade-in mt-[-50px]">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="h-[2px] w-12 bg-emerald-400"></span>
+                    <h2 class="text-lg md:text-xl font-medium text-emerald-300 uppercase tracking-[0.2em]">East Singhbhum District</h2>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-bold mb-4 leading-none text-shine uppercase">Steel City</h1>
+                <p class="text-xl md:text-3xl font-light mb-8 text-slate-200">Where <span class="text-emerald-400 font-bold">Nature</span> meets <span class="text-blue-400 font-bold">Industry</span>.</p>
+                <p class="text-md md:text-lg text-slate-400 max-w-2xl mb-10 border-l-4 border-emerald-500 pl-6">India's first planned industrial city, home to Tata Steel, breathtaking lakes, and the iconic Jubilee Park.</p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#about" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 uppercase tracking-wider shadow-lg transition-all duration-300 transform hover:scale-105 rounded-sm">
+                        Explore Tatanagar
+                    </a>
+                    <a href="#video" class="bg-transparent hover:bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold px-8 py-3 uppercase tracking-wider shadow-lg transition-all duration-300 rounded-sm">
+                        Watch Video <i class="fas fa-play ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 slide-in-left">
+                <h2 class="text-4xl md:text-6xl font-bold mb-2 text-slate-800 uppercase">The <span class="text-blue-700">Vision</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-600 max-w-3xl mx-auto text-lg">Founded by Jamsetji Nusserwanji Tata, Jamshedpur is a marvel of urban planning. Unlike other industrial hubs, here the factory does not dominate the greenery; they co-exist.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="zoom-in relative group">
+                    <div class="absolute -inset-2 bg-gradient-to-tr from-blue-600 to-emerald-500 opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                    <div class="relative overflow-hidden shadow-2xl border-4 border-slate-50">
+                        <img src="images/tata.jpg" 
+                             alt="Tata Steel Plant" class="w-full h-80 md:h-[500px] object-cover transition duration-500 hover:scale-110 ">
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <h3 class="text-3xl font-bold mb-6 text-slate-800 uppercase">A City of Firsts</h3>
+                    <div class="space-y-6 text-slate-700">
+                        <p class="leading-relaxed">
+                            Jamshedpur (Tatanagar) is celebrated for its wide roads, tree-lined avenues, and high quality of life. It is the only city in India without a municipal corporation, maintained entirely by <strong>JUSCO (Tata Steel Utilities)</strong>.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <div class="bg-slate-50 p-5 border-l-4 border-blue-600 hover:shadow-lg transition">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-cogs text-blue-600 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-slate-800 uppercase">Industrial Hub</h4>
+                                </div>
+                                <p class="text-sm">Tata Steel, Tata Motors, and heavy engineering industries drive the economy.</p>
+                            </div>
+                            
+                            <div class="bg-slate-50 p-5 border-l-4 border-emerald-500 hover:shadow-lg transition">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-tree text-emerald-500 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-slate-800 uppercase">Green Cover</h4>
+                                </div>
+                                <p class="text-sm">Home to Jubilee Park (inspired by Brindavan Gardens) and Dalma Hills.</p>
+                            </div>
+
+                            <div class="bg-slate-50 p-5 border-l-4 border-orange-500 hover:shadow-lg transition">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-futbol text-orange-500 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-slate-800 uppercase">Sports</h4>
+                                </div>
+                                <p class="text-sm">JRD Tata Sports Complex and the Tata Football Academy (TFA).</p>
+                            </div>
+
+                            <div class="bg-slate-50 p-5 border-l-4 border-slate-600 hover:shadow-lg transition">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-university text-slate-600 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-slate-800 uppercase">Education</h4>
+                                </div>
+                                <p class="text-sm">XLRI, one of India's oldest and most prestigious business schools.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="food" class="py-16 md:py-24 bg-slate-900 text-white relative">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 uppercase">Street Food <span class="text-emerald-400">Legends</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-400 max-w-3xl mx-auto">Jamshedpur's street food is legendary. From the posh lanes of Bistupur to the bustling markets of Sakchi, the flavors are unforgettable.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 ">
+                <div class="card-hover fade-in">
+                    <div class="bg-slate-800 overflow-hidden shadow-lg h-full border border-slate-700 ">
+                        <div class="h-48 food-card !bg-cover !bg-center bg-repeat" style="background-image: url('images/pani.jpg') ">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/90 to-transparent p-4 flex items-end ">
+                                <h3 class="text-xl font-bold text-white uppercase">Pani Puri</h3>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-sm text-slate-300">Also known as Golgappa. The tamarind water here has a unique blend of spices. The stalls near Jubilee Park gate are a must-visit.</p>
+                            <div class="mt-3 flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in ">
+                    <div class="bg-slate-800 overflow-hidden shadow-lg h-full border border-slate-700">
+                        <div class="h-48 food-card bg-cover bg-center" style="background-image: url('images/msd.webp')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/90 to-transparent p-4 flex items-end">
+                                <h3 class="text-xl font-bold text-white uppercase">Masala Cold Drink</h3>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-sm text-slate-300">A Jamshedpur specialty! A mix of cola/lemon soda with a secret blend of spices (masala) and lemon. Refreshing!</p>
+                            <div class="mt-3 flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in">
+                    <div class="bg-slate-800 overflow-hidden shadow-lg h-full border border-slate-700">
+                        <div class="h-48 food-card" style="background-image: url('images/dosa.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/90 to-transparent p-4 flex items-end">
+                                <h3 class="text-xl font-bold text-white uppercase">Dosa</h3>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-sm text-slate-300">Due to a diverse population, the South Indian food scene is strong. The 'Madrasi Hotel' and street carts in Bistupur serve crisp buttery dosas.</p>
+                            <div class="mt-3 flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in">
+                    <div class="bg-slate-800 overflow-hidden shadow-lg h-full border border-slate-700">
+                        <div class="h-48 food-card" style="background-image: url('images/chanachur.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/90 to-transparent p-4 flex items-end">
+                                <h3 class="text-xl font-bold text-white uppercase">Fakira Chanachur</h3>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <p class="text-sm text-slate-300">An iconic spicy mix snack. People take packets of 'Fakira Chanachur' as souvenirs from Jamshedpur to other cities.</p>
+                            <div class="mt-3 flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="landmarks" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 slide-in-left">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-slate-800 uppercase">Iconic <span class="text-blue-600">Landmarks</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-600 max-w-3xl mx-auto">From the shimmering Dimna Lake to the elephants of Dalma, explore the outskirts of the Steel City.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 zoom-in">
+                    <div class="bg-white p-8 shadow-xl h-full border-t-4 border-emerald-500">
+                        <div class="space-y-8">
+                            <div class="flex items-start">
+                                <div class="bg-emerald-100 p-4 mr-6 shrink-0">
+                                    <i class="fas fa-tree text-emerald-700 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-slate-800 mb-2 uppercase">Jubilee Park</h4>
+                                    <p class="text-slate-600">Gifted by Tata Steel to the city on its golden jubilee. Spread over 200 acres, it features the Moghul Gardens, fountains, and a zoo. The illumination on March 3rd (Founder's Day) is world-famous.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-4 mr-6 shrink-0">
+                                    <i class="fas fa-water text-blue-700 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-slate-800 mb-2 uppercase">Dimna Lake</h4>
+                                    <p class="text-slate-600">Located at the foothills of Dalma, this artificial lake is the main water source for the city and a stunning picnic spot, especially in winter.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-slate-200 p-4 mr-6 shrink-0">
+                                    <i class="fas fa-elephant text-slate-700 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-slate-800 mb-2 uppercase">Dalma Wildlife Sanctuary</h4>
+                                    <p class="text-slate-600">A forest sanctuary famous for its resident elephants. The view of the Steel City lights from the Dalma hilltop at night is breathtaking.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <div class="bg-slate-800 p-8 text-white shadow-xl h-full relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-10">
+                            <i class="fas fa-city text-9xl"></i>
+                        </div>
+
+                        <h3 class="text-2xl font-bold mb-8 relative z-10 text-emerald-400 uppercase tracking-widest">City Profile</h3>
+                        
+                        <div class="space-y-6 relative z-10 font-light">
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Founded</span>
+                                <span class="font-semibold">1919 (Named Jamshedpur)</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Managed By</span>
+                                <span class="font-semibold">JUSCO</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Railway Station</span>
+                                <span class="font-semibold">Tatanagar Jn (TATA)</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Cleanliness Rank</span>
+                                <span class="font-semibold">Consistent Top Performer</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 bg-blue-900/50 p-4 border border-blue-700/50">
+                            <p class="text-blue-200 text-sm italic"><i class="fas fa-info-circle mr-2"></i> Founder's Day (3rd March) is the biggest celebration here, where the entire city is decorated with lights.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 uppercase">Cinematic <span class="text-red-600">Tatanagar</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-600 max-w-3xl mx-auto">Watch the rhythm of the city, from the blast furnaces to the serene lakes.</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto fade-in">
+                <div class="bg-black overflow-hidden shadow-2xl p-1 md:p-2 border border-slate-200">
+                    <div class="relative pb-[56.25%] h-0 overflow-hidden bg-slate-900">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/G4k_nmyBPow" 
+                            title="Jamshedpur Cinematic Video" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="p-6 bg-slate-900 text-white">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="text-xl font-bold uppercase tracking-wide">Jamshedpur - The Green Steel City</h3>
+                                <p class="text-slate-400 text-sm mt-1">Drone shots of Jubilee Park, Dimna, and the Township.</p>
+                            </div>
+                            <a href="https://youtu.be/G4k_nmyBPow?si=j3takw7ggP9l-oZD" target="_blank" class="px-6 py-2 bg-red-700 hover:bg-red-800 text-white text-sm font-bold uppercase tracking-wide transition flex items-center justify-center">
+                                <i class="fab fa-youtube mr-2"></i> Watch More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t-4 border-emerald-500">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fas fa-industry text-3xl text-emerald-500"></i>
+                        <h2 class="text-2xl font-bold text-white uppercase tracking-wider">JAMSHEDPUR<span class="text-emerald-500">.</span></h2>
+                    </div>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-sm">East Singhbhum, Jharkhand. A city built on the values of industry, nature, and community welfare. The pride of the Tata Group and India.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-slate-800 hover:bg-emerald-600 w-10 h-10 flex items-center justify-center transition-colors text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-slate-800 hover:bg-emerald-600 w-10 h-10 flex items-center justify-center transition-colors text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-slate-800 hover:bg-emerald-600 w-10 h-10 flex items-center justify-center transition-colors text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-700 pb-2 inline-block uppercase tracking-wide">Quick Links</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#home" class="hover:text-emerald-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Home</a></li>
+                        <li><a href="#about" class="hover:text-emerald-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Jamsetji's Dream</a></li>
+                        <li><a href="#landmarks" class="hover:text-emerald-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Jubilee Park</a></li>
+                        <li><a href="#food" class="hover:text-emerald-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Bistupur Food</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-700 pb-2 inline-block uppercase tracking-wide">Location</h3>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-emerald-500 mr-3 mt-1"></i>
+                            <span>Bistupur Main Road,<br>Jamshedpur, Jharkhand - 831001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-train text-emerald-500 mr-3"></i>
+                            <span>Connect via Tatanagar (TATA)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 mt-12 pt-8 text-center text-xs text-slate-500 uppercase tracking-widest">
+                <p>&copy; 2024 Steel City Portal. All rights reserved. | Made with <i class="fas fa-heart text-red-500 mx-1"></i> in Jharkhand</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-emerald-600 hover:bg-emerald-700 text-white w-12 h-12 shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50 border border-white">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

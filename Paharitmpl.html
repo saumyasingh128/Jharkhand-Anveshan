@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pahari Mandir | Ranchi, Jharkhand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ea580c',
+                        secondary: '#fcd34d',
+                        accent: '#431407'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'slide-in': 'slideIn 0.7s ease-out',
+                        'pulse-slow': 'pulse 3s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-divider {
+            height: 100px;
+            background: linear-gradient(to right, #fcd34d, #ea580c, #431407);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+        }
+        .temple-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/paharimandir.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .food-card:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #fcd34d;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="font-inter bg-orange-50">
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-mountain text-primary text-2xl mr-2"></i>
+                <h1 class="text-2xl font-bold text-accent font-playfair">Pahari Mandir</h1>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 font-medium hover:text-primary">Home</a>
+                <a href="#about" class="nav-link text-gray-700 font-medium hover:text-primary">History</a>
+                <a href="#food" class="nav-link text-gray-700 font-medium hover:text-primary">Food</a>
+                <a href="#vibe" class="nav-link text-gray-700 font-medium hover:text-primary">Vibe</a>
+                <a href="#video" class="nav-link text-gray-700 font-medium hover:text-primary">Video</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-4 px-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 font-medium hover:text-primary py-2">Home</a>
+                <a href="#about" class="text-gray-700 font-medium hover:text-primary py-2">History</a>
+                <a href="#food" class="text-gray-700 font-medium hover:text-primary py-2">Food</a>
+                <a href="#vibe" class="text-gray-700 font-medium hover:text-primary py-2">Vibe</a>
+                <a href="#video" class="text-gray-700 font-medium hover:text-primary py-2">Video</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative temple-bg text-white min-h-screen flex items-center justify-center">
+        <div class="container mx-auto px-4 pt-16 relative z-10">
+            <div class="max-w-3xl mx-auto text-center animate-fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold font-playfair mb-6 animate-slide-up">Pahari Mandir</h1>
+                <p class="text-xl mb-8 text-orange-100 animate-slide-up" style="animation-delay: 0.2s">The Himalayan Temple of Ranchi</p>
+                <p class="text-lg mb-10 animate-slide-up" style="animation-delay: 0.4s">Located at 2,140 ft in Ranchi, Jharkhand • Dedicated to Lord Shiva</p>
+                <a href="#about" class="inline-block bg-primary hover:bg-accent text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 animate-slide-up" style="animation-delay: 0.6s">
+                    Start the Climb <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white pointer-events-none"></div>
+    </section>
+
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-accent font-playfair mb-4">Temple on the Hill</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="w-full lg:w-1/2 mb-10 lg:mb-0 lg:pr-10 animate-slide-in">
+                    <div class="rounded-xl overflow-hidden shadow-2xl relative w-11/12 mx-auto lg:w-full lg:mx-0">
+                        <img src="images/paharigod2.jpg" alt="Shiva Lingam" class="w-full h-64 md:h-80 object-cover">
+                        <div class="absolute bottom-0 left-0 bg-black/50 text-white p-2 text-sm w-full">Representation of Lord Shiva</div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 animate-fade-in" style="animation-delay: 0.3s">
+                    <h3 class="text-3xl font-bold text-accent mb-6 font-playfair">History & Significance</h3>
+                    <p class="text-gray-700 mb-4">Pahari Mandir is located on top of a hill known as 'Ranchi Hill'. To reach the main temple of Lord Shiva, devotees must climb approximately <strong>468 steps</strong>. From the top, one can see a breathtaking bird's eye view of the entire city of Ranchi.</p>
+                    <p class="text-gray-700 mb-4">Before independence, this hill was known as <em>'Phansi Tongri'</em> (Hanging Hill) where freedom fighters were hanged by the British. After independence, it was transformed into a place of worship.</p>
+                    <p class="text-gray-700 mb-6">Uniquely, the Pahari Mandir has the distinction of hoisting the Indian National Flag on Republic Day and Independence Day, honoring the martyrs who sacrificed their lives here.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-orange-100 p-4 rounded-lg shadow">
+                            <i class="fas fa-shoe-prints text-primary text-2xl mb-2"></i>
+                            <p class="font-semibold">468 Steps</p>
+                            <p class="text-sm">A spiritual climb</p>
+                        </div>
+                        <div class="bg-orange-100 p-4 rounded-lg shadow">
+                            <i class="fas fa-flag text-primary text-2xl mb-2"></i>
+                            <p class="font-semibold">Patriotism</p>
+                            <p class="text-sm">Tricolor hosting</p>
+                        </div>
+                        <div class="bg-orange-100 p-4 rounded-lg shadow">
+                            <i class="fas fa-om text-primary text-2xl mb-2"></i>
+                            <p class="font-semibold">Lord Shiva</p>
+                            <p class="text-sm">Pahari Baba</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="food" class="py-16 bg-orange-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-accent font-playfair mb-4">Ranchi's Delights</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">After the climb, enjoy the traditional flavors of Ranchi available at the foothills</p>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="food-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 animate-slide-up">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/duska.jpg" alt="Dhuska" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-accent">Dhuska</h3>
+                            <span class="bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">Snack</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">The most famous street food of Ranchi. Deep-fried pancakes made from a batter of rice and lentils, served with spicy chickpea curry (ghugni) or potato curry.</p>
+                        <div class="flex items-center text-orange-600">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="ml-2 text-gray-600">Ranchi Special</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="food-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 animate-slide-up" style="animation-delay: 0.2s">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/litti.jpg" alt="Litti Chokha" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-accent">Litti Chokha</h3>
+                            <span class="bg-accent text-white text-sm font-bold px-3 py-1 rounded-full">Classic</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">A staple across Jharkhand. Baked wheat balls stuffed with sattu (roasted gram flour) and herbs, served with roasted eggplant and potato mash (chokha).</p>
+                        <div class="flex items-center text-orange-600">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="ml-2 text-gray-600">Must Try</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="food-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 animate-slide-up" style="animation-delay: 0.4s">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/thekua.jpg" alt="Thekua" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-accent">Thekua</h3>
+                            <span class="bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">Sweet</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">A dry sweet snack prepared from wheat flour, jaggery, and ghee. It is crunchy, delicious, and can be stored for weeks. A popular offering during festivals.</p>
+                        <div class="flex items-center text-orange-600">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="ml-2 text-gray-600">Traditional</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vibe" class="parallax-section py-20 bg-fixed" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/paharimandir2.jpg');">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white font-playfair mb-4">The Hilltop Vibe</h2>
+                <p class="text-orange-100 max-w-3xl mx-auto">Experience serenity at 2,140 feet above sea level</p>
+                <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white border border-orange-200/30 animate-fade-in">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cool Breeze</h3>
+                    <p>As you climb higher, the city noise fades away, replaced by the cool breeze and the rustling of leaves. The top offers a serene environment perfect for meditation.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white border border-orange-200/30 animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-binoculars"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Panoramic Views</h3>
+                    <p>The summit provides a 360-degree view of Ranchi city. Sunrise and sunset are particularly magical times to visit, turning the sky into a canvas of colors.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white border border-orange-200/30 animate-fade-in" style="animation-delay: 0.4s">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-monument"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Historical Echoes</h3>
+                    <p>The site holds a deep historical significance. The blend of patriotism and spirituality creates a unique aura that you won't find in many other temples.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 max-w-4xl mx-auto text-center">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-orange-200/30 animate-slide-up">
+                    <h3 class="text-2xl font-bold text-white mb-4">Shravan Month</h3>
+                    <p class="text-orange-100 mb-4">During the holy month of Shravan, thousands of devotees flock to Pahari Mandir to offer 'Jal' (holy water) to the Shiva Lingam. The stairway becomes a vibrant stream of saffron-clad pilgrims chanting "Har Har Mahadev".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-accent font-playfair mb-4">Virtual Tour</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Watch this video to experience the climb and the view of Pahari Mandir</p>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto animate-fade-in">
+                <div class="bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
+                    <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-t-xl">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/OOvR5EEUQR0" 
+                            title="Pahari Mandir Ranchi" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black/50 pointer-events-none">
+                           
+                         </div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-r from-orange-50 to-white">
+                        <h3 class="text-2xl font-bold text-accent mb-2">Pahari Mandir - A Drone View</h3>
+                        <p class="text-gray-700 mb-4">Experience the height and the beauty of Ranchi's most iconic landmark from the sky.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-clock text-primary mr-2"></i>
+                                <span>Duration: 05:30</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-map-marker-alt text-primary mr-2"></i>
+                                <span>Ranchi, JH</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600 mb-6">Want to see more?</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://youtu.be/TGwyshJLIcs?si=ZQFTTbyHonFCD6zH" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 flex items-center">
+                            <i class="fab fa-youtube mr-2"></i> Watch Videos
+                        </a>
+                        <a href="https://en.wikipedia.org/wiki/Pahari_Mandir" target="_blank" class="bg-gray-800 hover:bg-black text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 flex items-center">
+                            <i class="fab fa-wikipedia-w mr-2"></i> History
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-accent text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fas fa-mountain text-secondary text-3xl mr-3"></i>
+                        <h2 class="text-2xl font-bold font-playfair">Pahari Mandir</h2>
+                    </div>
+                    <p class="mt-2 text-orange-100">Ranchi, Jharkhand, India</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-orange-100 hover:text-white text-2xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-orange-100 hover:text-white text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-orange-100 hover:text-white text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-orange-100 hover:text-white text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-orange-700 mt-8 pt-8 text-center text-orange-100">
+                <p>&copy; 2025 Pahari Mandir Information. Educational Project.</p>
+                <p class="mt-2">Jai Bhole Nath.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-accent transition duration-300 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements that should animate on scroll
+        document.querySelectorAll('.food-card, .animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

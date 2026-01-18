@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bokaro - The Steel Capital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Rajdhani for a squarish, technical, industrial feel */
+        h1, h2, h3, h4, .nav-logo {
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+        /* Inter for clean, modern readability */
+        body, p, a, span {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar - Industrial Blue */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f9ff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0ea5e9; /* Sky 500 */
+            border-radius: 2px;
+            border: 2px solid #f0f9ff;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .slide-in-right {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .slide-in-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .zoom-in {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.8s, opacity 0.8s;
+        }
+        
+        .zoom-in.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        /* Tech/Structure Divider */
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, #0369a1, #f97316, #0369a1);
+            border-radius: 0;
+            margin: 2rem auto;
+            width: 120px;
+            position: relative;
+        }
+        
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f97316;
+            left: 50%;
+            top: -3px;
+            transform: translateX(-50%) rotate(45deg);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(3, 105, 161, 0.15), 0 10px 10px -5px rgba(3, 105, 161, 0.1);
+        }
+        
+        .food-card {
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s;
+        }
+        
+        .food-card:hover .food-overlay {
+            background: rgba(12, 74, 110, 0.85); /* Sky 900 */
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: #f97316; /* Orange 500 */
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Grid Pattern Background */
+        .grid-pattern {
+            background-image: linear-gradient(#e0f2fe 1px, transparent 1px), linear-gradient(90deg, #e0f2fe 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg border-b border-sky-100">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-industry text-2xl text-sky-600"></i>
+                <h1 class="text-3xl font-bold nav-logo text-slate-800 tracking-tighter">BOKARO<span class="text-orange-500">STEEL</span></h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link font-bold text-sm tracking-widest text-slate-600 hover:text-sky-600 transition">Home</a>
+                <a href="#about" class="nav-link font-bold text-sm tracking-widest text-slate-600 hover:text-sky-600 transition">The Plant</a>
+                <a href="#attractions" class="nav-link font-bold text-sm tracking-widest text-slate-600 hover:text-sky-600 transition">City Park</a>
+                <a href="#food" class="nav-link font-bold text-sm tracking-widest text-slate-600 hover:text-sky-600 transition">Sector Food</a>
+                <a href="#video" class="nav-link font-bold text-sm tracking-widest text-slate-600 hover:text-sky-600 transition">Vlog</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-slate-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="md:hidden hidden bg-sky-50 px-4 py-6 border-t border-sky-200">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link font-bold py-2">Home</a>
+                <a href="#about" class="nav-link font-bold py-2">The Plant</a>
+                <a href="#attractions" class="nav-link font-bold py-2">City Park</a>
+                <a href="#food" class="nav-link font-bold py-2">Sector Food</a>
+                <a href="#video" class="nav-link font-bold py-2">Vlog</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative overflow-hidden h-screen max-h-[850px]">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 to-sky-900/40"></div>
+            <img src="images/b2.png" 
+                 alt="Bokaro Industry View" class="w-full h-full object-fit">
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-4 h-full flex items-center text-white">
+            <div class="max-w-4xl fade-in mt-[-50px]">
+                <div class="flex items-center space-x-3 mb-4">
+                    <span class="h-[4px] w-12 bg-orange-500"></span>
+                    <h2 class="text-xl md:text-2xl font-semibold text-sky-300 tracking-widest">PLANNED CITY OF JHARKHAND</h2>
+                </div>
+                <h1 class="text-5xl md:text-8xl font-bold mb-6 leading-none tracking-tight">STEEL MEETS <br><span class="text-orange-500">SERENITY</span></h1>
+                <p class="text-lg md:text-2xl mb-8 text-slate-200 border-l-4 border-sky-500 pl-6 max-w-2xl font-light">From the blast furnaces of SAIL to the peaceful waters of Garga Dam, experience India's premier industrial township.</p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#about" class="bg-sky-600 hover:bg-sky-700 text-white font-bold px-8 py-3 rounded-sm shadow-lg transition-all duration-300 transform hover:scale-105 border border-sky-500">
+                        Explore Sectors
+                    </a>
+                    <a href="#video" class="bg-transparent hover:bg-white/10 backdrop-blur-sm border-2 border-white text-white font-bold px-8 py-3 rounded-sm shadow-lg transition-all duration-300">
+                        Watch Tour <i class="fas fa-play ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0">
+             <svg viewBox="0 0 1440 80" class="fill-current text-slate-50 w-full h-16">
+                <path d="M0,32L60,37.3C120,43,240,53,360,58.7C480,64,600,64,720,53.3C840,43,960,21,1080,16C1200,11,1320,21,1380,26.7L1440,32L1440,80L1380,80C1320,80,1200,80,1080,80C960,80,840,80,720,80C600,80,480,80,360,80C240,80,120,80,60,80L0,80Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 slide-in-left">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-slate-900">THE <span class="text-sky-600">STRUCTURE</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-600 max-w-3xl mx-auto text-lg">Bokaro is one of India's first global active planned cities. Famous for the Bokaro Steel Plant (BSL), it is a city of wide avenues, sectors, and lush greenery.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="zoom-in relative group">
+                    <div class="absolute -inset-2 bg-gradient-to-br from-sky-500 to-orange-500 opacity-20 group-hover:opacity-40 transition duration-500 rounded-sm"></div>
+                    <div class="relative overflow-hidden rounded-sm shadow-2xl border-4 border-white">
+                        <img src="images/steelplant.jpg" 
+                             alt="Bokaro Steel Plant" class="w-full h-80 md:h-[500px] object-cover transition duration-500 hover:scale-110 filter contrast-125">
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <h3 class="text-3xl font-bold mb-6 text-slate-800">SAIL & The Township</h3>
+                    <div class="space-y-6 text-slate-700">
+                        <p class="leading-relaxed">
+                            The <strong>Bokaro Steel Plant (BSL)</strong> is one of the largest in Asia. It was built with Soviet collaboration, which is reflected in the city's architecture and planning.
+                        </p>
+                        <p class="leading-relaxed">
+                            The city is divided into 12 Sectors. It is also known as the **"Education Hub of Jharkhand"**, producing countless IITians and civil servants every year from its prestigious schools like DPS and Chinmaya.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                            <div class="bg-white p-5 border-l-4 border-sky-600 hover:shadow-lg transition shadow-sm">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-cogs text-sky-600 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-slate-900">Industry</h4>
+                                </div>
+                                <p class="text-sm">Home to SAIL, Vedanta Electrosteel, and BIADA industrial area.</p>
+                            </div>
+                            
+                            <div class="bg-white p-5 border-l-4 border-orange-500 hover:shadow-lg transition shadow-sm">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-graduation-cap text-orange-500 text-xl mr-3"></i>
+                                    <h4 class="font-bold text-slate-900">Education</h4>
+                                </div>
+                                <p class="text-sm">Known for its high density of top-tier schools and coaching centers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="attractions" class="py-16 md:py-24 bg-white grid-pattern">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 slide-in-left">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-slate-900">LEISURE <span class="text-orange-500">ZONES</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-600 max-w-3xl mx-auto">Despite the heavy industry, Bokaro is incredibly green. Explore its lakes and parks.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 zoom-in">
+                    <div class="bg-sky-50 p-8 shadow-xl h-full border-t-4 border-sky-700 rounded-sm relative overflow-hidden">
+                        <div class="space-y-8 relative z-10">
+                            <div class="flex items-start">
+                                <div class="bg-white p-4 rounded-sm mr-6 shrink-0 border border-sky-200">
+                                    <i class="fas fa-water text-sky-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-slate-800 mb-2">City Park</h4>
+                                    <p class="text-slate-600">The heart of the city. A massive park featuring a large artificial lake with boating facilities, a toy train, and a Japanese garden vibe. It hosts the famous Chhath Puja.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white p-4 rounded-sm mr-6 shrink-0 border border-orange-200">
+                                    <i class="fas fa-gopuram text-orange-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-slate-800 mb-2">Jagannath Temple</h4>
+                                    <p class="text-slate-600">A stunning white replica of the Puri Jagannath Temple located in Sector 4. The Rath Yatra here is a grand spectacle.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-white p-4 rounded-sm mr-6 shrink-0 border border-slate-200">
+                                    <i class="fas fa-leaf text-green-600 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-xl text-slate-800 mb-2">Garga Dam</h4>
+                                    <p class="text-slate-600">Located about 12 km from the city center, this dam on the Garga River is a lush green picnic spot and the primary water source for the township.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slide-in-right">
+                    <div class="bg-slate-800 p-8 text-white shadow-xl h-full relative overflow-hidden rounded-sm">
+                        <div class="absolute top-0 right-0 p-4 opacity-10">
+                            <i class="fas fa-city text-9xl"></i>
+                        </div>
+
+                        <h3 class="text-2xl font-bold mb-8 relative z-10 text-sky-400">CITY STATS</h3>
+                        
+                        <div class="space-y-6 relative z-10 font-medium font-sans">
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Airport</span>
+                                <span class="font-semibold">Bokaro Airport (Domestic)</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Railway Stn</span>
+                                <span class="font-semibold">Bokaro Steel City (BKSC)</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Famous Mall</span>
+                                <span class="font-semibold">Bokaro Mall</span>
+                            </div>
+                            <div class="flex items-center justify-between border-b border-slate-600 pb-2">
+                                <span class="text-slate-400">Nearby Hill</span>
+                                <span class="font-semibold">Lugugu (Lugu Buru)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 bg-sky-900/50 p-4 border border-sky-600/50 rounded-sm">
+                            <p class="text-sky-200 text-sm italic"><i class="fas fa-info-circle mr-2"></i> Bokaro has a cosmopolitan culture, often called "Mini India" due to employees from all states working in BSL.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="food" class="py-16 md:py-24 bg-slate-900 text-white relative">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-mosaic.png')] opacity-30"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">SECTOR <span class="text-orange-500">FLAVORS</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-400 max-w-3xl mx-auto">From the famous Litti Chokha to cosmopolitan treats, Bokaro's food scene is vibrant.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-hover fade-in">
+                    <div class="bg-slate-800 overflow-hidden rounded-sm shadow-lg h-full border border-slate-700">
+                        <div class="h-56 food-card" style="background-image: url('images/litti.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/95 to-transparent p-4 flex items-end">
+                                <h3 class="text-xl font-bold text-white">Litti Chokha</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-slate-300">The soul food of the region. The stalls near Bokaro Mall and City Centre serve it hot with spicy chutney.</p>
+                            <div class="mt-4 flex text-orange-500 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-hover fade-in">
+                    <div class="bg-slate-800 overflow-hidden rounded-sm shadow-lg h-full border border-slate-700">
+                        <div class="h-56 food-card" style="background-image: url('images/dosa.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/95 to-transparent p-4 flex items-end">
+                                <h3 class="text-xl font-bold text-white">South Indian Fare</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-slate-300">Thanks to the diverse PSU population, Ram Mandir market and Sector 4 offer authentic Dosa and Idli.</p>
+                            <div class="mt-4 flex text-orange-500 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover fade-in">
+                    <div class="bg-slate-800 overflow-hidden rounded-sm shadow-lg h-full border border-slate-700">
+                        <div class="h-56 food-card" style="background-image: url('images/Noodles.jpg')">
+                            <div class="food-overlay h-full bg-gradient-to-t from-black/95 to-transparent p-4 flex items-end">
+                                <h3 class="text-xl font-bold text-white">Chowmein & Rolls</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-sm text-slate-300">The evening street food scene in Sector 4 is dominated by spicy Indo-Chinese Chowmein and Egg Rolls.</p>
+                            <div class="mt-4 flex text-orange-500 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="video" class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 slide-in-left">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 text-slate-900">AERIAL <span class="text-sky-600">VIEW</span></h2>
+                <div class="section-divider"></div>
+                <p class="text-slate-600 max-w-3xl mx-auto">Witness the planned symmetry and industrial might of Bokaro.</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto fade-in">
+                <div class="bg-white overflow-hidden shadow-2xl p-1 md:p-2 border border-slate-200 rounded-sm">
+                    <div class="relative pb-[56.25%] h-0 overflow-hidden bg-slate-900 rounded-sm">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/Km38_my4HYM" 
+                            title="Bokaro City Tour" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <div class="p-6 bg-slate-900 text-white rounded-b-sm">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-sky-400">Bokaro - The Cleanest City</h3>
+                                <p class="text-slate-300 text-sm mt-1">A cinematic journey through the sectors and the steel plant.</p>
+                            </div>
+                            <a href="https://youtu.be/Km38_my4HYM?si=NhiftKCeGOhHlp_N" target="_blank" class="px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white text-sm font-bold transition flex items-center justify-center rounded-sm shadow-lg tracking-wide uppercase">
+                                <i class="fab fa-youtube mr-2"></i> Watch More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t-4 border-sky-600">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <i class="fas fa-industry text-3xl text-sky-500"></i>
+                        <h2 class="text-2xl font-bold text-white tracking-tighter">BOKARO<span class="text-sky-500">.</span></h2>
+                    </div>
+                    <p class="text-slate-400 mb-6 leading-relaxed text-sm">One of the most well-planned and greenest industrial cities in India. The pride of the East.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-slate-800 hover:bg-sky-600 w-10 h-10 flex items-center justify-center transition-colors text-white rounded-sm">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-slate-800 hover:bg-sky-600 w-10 h-10 flex items-center justify-center transition-colors text-white rounded-sm">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-slate-800 hover:bg-sky-600 w-10 h-10 flex items-center justify-center transition-colors text-white rounded-sm">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-700 pb-2 inline-block font-sans">Explore</h3>
+                    <ul class="space-y-3 text-sm font-sans">
+                        <li><a href="#home" class="hover:text-sky-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Home</a></li>
+                        <li><a href="#about" class="hover:text-sky-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Steel Plant</a></li>
+                        <li><a href="#attractions" class="hover:text-sky-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> City Park</a></li>
+                        <li><a href="#food" class="hover:text-sky-400 transition-colors flex items-center"><i class="fas fa-chevron-right text-xs mr-2"></i> Local Food</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold text-white mb-6 border-b border-slate-700 pb-2 inline-block font-sans">Contact</h3>
+                    <ul class="space-y-4 text-sm font-sans">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-sky-500 mr-3 mt-1"></i>
+                            <span>City Centre, Sector 4,<br>Bokaro Steel City, Jharkhand - 827004</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-train text-sky-500 mr-3"></i>
+                            <span>Station Code: BKSC</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800 mt-12 pt-8 text-center text-xs text-slate-500 font-sans tracking-wider">
+                <p>&copy; 2024 Bokaro City Portal. All rights reserved. | Made with <i class="fas fa-heart text-red-500 mx-1"></i> in Jharkhand</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-sky-600 hover:bg-sky-700 text-white w-12 h-12 shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50 rounded-sm border-2 border-white">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

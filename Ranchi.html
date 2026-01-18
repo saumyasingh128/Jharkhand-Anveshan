@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranchi - The Heart of Jharkhand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: linear-gradient(180deg, #f0fdf4, #f5f3ff);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #10b981, #8b5cf6);
+            border-radius: 6px;
+            border: 2px solid #f0fdf4;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            transform: translateX(-80px);
+            opacity: 0;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s;
+        }
+        
+        .slide-in-left.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .slide-in-right {
+            transform: translateX(80px);
+            opacity: 0;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s;
+        }
+        
+        .slide-in-right.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .zoom-in {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 1s;
+        }
+        
+        .zoom-in.visible {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        /* Modern Elements */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-border {
+            position: relative;
+            border-radius: 1rem;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #10b981, #8b5cf6, #f59e0b);
+            border-radius: 1rem;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+        
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #4f46e5, #f59e0b);
+            border-radius: 2px;
+            margin: 2rem auto;
+            width: 150px;
+            position: relative;
+        }
+        
+        .section-divider::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981, #4f46e5);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .food-card {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .food-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+            opacity: 0.8;
+            transition: opacity 0.4s;
+        }
+        
+        .food-card:hover::before {
+            opacity: 0.4;
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #10b981, #8b5cf6);
+            border-radius: 2px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(-10px) rotate(-1deg); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .shimmer-text {
+            background: linear-gradient(90deg, #10b981 25%, #8b5cf6 50%, #10b981 75%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: particle-float 15s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Parallax Effect */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Glowing Elements */
+        .glow {
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+        }
+        
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0; }
+        }
+        
+        .stagger-animation > * {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: staggerFadeIn 0.6s forwards;
+        }
+        
+        @keyframes staggerFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 3D Card Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+        
+        /* Popup Modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .popup-content {
+            background: linear-gradient(135deg, #0f766e, #1e40af);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .popup-overlay.active .popup-content {
+            transform: scale(1);
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .popup-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 36px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .popup-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .popup-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .popup-button {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .popup-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+        }
+        
+        .popup-button:active {
+            transform: translateY(0);
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            .section-divider {
+                width: 100px;
+            }
+            
+            .section-divider::after {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .popup-content {
+                padding: 30px 20px;
+            }
+            
+            .popup-title {
+                font-size: 24px;
+            }
+            
+            .popup-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-50 via-white to-emerald-50 text-gray-800 overflow-x-hidden">
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="explorePopup">
+        <div class="popup-content">
+            <button class="popup-close" id="closePopup">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="popup-icon">
+                <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <h2 class="popup-title">Ready for Adventure?</h2>
+            <p class="popup-text" id="popupMessage">
+                To experience this breathtaking beauty in person, you need to visit Ranchi! Feel the mist of waterfalls, walk through lush gardens, explore ancient temples, and immerse yourself in vibrant city life.
+            </p>
+            <button class="popup-button" id="startJourney">
+                <i class="fas fa-plane-departure"></i>
+                Start Your Journey to Ranchi
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Navigation -->
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-4xl">
+        <div class="glass-card rounded-2xl shadow-2xl">
+            <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-purple-600 rounded-full flex items-center justify-center glow">
+                            <i class="fas fa-mountain text-white text-xl"></i>
+                        </div>
+                        <div class="pulse-ring"></div>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-purple-600 bg-clip-text text-transparent">Ranchi<span class="text-emerald-500 animate-pulse">.</span></h1>
+                        <p class="text-xs text-gray-500">Capital of Jharkhand</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link font-medium hover:text-emerald-600 transition text-gray-700">Home</a>
+                    <a href="#about" class="nav-link font-medium hover:text-purple-600 transition text-gray-700">About</a>
+                    <a href="#food" class="nav-link font-medium hover:text-orange-600 transition text-gray-700">Cuisine</a>
+                    <a href="#landmarks" class="nav-link font-medium hover:text-blue-600 transition text-gray-700">Landmarks</a>
+                    <a href="#video" class="nav-link font-medium hover:text-red-600 transition text-gray-700">Video</a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center gap-8 text-2xl hidden">
+        <button id="close-menu" class="absolute top-8 right-8 text-white p-3 hover:text-emerald-400 transition-colors">
+            <i class="fas fa-times text-2xl"></i>
+        </button>
+        <a href="#home" class="text-emerald-400 hover:text-emerald-300 transition-colors transform hover:scale-110">Home</a>
+        <a href="#about" class="text-white hover:text-emerald-300 transition-colors transform hover:scale-110">About</a>
+        <a href="#food" class="text-white hover:text-emerald-300 transition-colors transform hover:scale-110">Cuisine</a>
+        <a href="#landmarks" class="text-white hover:text-emerald-300 transition-colors transform hover:scale-110">Landmarks</a>
+        <a href="#video" class="text-white hover:text-emerald-300 transition-colors transform hover:scale-110">Video</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/90 via-purple-900/70 to-gray-900/90"></div>
+            <img src="images/ranchi.png" 
+                 alt="Ranchi Waterfalls" 
+                 class="w-full h-full object-cover parallax-bg">
+            
+            <!-- Animated Shapes -->
+            <div class="absolute top-1/4 left-10 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 container mx-auto px-4 text-center max-w-6xl">
+            <div class="mb-8 inline-block bg-gradient-to-r from-emerald-500/20 to-purple-500/20 rounded-full px-6 py-2 backdrop-blur-sm border border-white/20">
+                <span class="text-emerald-300 font-semibold tracking-widest text-sm uppercase">Welcome to</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 font-playfair">
+                <span class="gradient-text floating">Ranchi</span>
+            </h1>
+            
+            <div class="relative inline-block mb-8">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4 shimmer-text">
+                    City of Waterfalls
+                </h2>
+                <div class="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-purple-500 to-orange-500 rounded-full"></div>
+            </div>
+            
+            <p class="text-xl md:text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed glass-card rounded-2xl p-8 backdrop-blur-sm">
+                <i class="fas fa-quote-left text-emerald-400 mr-2"></i>
+                Where thundering waterfalls meet serene hills, tribal heritage blends with modern life, and every corner tells a story of nature's bounty.
+                <i class="fas fa-quote-right text-emerald-400 ml-2"></i>
+            </p>
+            
+            <div class="flex flex-wrap gap-6 justify-center stagger-animation">
+                <a href="#landmarks" class="group relative overflow-hidden rounded-full px-10 py-4 font-semibold text-lg bg-gradient-to-r from-emerald-600 to-emerald-800 text-white shadow-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-emerald-500/50">
+                    <span class="relative z-10">Start Exploring</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-emerald-700 to-emerald-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-0 group-hover:opacity-20 blur group-hover:animate-pulse"></div>
+                </a>
+                
+                <a href="#video" class="group relative overflow-hidden rounded-full px-10 py-4 font-semibold text-lg bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white shadow-2xl transform transition-all duration-300 hover:scale-105 hover:bg-white/20">
+                    <span class="relative z-10 flex items-center gap-3">
+                        <i class="fas fa-play"></i>
+                        Visual Tour
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-emerald-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+                <div class="animate-bounce">
+                    <i class="fas fa-chevron-down text-2xl text-white/70"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-emerald-50/50 to-white z-0"></div>
+        <div class="absolute top-0 left-0 w-96 h-96 bg-purple-100 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-emerald-100 rounded-full blur-3xl opacity-50"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-20 slide-in-left">
+                <div class="inline-block mb-4">
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-500 to-purple-500 rounded-full mx-auto"></div>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 font-playfair">
+                    The <span class="gradient-text">Heartbeat</span> of Jharkhand
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl">Once the summer capital of Bihar, now the vibrant capital of Jharkhand - where tradition meets modernity</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Animated Image Card -->
+                <div class="relative group card-3d">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="images/ranchi.png" 
+                             alt="Ranchi City View" 
+                             class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        
+                        <!-- Floating Badges -->
+                        <div class="absolute top-6 left-6 bg-gradient-to-r from-emerald-600 to-emerald-800 text-white px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Chota Nagpur Plateau
+                        </div>
+                        <div class="absolute bottom-6 right-6 bg-gradient-to-r from-purple-600 to-purple-800 text-white px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm">
+                            <i class="fas fa-star mr-2"></i> MS Dhoni's Hometown
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-emerald-500 to-purple-500 rounded-2xl rotate-12 opacity-20 group-hover:rotate-0 transition-transform duration-500"></div>
+                    <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl -rotate-12 opacity-20 group-hover:rotate-0 transition-transform duration-500"></div>
+                </div>
+                
+                <!-- Features Grid -->
+                <div class="slide-in-right">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-8 text-gray-800">
+                        A City of <span class="gradient-text">Contrasts</span>
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Feature 1 -->
+                        <div class="bg-gradient-to-br from-white to-emerald-50 p-6 rounded-2xl shadow-lg border border-emerald-100 card-hover transform hover:-translate-y-2 transition-all duration-300">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 p-3 rounded-xl mr-4">
+                                    <i class="fas fa-water text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-2">Nature's Paradise</h4>
+                                    <p class="text-gray-600 text-sm">Home to Hundru, Jonha, and Dassam waterfalls amidst dense forests</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 2 -->
+                        <div class="bg-gradient-to-br from-white to-purple-50 p-6 rounded-2xl shadow-lg border border-purple-100 card-hover transform hover:-translate-y-2 transition-all duration-300">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl mr-4">
+                                    <i class="fas fa-cricket-ball text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-2">Sports Capital</h4>
+                                    <p class="text-gray-600 text-sm">World-class stadiums including JSCA International Cricket Stadium</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 3 -->
+                        <div class="bg-gradient-to-br from-white to-orange-50 p-6 rounded-2xl shadow-lg border border-orange-100 card-hover transform hover:-translate-y-2 transition-all duration-300">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-3 rounded-xl mr-4">
+                                    <i class="fas fa-om text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-2">Spiritual Haven</h4>
+                                    <p class="text-gray-600 text-sm">Historic Jagannath Temple and hilltop Pahari Mandir</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 4 -->
+                        <div class="bg-gradient-to-br from-white to-blue-50 p-6 rounded-2xl shadow-lg border border-blue-100 card-hover transform hover:-translate-y-2 transition-all duration-300">
+                            <div class="flex items-start mb-4">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl mr-4">
+                                    <i class="fas fa-industry text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-lg mb-2">Industrial Hub</h4>
+                                    <p class="text-gray-600 text-sm">Major PSUs including HEC, SAIL, and MECON headquarters</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="mt-8 grid grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">651m</div>
+                            <div class="text-sm text-gray-600">Altitude</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">24°C</div>
+                            <div class="text-sm text-gray-600">Avg. Temp</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold gradient-text">2000</div>
+                            <div class="text-sm text-gray-600">Established</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cuisine Section -->
+    <section id="food" class="py-20 md:py-32 bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-orange-200 to-red-200 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-br from-yellow-200 to-amber-200 rounded-full blur-3xl opacity-50"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-20 slide-in-left">
+                <div class="inline-block mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto shadow-xl">
+                        <i class="fas fa-utensils text-white text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 font-playfair">
+                    Taste of <span class="gradient-text">Tribal Heritage</span>
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl">Authentic flavors that tell the story of Jharkhand's rich culinary traditions</p>
+            </div>
+            
+            <!-- Food Cards Carousel -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Card 1 -->
+                <div class="group relative gradient-border fade-in">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl h-full border-2 border-transparent group-hover:border-orange-500/30 transition-all duration-300">
+                        <div class="h-64 food-card relative overflow-hidden" style="background-image: url('images/litti.jpg')">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">Litti Chokha</h3>
+                                <div class="flex items-center text-amber-300">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="ml-2 text-white text-sm">Must Try</span>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                Signature Dish
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Roasted wheat balls stuffed with Sattu, served with mashed brinjal/potato (Chokha) and dollops of ghee</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-orange-600 font-bold">₹ 80-150</span>
+                                <button class="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-2">
+                                    Explore More <i class="fas fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="group relative gradient-border fade-in">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl h-full border-2 border-transparent group-hover:border-orange-500/30 transition-all duration-300">
+                        <div class="h-64 food-card relative overflow-hidden" style="background-image: url('images/snacks.jpg')">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">Dhuska</h3>
+                                <div class="flex items-center text-amber-300">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Deep-fried delight made from powdered rice and chana dal, served with spicy potato curry</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-orange-600 font-bold">₹ 60-120</span>
+                                <button class="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-2">
+                                    Explore More <i class="fas fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="group relative gradient-border fade-in">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl h-full border-2 border-transparent group-hover:border-orange-500/30 transition-all duration-300">
+                        <div class="h-64 food-card relative overflow-hidden" style="background-image: url('images/malpua.jpg')">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">Malpua</h3>
+                                <div class="flex items-center text-amber-300">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Sweet pancake dessert dipped in sugar syrup, a festive favorite during Holi celebrations</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-orange-600 font-bold">₹ 40-80</span>
+                                <button class="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-2">
+                                    Explore More <i class="fas fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="group relative gradient-border fade-in">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-xl h-full border-2 border-transparent group-hover:border-orange-500/30 transition-all duration-300">
+                        <div class="h-64 food-card relative overflow-hidden" style="background-image: url('images/Rugra.jpg')">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">Rugra</h3>
+                                <div class="flex items-center text-amber-300">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-emerald-700 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                Tribal Special
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Indigenous mushroom found during monsoons, cooked in traditional tribal style with local spices</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-orange-600 font-bold">₹ 150-250</span>
+                                <button class="text-emerald-600 hover:text-emerald-700 font-semibold text-sm flex items-center gap-2">
+                                    Explore More <i class="fas fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Explore More CTA -->
+            <div class="text-center">
+                <a href="#landmarks" class="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-emerald-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <i class="fas fa-compass"></i>
+                    Explore More Places
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landmarks Section -->
+    <section id="landmarks" class="py-20 md:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-20 slide-in-left">
+                <div class="inline-block mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto shadow-xl">
+                        <i class="fas fa-landmark text-white text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 font-playfair text-white">
+                    Iconic <span class="gradient-text">Landmarks</span>
+                </h2>
+                <p class="text-gray-400 max-w-3xl mx-auto text-lg md:text-xl">From spiritual heights to natural wonders, explore the must-visit places</p>
+            </div>
+            
+            <!-- Landmarks Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Hundru Falls -->
+                <div class="group relative zoom-in">
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl h-full border border-gray-700 card-hover">
+                        <div class="h-64 relative overflow-hidden">
+                            <img src="images/hundru1.jpg" 
+                                 alt="Hundru Falls" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <div class="bg-gradient-to-r from-blue-500/90 to-cyan-500/90 backdrop-blur-sm rounded-full px-4 py-2 inline-block">
+                                    <h3 class="text-xl font-bold text-white">Hundru Falls</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <p class="text-gray-300 mb-6">One of the highest waterfalls in Jharkhand at 320ft, located on the Subarnarekha River. A spectacular sight during monsoon.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-cyan-400">
+                                    <i class="fas fa-water mr-2"></i>
+                                    <span>Best Time: Monsoon</span>
+                                </div>
+                                <button class="video-thumbnail text-white hover:text-cyan-400 font-semibold text-sm flex items-center gap-2" data-type="waterfalls">
+                                    Explore More <i class="fas fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jagannath Temple -->
+                <div class="group relative zoom-in">
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl h-full border border-gray-700 card-hover">
+                        <div class="h-64 relative overflow-hidden">
+                            <img src="images/jagarnath2.jpeg" 
+                                 alt="Jagannath Temple" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <div class="bg-gradient-to-r from-orange-500/90 to-amber-500/90 backdrop-blur-sm rounded-full px-4 py-2 inline-block">
+                                    <h3 class="text-xl font-bold text-white">Jagannath Temple</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <p class="text-gray-300 mb-6">17th-century architectural marvel, replica of Puri Jagannath Temple. Famous for its massive Rath Yatra attracting lakhs of devotees.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-amber-400">
+                                    <i class="fas fa-praying-hands mr-2"></i>
+                                    <span>Spiritual Site</span>
+                                </div>
+                                <button class="video-thumbnail text-white hover:text-amber-400 font-semibold text-sm flex items-center gap-2" data-type="temples">
+                                    Explore More <i class="fas fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rock Garden -->
+                <div class="group relative zoom-in">
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl overflow-hidden shadow-2xl h-full border border-gray-700 card-hover">
+                        <div class="h-64 relative overflow-hidden">
+                            <img src="images/rockgarden.jpg" 
+                                 alt="Rock Garden" 
+                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6">
+                                <div class="bg-gradient-to-r from-emerald-500/90 to-green-500/90 backdrop-blur-sm rounded-full px-4 py-2 inline-block">
+                                    <h3 class="text-xl font-bold text-white">Rock Garden</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <p class="text-gray-300 mb-6">Man-made wonder featuring sculptures, waterfalls, and lush gardens carved out of natural rocks. Perfect family picnic spot.</p>
+                            <div class="flex items-center justify-between">
+                                <div class="text-emerald-400">
+                                    <i class="fas fa-tree mr-2"></i>
+                                    <span>Family Friendly</span>
+                                </div>
+                                <button class="video-thumbnail text-white hover:text-emerald-400 font-semibold text-sm flex items-center gap-2" data-type="gardens">
+                                    Explore More <i class="fas fa-arrow-right text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- City Facts Card -->
+            <div class="max-w-4xl mx-auto bg-gradient-to-r from-gray-800 to-gray-900 rounded-3xl p-8 shadow-2xl border border-gray-700">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div class="p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-600">
+                        <div class="text-3xl font-bold gradient-text mb-2">24+</div>
+                        <div class="text-gray-300 text-sm">Waterfalls Nearby</div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-600">
+                        <div class="text-3xl font-bold gradient-text mb-2">1500m</div>
+                        <div class="text-gray-300 text-sm">Tagore Hill Height</div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-600">
+                        <div class="text-3xl font-bold gradient-text mb-2">17°C</div>
+                        <div class="text-gray-300 text-sm">Winter Avg Temp</div>
+                    </div>
+                    <div class="p-6 bg-gradient-to-br from-gray-700/50 to-gray-800/50 rounded-2xl backdrop-blur-sm border border-gray-600">
+                        <div class="text-3xl font-bold gradient-text mb-2">40+</div>
+                        <div class="text-gray-300 text-sm">Educational Institutes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 md:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-96 bg-gradient-to-r from-red-200/30 to-orange-200/30 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-20 slide-in-left">
+                <div class="inline-block mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto shadow-xl">
+                        <i class="fab fa-youtube text-white text-xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 font-playfair text-gray-800">
+                    Cinematic <span class="gradient-text">Experience</span>
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg md:text-xl">Watch Ranchi come alive through breathtaking visuals and immersive stories</p>
+            </div>
+            
+            <!-- Video Player -->
+            <div class="max-w-6xl mx-auto fade-in">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 rounded-3xl blur opacity-30 animate-pulse"></div>
+                    <div class="relative bg-gray-900 rounded-3xl overflow-hidden p-2">
+                        <div class="relative pb-[56.25%] h-0 rounded-xl overflow-hidden bg-black">
+                            <iframe 
+                                class="absolute top-0 left-0 w-full h-full" 
+                                src="https://www.youtube.com/embed/wsSmAQjYQos" 
+                                title="Ranchi City Cinematic" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <!-- Video Info -->
+                        <div class="p-8 bg-gradient-to-r from-gray-800 to-gray-900">
+                            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white mb-2">Ranchi: The Untold Story</h3>
+                                    <p class="text-gray-400">A visual journey through waterfalls, hills, and city life</p>
+                                    <div class="flex items-center gap-4 mt-4">
+                                        <div class="flex items-center text-amber-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span class="ml-2 text-gray-300 text-sm">4.8/5</span>
+                                        </div>
+                                        <div class="text-gray-400 text-sm">
+                                            <i class="far fa-clock mr-1"></i> 15:42 mins
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://youtu.be/wsSmAQjYQos?si=Ygya-JB3YTdD7ix1" 
+                                   target="_blank" 
+                                   class="group bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-8 py-3 rounded-full font-semibold flex items-center gap-3 transition-all duration-300 transform hover:scale-105">
+                                    <i class="fab fa-youtube"></i>
+                                    Explore More Videos
+                                    <i class="fas fa-external-link-alt group-hover:translate-x-2 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Thumbnails -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                <div class="video-thumbnail relative rounded-xl overflow-hidden cursor-pointer group" data-type="waterfalls">
+                    <img src="images/lodh.jpeg" 
+                         alt="Waterfalls" 
+                         class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
+                        <span class="text-white text-sm font-semibold">Waterfalls</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-play text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <div class="video-thumbnail relative rounded-xl overflow-hidden cursor-pointer group" data-type="temples">
+                    <img src="images/jagarnath2.jpeg" 
+                         alt="Temples" 
+                         class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
+                        <span class="text-white text-sm font-semibold">Temples</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-play text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <div class="video-thumbnail relative rounded-xl overflow-hidden cursor-pointer group" data-type="gardens">
+                    <img src="images/rockgarden.jpg" 
+                         alt="Gardens" 
+                         class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
+                        <span class="text-white text-sm font-semibold">Gardens</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-play text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <div class="video-thumbnail relative rounded-xl overflow-hidden cursor-pointer group" data-type="citylife">
+                    <img src="images/steel.jpg" 
+                         alt="City Life" 
+                         class="w-full h-32 object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
+                        <span class="text-white text-sm font-semibold">City Life</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-play text-white text-2xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-gray-900 to-black text-white py-16 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
+                <!-- Logo & Description -->
+                <div class="lg:col-span-1">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-purple-600 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-mountain text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Ranchi<span class="text-emerald-500">.</span></h2>
+                            <p class="text-gray-400 text-sm">Heart of Jharkhand</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Where nature's beauty meets urban life. The capital city of Jharkhand welcomes you with open arms, thundering waterfalls, and warm smiles.
+                    </p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-sky-500 to-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-xl font-bold mb-8 pb-3 border-b border-gray-700 inline-block">Explore More</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <ul class="space-y-3">
+                            <li><a href="#home" class="text-gray-400 hover:text-emerald-400 transition-colors flex items-center group">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Home
+                            </a></li>
+                            <li><a href="#about" class="text-gray-400 hover:text-emerald-400 transition-colors flex items-center group">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                About Ranchi
+                            </a></li>
+                            <li><a href="#food" class="text-gray-400 hover:text-emerald-400 transition-colors flex items-center group">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Local Cuisine
+                            </a></li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li><a href="#landmarks" class="text-gray-400 hover:text-emerald-400 transition-colors flex items-center group">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Tourist Spots
+                            </a></li>
+                            <li><a href="#video" class="text-gray-400 hover:text-emerald-400 transition-colors flex items-center group">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Videos
+                            </a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors flex items-center group">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                Travel Guide
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-xl font-bold mb-8 pb-3 border-b border-gray-700 inline-block">Contact Info</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="w-10 h-10 bg-gradient-to-br from-emerald-500/20 to-emerald-500/10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <span class="text-gray-300">Tourism Department</span>
+                                <p class="text-gray-400 text-sm">Main Road, Ranchi<br>Jharkhand - 834001</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 bg-gradient-to-br from-purple-500/20 to-purple-500/10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone text-purple-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">24/7 Helpline</p>
+                                <span class="text-gray-300 font-semibold">+91 651 222 3333</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-500/20 to-blue-500/10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Email us at</p>
+                                <span class="text-gray-300">visit@ranchitourism.gov.in</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright & Newsletter -->
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="text-gray-500 text-sm">
+                        <p>&copy; 2024 Ranchi Tourism. All rights reserved. | Made with <i class="fas fa-heart text-red-500 mx-1"></i> for Jharkhand</p>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <div class="text-gray-400 text-sm">
+                            <i class="fas fa-shield-alt text-emerald-400 mr-2"></i>
+                            Safe & Sustainable Tourism
+                        </div>
+                        <a href="#" class="text-emerald-400 hover:text-emerald-300 text-sm font-semibold">
+                            Privacy Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-gradient-to-br from-emerald-500 to-emerald-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50 hover:shadow-emerald-500/50 hover:scale-110">
+        <i class="fas fa-arrow-up text-lg"></i>
+    </button>
+
+    <!-- Floating Elements -->
+    <div class="fixed top-1/4 left-4 w-8 h-8 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full animate-pulse opacity-20"></div>
+    <div class="fixed top-1/3 right-8 w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full animate-pulse opacity-20 delay-300"></div>
+    <div class="fixed bottom-1/4 left-1/4 w-6 h-6 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full animate-pulse opacity-20 delay-700"></div>
+
+    <script>
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 4 + 1;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 15 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.animationDuration = `${animationDuration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Random gradient color
+                const colors = [
+                    'rgba(16, 185, 129, 0.5)',
+                    'rgba(139, 92, 246, 0.5)',
+                    'rgba(245, 158, 11, 0.5)',
+                    'rgba(239, 68, 68, 0.5)'
+                ];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.background = randomColor;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Popup Modal Functionality
+        const explorePopup = document.getElementById('explorePopup');
+        const closePopup = document.getElementById('closePopup');
+        const startJourneyBtn = document.getElementById('startJourney');
+        const popupMessage = document.getElementById('popupMessage');
+
+        // Messages for different categories
+        const popupMessages = {
+            waterfalls: "Feel the mist of Hundru Falls on your face, hear the thunderous roar of Jonha Falls, and witness the breathtaking beauty of Dassam Falls. To experience these natural wonders in person, you need to visit Ranchi!",
+            temples: "Experience spiritual bliss at the historic Jagannath Temple, seek blessings at Pahari Mandir, and explore ancient shrines. To walk through these sacred spaces in person, you need to visit Ranchi!",
+            gardens: "Stroll through the artistic Rock Garden, relax in the lush greenery of Birsa Munda Park, and admire nature's beauty. To experience these serene landscapes in person, you need to visit Ranchi!",
+            citylife: "Experience vibrant city life, modern infrastructure, delicious local cuisine, and warm hospitality. To immerse yourself in Ranchi's urban charm in person, you need to visit Ranchi!"
+        };
+
+        // Function to show popup
+        function showPopup(type) {
+            const message = popupMessages[type] || "To experience the breathtaking beauty of Ranchi in person, you need to visit! Feel the mist of waterfalls, walk through lush gardens, explore ancient temples, and immerse yourself in vibrant city life.";
+            popupMessage.textContent = message;
+            explorePopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close popup
+        function closePopupModal() {
+            explorePopup.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add click event to video thumbnails and explore buttons
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function(e) {
+                e.preventDefault();
+                const type = this.getAttribute('data-type');
+                showPopup(type);
+            });
+        });
+
+        // Close popup events
+        closePopup.addEventListener('click', closePopupModal);
+        explorePopup.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePopupModal();
+            }
+        });
+
+        // Start journey button
+        startJourneyBtn.addEventListener('click', function() {
+            closePopupModal();
+            // Scroll to landmarks section
+            document.getElementById('landmarks').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Mobile menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => mobileMenu.style.opacity = '1', 10);
+        });
+        
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.style.opacity = '0';
+            setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.style.opacity = '0';
+                        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Stagger animations
+        const staggerElements = document.querySelectorAll('.stagger-animation > *');
+        staggerElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            createParticles();
+            
+            // Observe all elements with animation classes
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Trigger animations for elements already in view
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .zoom-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const isInView = rect.top <= window.innerHeight && rect.bottom >= 0;
+                if (isInView) {
+                    el.classList.add('visible');
+                }
+            });
+            
+            // Add floating animation delays
+            const floatingElements = document.querySelectorAll('.floating');
+            floatingElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.5}s`;
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Add hover effect to cards
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        });
+
+        // Keyboard support for popup
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && explorePopup.classList.contains('active')) {
+                closePopupModal();
+            }
+        });
+    </script>
+</body>
+</html>

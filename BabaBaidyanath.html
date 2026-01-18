@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baba Baidyanath Temple | Deoghar, Jharkhand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#b45309',
+                        secondary: '#fbbf24',
+                        accent: '#78350f'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'slide-in': 'slideIn 0.7s ease-out',
+                        'pulse-slow': 'pulse 3s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideIn: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .section-divider {
+            height: 100px;
+            background: linear-gradient(to right, #fbbf24, #b45309, #78350f);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+        }
+        .temple-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/dim.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .food-card:hover {
+            transform: translateY(-10px);
+            transition: transform 0.3s ease;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #fbbf24;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="font-inter bg-amber-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-om text-primary text-2xl mr-2"></i>
+                <h1 class="text-2xl font-bold text-accent font-playfair">Baba Baidyanath</h1>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-700 font-medium hover:text-primary">Home</a>
+                <a href="#about" class="nav-link text-gray-700 font-medium hover:text-primary">Temple</a>
+                <a href="#food" class="nav-link text-gray-700 font-medium hover:text-primary">Food</a>
+                <a href="#vibe" class="nav-link text-gray-700 font-medium hover:text-primary">Vibe</a>
+                <a href="#video" class="nav-link text-gray-700 font-medium hover:text-primary">Video</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-4 px-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 font-medium hover:text-primary py-2">Home</a>
+                <a href="#about" class="text-gray-700 font-medium hover:text-primary py-2">Temple</a>
+                <a href="#food" class="text-gray-700 font-medium hover:text-primary py-2">Food</a>
+                <a href="#vibe" class="text-gray-700 font-medium hover:text-primary py-2">Vibe</a>
+                <a href="#video" class="text-gray-700 font-medium hover:text-primary py-2">Video</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="temple-bg text-white pt-20 pb-32">
+        <div class="container mx-auto px-4 pt-16">
+            <div class="max-w-3xl mx-auto text-center animate-fade-in">
+                <h1 class="text-5xl md:text-6xl font-bold font-playfair mb-6 animate-slide-up">Baba Baidyanath Temple</h1>
+                <p class="text-xl mb-8 text-amber-100 animate-slide-up" style="animation-delay: 0.2s">One of the twelve Jyotirlingas in India</p>
+                <p class="text-lg mb-10 animate-slide-up" style="animation-delay: 0.4s">Located in Deoghar, Jharkhand - A sacred pilgrimage site for devotees of Lord Shiva</p>
+                <a href="#about" class="inline-block bg-primary hover:bg-accent text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 animate-slide-up" style="animation-delay: 0.6s">
+                    Explore the Temple <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temple Description Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-accent font-playfair mb-4">The Sacred Jyotirlinga</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10 animate-slide-in">
+                    <div class="rounded-xl overflow-hidden shadow-2xl">
+                        <img src="images/dmandir.jpg" alt="Baba Baidyanath Temple" class="w-full h-80 object-cover">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 animate-fade-in" style="animation-delay: 0.3s">
+                    <h3 class="text-3xl font-bold text-accent mb-6 font-playfair">Historical & Spiritual Significance</h3>
+                    <p class="text-gray-700 mb-4">Baba Baidyanath Temple, also known as Baidyanath Dham, is one of the twelve Jyotirlingas, the most sacred abodes of Lord Shiva. Located in Deoghar, Jharkhand, this temple complex comprises the main temple of Baba Baidyanath and 21 other temples.</p>
+                    <p class="text-gray-700 mb-4">According to Hindu mythology, Ravana offered his ten heads to Shiva at this place. Shiva descended as a physician (Vaidya) to cure Ravana, hence the name Baidyanath.</p>
+                    <p class="text-gray-700 mb-6">The temple attracts millions of devotees every year, especially during the month of Shravan (July-August) when Kanwariyas (devotees of Shiva) carry holy water from the Ganges at Sultanganj to offer at the temple.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-amber-100 p-4 rounded-lg shadow">
+                            <i class="fas fa-history text-primary text-2xl mb-2"></i>
+                            <p class="font-semibold">Ancient Temple</p>
+                            <p class="text-sm">Dating back centuries</p>
+                        </div>
+                        <div class="bg-amber-100 p-4 rounded-lg shadow">
+                            <i class="fas fa-water text-primary text-2xl mb-2"></i>
+                            <p class="font-semibold">Shravan Melā</p>
+                            <p class="text-sm">Major festival attraction</p>
+                        </div>
+                        <div class="bg-amber-100 p-4 rounded-lg shadow">
+                            <i class="fas fa-om text-primary text-2xl mb-2"></i>
+                            <p class="font-semibold">12 Jyotirlingas</p>
+                            <p class="text-sm">One of the sacred twelve</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Famous Foods Section -->
+    <section id="food" class="py-16 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-accent font-playfair mb-4">Local Delicacies</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Deoghar offers a variety of traditional and delicious foods that pilgrims enjoy during their visit</p>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Food Item 1 -->
+                <div class="food-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 animate-slide-up">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/malpua.jpg" alt="Malpua" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-accent">Malpua</h3>
+                            <span class="bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">Sweet</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">A traditional sweet pancake made from flour, milk, and bananas, deep-fried and soaked in sugar syrup. Often served with rabri (thickened sweet milk).</p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span class="ml-2 text-gray-600">Local Favorite</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 2 -->
+                <div class="food-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 animate-slide-up" style="animation-delay: 0.2s">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/litti.jpg" alt="Litti Chokha" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-accent">Litti Chokha</h3>
+                            <span class="bg-accent text-white text-sm font-bold px-3 py-1 rounded-full">Traditional</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">Signature Bihari-Jharkhand dish of baked dough balls (litti) served with mashed vegetable curry (chokha). A wholesome and flavorful meal enjoyed by locals and pilgrims alike.</p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="ml-2 text-gray-600">Must Try</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Item 3 -->
+                <div class="food-card bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 animate-slide-up" style="animation-delay: 0.4s">
+                    <div class="h-48 overflow-hidden">
+                        <img src="images/peda.jpg" alt="Pedas" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-bold text-accent">Deoghar Peda</h3>
+                            <span class="bg-primary text-white text-sm font-bold px-3 py-1 rounded-full">Prasad</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">Special sweet prepared from khoya (milk solids) and sugar, often offered as prasad at the temple. These pedas are famous across the region for their unique taste and texture.</p>
+                        <div class="flex items-center text-amber-600">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span class="ml-2 text-gray-600">Temple Prasad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vibe & Environment Section -->
+    <section id="vibe" class="parallax-section py-20 bg-fixed" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/dim.jpg');">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-white font-playfair mb-4">The Spiritual Vibe</h2>
+                <p class="text-amber-100 max-w-3xl mx-auto">Experience the unique atmosphere around Baba Baidyanath Temple</p>
+                <div class="w-24 h-1 bg-secondary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white border border-amber-200/30 animate-fade-in">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Devotional Energy</h3>
+                    <p>The air resonates with chants of "Har Har Mahadev" and temple bells. Pilgrims from across India come with unwavering faith, creating an atmosphere charged with spiritual energy.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white border border-amber-200/30 animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Vibrant Crowds</h3>
+                    <p>During peak seasons, especially Shravan month, the temple town transforms into a sea of saffron-clad kanwariyas. The streets are alive with devotion, cultural performances, and religious discourses.</p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 text-white border border-amber-200/30 animate-fade-in" style="animation-delay: 0.4s">
+                    <div class="text-4xl text-secondary mb-4">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Local Markets</h3>
+                    <p>The bustling markets around the temple sell religious artifacts, rudraksha beads, traditional clothes, and local handicrafts. Shopkeepers often share stories of the temple's history with visitors.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 max-w-4xl mx-auto text-center">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-amber-200/30 animate-slide-up">
+                    <h3 class="text-2xl font-bold text-white mb-4">A Unique Blend</h3>
+                    <p class="text-amber-100 mb-4">Deoghar beautifully blends deep spirituality with everyday life. While the temple area is serene and sacred, the surrounding streets are vibrant with activity - from street food vendors to flower sellers preparing offerings for the deity.</p>
+                    <p class="text-amber-100">The locals are warm and welcoming, always ready to assist pilgrims. Evening aartis at the temple create a mesmerizing spectacle as thousands of lamps illuminate the night sky, accompanied by devotional songs that echo through the town.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-accent font-playfair mb-4">Experience the Temple</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Watch this video to get a virtual tour of Baba Baidyanath Temple and its surroundings</p>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto animate-fade-in">
+                <div class="bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
+                    <!-- YouTube Video Embed -->
+                    <div class="relative pb-[56.25%] h-0 overflow-hidden rounded-t-xl">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/e6-N7-Ae8f0" 
+                            title="Baba Baidyanath Temple Documentary" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="p-6 bg-gradient-to-r from-amber-50 to-white">
+                        <h3 class="text-2xl font-bold text-accent mb-2">Baba Baidyanath Temple - A Spiritual Journey</h3>
+                        <p class="text-gray-700 mb-4">This documentary showcases the temple's architecture, daily rituals, festivals, and the devotion of pilgrims who visit throughout the year.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-clock text-primary mr-2"></i>
+                                <span>Duration: 12:45</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-calendar-alt text-primary mr-2"></i>
+                                <span>Updated: 2023</span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <i class="fas fa-eye text-primary mr-2"></i>
+                                <span>2.5M+ Views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <p class="text-gray-600 mb-6">Want to explore more about Baba Baidyanath Temple?</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://youtu.be/e6-N7-Ae8f0?si=PPwHfdIvkcnNaEGk" target="_blank" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 flex items-center">
+                            <i class="fab fa-youtube mr-2"></i> More Videos on YouTube
+                        </a>
+                        <a href="https://en.wikipedia.org/wiki/Baidyanath_Temple" target="_blank" class="bg-gray-800 hover:bg-black text-white font-semibold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105 flex items-center">
+                            <i class="fab fa-wikipedia-w mr-2"></i> Wikipedia Article
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-accent text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fas fa-om text-secondary text-3xl mr-3"></i>
+                        <h2 class="text-2xl font-bold font-playfair">Baba Baidyanath Temple</h2>
+                    </div>
+                    <p class="mt-2 text-amber-100">Deoghar, Jharkhand, India</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-amber-100 hover:text-white text-2xl">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-amber-100 hover:text-white text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-amber-100 hover:text-white text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-amber-100 hover:text-white text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-amber-700 mt-8 pt-8 text-center text-amber-100">
+                <p>&copy; 2023 Baba Baidyanath Temple Information. This is a sample website for educational purposes.</p>
+                <p class="mt-2">All religious information is based on publicly available sources.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg hover:bg-accent transition duration-300 hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements that should animate on scroll
+        document.querySelectorAll('.food-card, .animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
